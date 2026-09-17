@@ -1,2 +1,2 @@
-# Proje-o
+# Projecao
 Sistema para projeção de alunos
