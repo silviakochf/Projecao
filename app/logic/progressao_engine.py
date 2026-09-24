@@ -4,7 +4,7 @@ Regras:
   - GT5 → 1º ANO (fundamental municipal/estadual)
   - 5º ANO → 6º ANO (se escola só vai até 5º)
   - 8º ANO → 9º ANO (se escola só vai até 8º)
-  - 9º ANO → GT3 CEI (se creche só vai até GT3)
+  - 9º ANO → 1º ANO ensino medio (se creche só vai até GT3)
   - GT4 → GT3 (se creche vai até GT2)
   - GT1 → GT2 (se creche vai até GT1)
 Prioridade: 1) Estadual mesmo bairro 2) Municipal mesmo bairro 3) Bairros próximos
@@ -20,7 +20,7 @@ REGRAS_PROGRESSAO = {
     "GT5":  "1º ANO",
     "5º ANO": "6º ANO",
     "8º ANO": "9º ANO",
-    "9º ANO": "GT 3",  # para creche
+    "9º ANO": "1º ANO MEDIO",  # para ensino médio estadual
     "GT 4": "GT 3",
     "GT 3": "GT 2",   # progressão interna CEI
     "GT 2": "GT 3",   # se creche vai até GT2
@@ -29,6 +29,7 @@ REGRAS_PROGRESSAO = {
 
 # Tipo de escola destino por série
 TIPO_DESTINO = {
+    "1º ANO MEDIO": "ensino medio",
     "1º ANO": "fundamental",
     "6º ANO": "fundamental",
     "9º ANO": "fundamental",
