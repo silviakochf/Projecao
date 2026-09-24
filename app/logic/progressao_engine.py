@@ -19,6 +19,8 @@ REGRAS_PROGRESSAO = {
     "GT 5": "1º ANO",
     "GT5":  "1º ANO",
     "5º ANO": "6º ANO",
+    "3º ANO": "4º ANO",
+    "2º ANO": "3º ANO",
     "8º ANO": "9º ANO",
     "9º ANO": "1º ANO MEDIO",  # para ensino médio estadual
     "GT 4": "GT 3",
@@ -31,6 +33,9 @@ REGRAS_PROGRESSAO = {
 TIPO_DESTINO = {
     "1º ANO MEDIO": "ensino medio",
     "1º ANO": "fundamental",
+    "4º ANO": "fundamental",
+    "5º ANO": "fundamental",
+    "3º ANO": "fundamental",
     "6º ANO": "fundamental",
     "9º ANO": "fundamental",
     "GT 3":   "cei",
