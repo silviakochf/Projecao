@@ -64,7 +64,7 @@ CEIS = {
 }
 # Bairros próximos (para fallback quando não há vaga no mesmo bairro)
 BAIRROS_PROXIMOS = {
-    "PASSA VINTE":       ["CENTRO", "BELA VISTA", "PRAIA DE FORA"],
+    "PASSA VINTE":       ["CENTRO", "BELA VISTA"],
     "CENTRO":            ["PASSA VINTE", "BELA VISTA", "NOVA PALHOÇA"],
     "BELA VISTA":        ["CENTRO", "PASSA VINTE", "JARDIM ELDORADO"],
     "ARIRIÚ":            ["ALTO ARIRIÚ", "BARRA DO ARIRIÚ", "ARIRIÚ DA FORMIGA"],
