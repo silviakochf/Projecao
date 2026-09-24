@@ -1,0 +1,112 @@
+"""
+Mapa de escolas por bairro — Palhoça/SC
+Estaduais têm prioridade; dentro do bairro, estadual primeiro.
+"""
+ESTADUAIS = {
+    "BELA VISTA":        ["EEB PROFESSOR ANGELO CASCAES TANCREDO", "EEB DOM JAIME DE BARROS CAMARA"],
+    "CENTRO":            ["EEB GOV IVO SILVEIRA", "EEF VECESLAU BUENO"],
+    "PACHECO":           ["EEB PROFESSOR MARIA DO CARMO"],
+    "BARRA DO ARIRIÚ":   ["EEB SENADOR RENATO RAMOS DA SILVA"],
+    "PONTE DO IMARUIM":  ["EEB GOV PEDRO IVO FIGUEIREDO DE CAMPO", "EEB HENRIQUE ESTEFANO KOERICH", "EEB PROFESSORA CLAUDETE MARIA HOFFMAN"],
+    "ARIRIÚ":            ["EEB JOÃO SILVEIRA"],
+    "ALTO ARIRIÚ":       ["EEB PROFESSOR NICOLINA TANCREDO"],
+    "ENSEADA DO BRITO":  ["EEB JOSÉ MARIA CARDOSO DE VEIGA"],
+    "PINHEIRA":          ["EEB PEDRO VICENTE F CORDEIRO"],
+    "BREJARU":           ["EEB PROFESSOR BENONIVIO JOÃO MARTINS"],
+    "CAMINHO NOVO":      ["EEB PROFESSOR URSULINA SENNA CASTRO"],
+    "PASSA VINTE":       ["EEB VICENTE SILVEIRA"],
+    "SÃO SEBASTIÃO":     ["EEB PROFESSOR MARIA CLEMENTINA DE SOUZA LOPES"],
+}
+MUNICIPAIS = {
+    "ARIRIÚ":            ["EB NOSSA SENHORA DE FÁTIMA"],
+    "ARIRIÚ DA FORMIGA": ["EB PROFª LAURITA WAGNER DA SILVEIRA"],
+    "NOVA PALHOÇA":      ["EBM PROFº OSMAR ANTÔNIO VIEIRA"],
+    "RIO GRANDE":        ["EBM PREFEITO REINALDO WEINGARTNER", "GE PROFª EVANDA SUELI JUTTEL MACHADO"],
+    "CENTRO":            ["EB VIVIANE LAURITA DE QUADROS COELHO"],
+    "BELA VISTA":        ["EB GUILHERME WIETHORN FILHO"],
+    "JARDIM ELDORADO":   ["GE PEQUENO PRINCIPE"],
+    "CAMINHO NOVO":      ["EBM PROFª ADRIANA WEINGARTNER"],
+    "SÃO SEBASTIÃO":     ["EBM PROFª MARA LUIZA VIEIRA LIBERATO"],
+    "FREI DAMIÃO":       ["EB FREI DAMIÃO"],
+    "PRAIA DE FORA":     ["EB PROFª FRANCISCA RAIMUNDA FARIAS DA COSTA", "EB PROFº NERI BRASILIANO MARTINS"],
+    "FURADINHO":         ["ER PROFª ISABEL BOTELHO DE PAULO"],
+    "GUARDA DO CUBATÃO": ["EB PROFª ANTONIETA SILVEIRA DE SOUZA", "ER PROFº DANIEL CARLOS WEINGARTNER"],
+    "PASSA VINTE":       ["CAIC - PROFº FEBRÔNIO TANCREDO DE OLIVEIRA", "GE NAJLA CARONE GUEDERT"],
+    "SÃO SEBASTIÃO":     ["ER MANOEL DA SILVA"],
+    "MORRETE":           ["EB ABÍLIO MANOEL DE ABREU"],
+    "RINCÃO":            ["EI DO RINCÃO"],
+    "GUARDA DO EMBAÚ":   ["ER OLGA CERINO"],
+    "ALBARDÃO":          ["ER ALBARDÃO"],
+    "TRÊS BARRAS":       ["ER PROFº BENTO JOSÉ DO NASCIMENTO"],
+    "ENSEADA DA PINHEIRA":["GE PROFª MARIA LUZIA DE SOUZA"],
+    "PRAIA DO SONHO":    ["EB PROFª MARIA DOS SANTOS SILVA"],
+}
+CEIS = {
+    "ARIRIÚ":            ["CEI ESPAÇO CRIATIVO", "CEI MARIA JOSÉ DE MEDEIROS", "CEI NOVA ESPERANÇA", "CEI PARAÍSO DO AMOR"],
+    "ALTO ARIRIÚ":       ["CEI CHAPEUZINHO VERMELHO"],
+    "PACHECO":           ["CEI ANJINHO DA GUARDA", "CEI CIRANDA COLORIDA", "CEI SANTA MARTA", "CEI INOVAÇÃO"],
+    "BARRA DO ARIRIÚ":   ["CEI APRENDER BRINCANDO", "CEI DONA MARICOTA", "FUNDAÇÃO FÉ E ALEGRIA"],
+    "CENTRO":            ["CEI VOVÓ MARIA"],
+    "RIO GRANDE":        ["GE TEREZINHA MARIA ESPINDOLA MARTINS", "CEI CRIANÇA FELIZ"],
+    "BELA VISTA":        ["CEI INTERAÇÃO", "CEI MUNDO ENCANTADO", "CEI PROFESSORA INÊS MARTA DA SILVA", "CEI VOO LIVRE", "CEI VALE VERDE"],
+    "BREJARU":           ["CEI CAMINHO DA IMAGINAÇÃO", "CEI PRIMEIROS PASSOS"],
+    "JARDIM ELDORADO":   ["CEI CONVIVER", "CEI AQUARELA"],
+    "CAMINHO NOVO":      ["CEI PADRE RÉUS", "CEI AMIGUINHOS DA COMUNIDADE", "CEI FLORZINHA AZUL"],
+    "SÃO SEBASTIÃO":     ["FUNDAÇÃO HERMON", "CEI CANARINHO", "CEI RODA VIVA"],
+    "ENSEADA DO BRITO":  ["CEI ARGEMIRA FARIAS DA SILVEIRA"],
+    "FREI DAMIÃO":       ["CEI ULISSES GUIMARÃES", "CEI MUNDO MÁGICO"],
+    "FURADINHO":         ["CEI CAMINHO DO APRENDER", "CEI PAULO BRÁULIO GOULART"],
+    "GUARDA DO CUBATÃO": ["CEI JOSÉ MIGUEL DA FERREIRA"],
+    "PASSA VINTE":       ["CEI BOLINHAS DE SABÃO", "CEI CAIC-PROF FEBRÔNIO TANCREDO DE OLIVEIRA"],
+    "PONTE DO IMARUIM":  ["CEI SNOOPY", "CEI VIDA MELHOR", "CEI VOVÓ DOLORES", "CEI VÓ LAURA", "CEI ESTRELINHA", "CEI JOÃO PAULO II"],
+    "PRAIA DO SONHO":    ["CEI PROFª AURORA DA SILVA LOPES"],
+    "PINHEIRA":          ["CEI NOVA GERAÇÃO"],
+}
+# Bairros próximos (para fallback quando não há vaga no mesmo bairro)
+BAIRROS_PROXIMOS = {
+    "PASSA VINTE":       ["CENTRO", "BELA VISTA", "PRAIA DE FORA"],
+    "CENTRO":            ["PASSA VINTE", "BELA VISTA", "NOVA PALHOÇA"],
+    "BELA VISTA":        ["CENTRO", "PASSA VINTE", "JARDIM ELDORADO"],
+    "ARIRIÚ":            ["ALTO ARIRIÚ", "BARRA DO ARIRIÚ", "ARIRIÚ DA FORMIGA"],
+    "ALTO ARIRIÚ":       ["ARIRIÚ", "BARRA DO ARIRIÚ"],
+    "BARRA DO ARIRIÚ":   ["ARIRIÚ", "RIO GRANDE", "NOVA PALHOÇA"],
+    "NOVA PALHOÇA":      ["RIO GRANDE", "BARRA DO ARIRIÚ", "CENTRO"],
+    "RIO GRANDE":        ["NOVA PALHOÇA", "BARRA DO ARIRIÚ"],
+    "CAMINHO NOVO":      ["BREJARU", "SÃO SEBASTIÃO", "CENTRO"],
+    "SÃO SEBASTIÃO":     ["CAMINHO NOVO", "BREJARU"],
+    "FREI DAMIÃO":       ["JARDIM ELDORADO", "BELA VISTA"],
+    "JARDIM ELDORADO":   ["FREI DAMIÃO", "BELA VISTA", "CENTRO"],
+    "PRAIA DE FORA":     ["PASSA VINTE", "FURADINHO", "GUARDA DO CUBATÃO"],
+    "FURADINHO":         ["PRAIA DE FORA", "GUARDA DO CUBATÃO"],
+    "GUARDA DO CUBATÃO": ["FURADINHO", "PRAIA DE FORA"],
+    "PACHECO":           ["PONTE DO IMARUIM", "BARRA DO ARIRIÚ"],
+    "PONTE DO IMARUIM":  ["PACHECO", "ARIRIÚ"],
+    "ENSEADA DO BRITO":  ["PINHEIRA", "ENSEADA DA PINHEIRA"],
+    "PINHEIRA":          ["ENSEADA DO BRITO", "ENSEADA DA PINHEIRA"],
+    "ENSEADA DA PINHEIRA":["PINHEIRA", "PRAIA DO SONHO"],
+    "PRAIA DO SONHO":    ["ENSEADA DA PINHEIRA", "PINHEIRA"],
+    "BREJARU":           ["CAMINHO NOVO", "SÃO SEBASTIÃO"],
+    "MORRETE":           ["ARIRIÚ", "BARRA DO ARIRIÚ"],
+    "ALBARDÃO":          ["TRÊS BARRAS"],
+    "TRÊS BARRAS":       ["ALBARDÃO"],
+    "GUARDA DO EMBAÚ":   ["ENSEADA DO BRITO"],
+}
+}
+
+# Escola → bairro (para lookup reverso)
+def get_bairro_by_escola(nome_escola: str) -> str:
+    nome_up = nome_escola.upper()
+    for bairro, escolas in {**ESTADUAIS, **MUNICIPAIS, **CEIS}.items():
+        for e in escolas:
+            if any(word in nome_up for word in e.upper().split() if len(word) > 3):
+                return bairro
+    return ""
+
+def get_bairros_proximos(bairro: str) -> list:
+    return BAIRROS_PROXIMOS.get(bairro.upper(), [])
+
+def get_escolas_estaduais_bairro(bairro: str) -> list:
+    return ESTADUAIS.get(bairro.upper(), [])
+
+def get_escolas_municipais_bairro(bairro: str) -> list:
+    return MUNICIPAIS.get(bairro.upper(), [])
