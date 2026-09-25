@@ -23,8 +23,7 @@ REGRAS_PROGRESSAO = {
     "2º ANO": "3º ANO",
     "8º ANO": "9º ANO",
     "9º ANO": "1º ANO MEDIO",  # para ensino médio estadual
-    "GT 4": "GT 3",
-    "GT 3": "GT 2",   # progressão interna CEI
+    "GT 3": "GT 4",   # progressão interna CEI
     "GT 2": "GT 3",   # se creche vai até GT2
     "GT 1": "GT 2",
 }
