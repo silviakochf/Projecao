@@ -1,0 +1,155 @@
+{% extends "base.html" %}
+{% block title %}Cartas{% endblock %}
+{% block content %}
+<h2 style="font-size:1.3rem;font-weight:700;margin-bottom:1.25rem">✉️ Cartas de Encaminhamento</h2>
+
+<div class="card">
+  <div class="card-title"><i class="fas fa-cog"></i> Configurações da Carta</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
+    <div class="form-group">
+      <label class="form-label">Secretaria</label>
+      <input class="form-input" id="cfg-secretaria" value="SECRETARIA MUNICIPAL DE EDUCAÇÃO"/>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Município</label>
+      <input class="form-input" id="cfg-municipio" value="PALHOÇA"/>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Escola de Origem</label>
+      <input class="form-input" id="cfg-escola-origem" placeholder="Ex: CEI CIRANDA COLORIDA"/>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Data</label>
+      <input class="form-input" id="cfg-data" placeholder="Ex: 15 de outubro de 2026"/>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Nome para assinatura</label>
+      <input class="form-input" id="cfg-assinatura" placeholder="Nome da responsável"/>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Cargo</label>
+      <input class="form-input" id="cfg-cargo" value="Secretária de Educação"/>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-title"><i class="fas fa-info-circle" style="color:#2563eb"></i> Como funciona</div>
+  <ol style="font-size:.875rem;color:#475569;line-height:2;padding-left:1.25rem">
+    <li>Execute a <strong>análise de progressão</strong> na aba Progressão</li>
+    <li>Configure os dados da carta acima</li>
+    <li>Clique em <strong>"Gerar e Exportar Cartas"</strong></li>
+    <li>Uma carta por escola destino será gerada automaticamente e enviada para o Drive</li>
+  </ol>
+</div>
+
+<div class="card">
+  <div class="card-title"><i class="fas fa-envelope-open"></i> Gerar Cartas</div>
+  <p style="font-size:.875rem;color:#64748b;margin-bottom:1rem">
+    As cartas serão geradas com base na análise de progressão já executada, 
+    agrupando os alunos por escola destino.
+  </p>
+
+  <div style="display:flex;gap:.75rem;flex-wrap:wrap">
+    <button class="btn btn-primary" onclick="previsaoCartas()">
+      <i class="fas fa-eye"></i> Pré-visualizar
+    </button>
+    <button class="btn btn-green" id="btn-gerar" onclick="gerarCartas()">
+      <i class="fas fa-cloud-upload-alt"></i> Gerar e Exportar para Drive
+    </button>
+  </div>
+
+  <div id="cartas-status" style="margin-top:1rem;font-size:.875rem"></div>
+</div>
+
+<!-- Prévia das cartas -->
+<div class="card" id="previa-card" style="display:none">
+  <div class="card-title"><i class="fas fa-list"></i> Prévia das Cartas</div>
+  <div id="previa-lista"></div>
+</div>
+{% endblock %}
+{% block scripts %}
+<script>
+async function previsaoCartas() {
+  try {
+    const r = await fetch('/api/analisar_progressao', {
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({escola_origem:'', bairro:'', series_progressao:['GT 5','5º ANO','8º ANO','GT 4','8º ANO','9º ANO']})
+    });
+    const d = await r.json();
+    if (!d.success) { toast('Execute a análise na aba Progressão primeiro', false); return; }
+
+    // Agrupa por escola destino
+    const porEscola = {};
+    for (const t of d.turmas) {
+      const sug = t.escola_sugerida;
+      if (!sug) continue;
+      const key = `${sug.escola}|${t.serie_destino}|${t.turno}`;
+      if (!porEscola[key]) porEscola[key] = {escola: sug.escola, serie: t.serie_destino, turno: t.turno, alunos: 0};
+      porEscola[key].alunos += t.total_alunos;
+    }
+
+    const lista = Object.values(porEscola);
+    document.getElementById('previa-card').style.display = '';
+    document.getElementById('previa-lista').innerHTML = lista.length
+      ? `<div class="table-wrap"><table>
+          <thead><tr><th>Escola Destino</th><th>Série</th><th>Turno</th><th>Alunos</th></tr></thead>
+          <tbody>${lista.map(l => `<tr>
+            <td>${l.escola}</td>
+            <td>${l.serie}</td>
+            <td>${l.turno}</td>
+            <td style="text-align:center;font-weight:700">${l.alunos}</td>
+          </tr>`).join('')}</tbody>
+        </table></div>
+        <p style="margin-top:.75rem;font-size:.875rem;color:#64748b">${lista.length} carta(s) serão geradas.</p>`
+      : '<p style="color:#991b1b">Nenhuma sugestão disponível. Verifique as vagas cadastradas.</p>';
+  } catch(e) { toast('Erro: ' + e.message, false); }
+}
+
+async function gerarCartas() {
+  const cfg = {
+    secretaria: document.getElementById('cfg-secretaria').value,
+    municipio:  document.getElementById('cfg-municipio').value,
+    data:       document.getElementById('cfg-data').value || new Date().toLocaleDateString('pt-BR',{day:'numeric',month:'long',year:'numeric'}),
+    assinatura: document.getElementById('cfg-assinatura').value,
+    cargo:      document.getElementById('cfg-cargo').value
+  };
+  const escola = document.getElementById('cfg-escola-origem').value;
+
+  const btn = document.getElementById('btn-gerar');
+  btn.disabled = true;
+  btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Gerando e enviando...';
+  const status = document.getElementById('cartas-status');
+  status.innerHTML = '⏳ Gerando cartas e enviando para o Drive...';
+
+  try {
+    const r = await fetch('/api/gerar_cartas', {
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({escola_origem: escola, template: cfg})
+    });
+    const d = await r.json();
+
+    if (d.success) {
+      status.innerHTML = `
+        <div style="background:#d1fae5;border:1px solid #86efac;border-radius:8px;padding:.75rem 1rem">
+          ✅ ${d.uploaded.length} carta(s) enviadas para o Drive com sucesso!<br>
+          <small style="color:#065f46">${d.uploaded.map(u => u.filename.replace('carta_','').replace('.xlsx','')).join(' | ')}</small>
+        </div>
+        ${d.errors.length ? `<div style="background:#fee2e2;border:1px solid #fca5a5;border-radius:8px;padding:.75rem 1rem;margin-top:.5rem">
+          ❌ ${d.errors.length} erro(s): ${d.errors.map(e => e.filename).join(', ')}
+        </div>` : ''}`;
+      toast(`✅ ${d.uploaded.length} cartas enviadas!`);
+    } else {
+      status.innerHTML = `<div style="background:#fee2e2;border-radius:8px;padding:.75rem 1rem">❌ ${d.error || 'Erro ao gerar cartas'}</div>`;
+      toast('Erro ao gerar cartas', false);
+    }
+  } catch(e) {
+    status.innerHTML = `<div style="background:#fee2e2;border-radius:8px;padding:.75rem 1rem">❌ ${e.message}</div>`;
+    toast('Erro de conexão', false);
+  } finally {
+    btn.disabled = false;
+    btn.innerHTML = '<i class="fas fa-cloud-upload-alt"></i> Gerar e Exportar para Drive';
+  }
+}
+</script>
+{% endblock %}
