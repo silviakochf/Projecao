@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>PAESTRO — {% block title %}Progressão{% endblock %}</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',sans-serif;background:#f1f5f9;color:#1e293b;min-height:100vh}
+nav{background:#0a192f;padding:0 2rem;display:flex;align-items:center;gap:.25rem;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,.2)}
+.nav-logo{color:#64ffda;font-size:1.1rem;font-weight:700;padding:1rem 1rem 1rem 0;margin-right:.5rem;white-space:nowrap}
+.nav-btn{background:none;border:none;color:rgba(255,255,255,.65);padding:.75rem .9rem;cursor:pointer;font-size:.85rem;font-weight:500;border-bottom:2px solid transparent;transition:all .2s;text-decoration:none;display:flex;align-items:center;gap:.35rem}
+.nav-btn:hover{color:#fff}
+.nav-btn.active{color:#fff;border-bottom-color:#64ffda}
+main{max-width:1200px;margin:0 auto;padding:1.5rem 1rem}
+.card{background:#fff;border-radius:10px;border:1px solid #e2e8f0;padding:1.5rem;box-shadow:0 1px 4px rgba(0,0,0,.06);margin-bottom:1.25rem}
+.card-title{font-size:.95rem;font-weight:600;margin-bottom:1rem;color:#0a192f;display:flex;align-items:center;gap:.5rem}
+.btn{display:inline-flex;align-items:center;gap:.4rem;padding:.55rem 1.1rem;border-radius:8px;font-size:.875rem;font-weight:500;cursor:pointer;border:none;transition:all .2s}
+.btn-primary{background:#0a192f;color:#fff}.btn-primary:hover{background:#172a45}
+.btn-green{background:#10b981;color:#fff}.btn-green:hover{background:#059669}
+.btn-blue{background:#2563eb;color:#fff}.btn-blue:hover{background:#1d4ed8}
+.btn-outline{background:#fff;color:#475569;border:1px solid #cbd5e1}.btn-outline:hover{background:#f8fafc}
+.btn-red{background:#ef4444;color:#fff}.btn-red:hover{background:#dc2626}
+.btn-sm{padding:.35rem .7rem;font-size:.8rem}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.badge{display:inline-flex;align-items:center;padding:.2rem .6rem;border-radius:99px;font-size:.75rem;font-weight:600;border:1px solid}
+.badge-green{background:#d1fae5;color:#065f46;border-color:#86efac}
+.badge-red{background:#fee2e2;color:#991b1b;border-color:#fca5a5}
+.badge-yellow{background:#fef9c3;color:#854d0e;border-color:#fde047}
+.badge-blue{background:#dbeafe;color:#1e40af;border-color:#93c5fd}
+.badge-gray{background:#f1f5f9;color:#475569;border-color:#cbd5e1}
+.badge-purple{background:#ede9fe;color:#5b21b6;border-color:#c4b5fd}
+table{width:100%;border-collapse:collapse;font-size:.85rem}
+thead th{background:#0a192f;color:#fff;padding:.6rem .85rem;text-align:left;font-size:.8rem;font-weight:500;position:sticky;top:0}
+tbody tr{border-bottom:1px solid #e2e8f0;transition:background .1s}
+tbody tr:hover{background:#f8fafc}
+tbody td{padding:.55rem .85rem;vertical-align:middle}
+.table-wrap{overflow-x:auto;border-radius:8px;border:1px solid #e2e8f0;max-height:500px;overflow-y:auto}
+#toast{position:fixed;bottom:1.5rem;right:1.5rem;background:#0a192f;color:#fff;padding:.7rem 1.2rem;border-radius:8px;font-size:.875rem;box-shadow:0 4px 12px rgba(0,0,0,.15);opacity:0;transform:translateY(8px);transition:all .3s;pointer-events:none;z-index:999}
+#toast.show{opacity:1;transform:translateY(0)}
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:.75rem;margin-bottom:1.25rem}
+.stat{background:#fff;border:1px solid #e2e8f0;border-radius:8px;padding:.9rem 1rem;text-align:center}
+.stat-num{font-size:1.75rem;font-weight:700;line-height:1}
+.stat-label{font-size:.72rem;color:#94a3b8;margin-top:.2rem}
+.form-group{margin-bottom:.9rem}
+.form-label{display:block;font-size:.85rem;font-weight:500;margin-bottom:.35rem}
+.form-input,.form-select{width:100%;padding:.5rem .75rem;border:1px solid #cbd5e1;border-radius:8px;font-size:.875rem;color:#1e293b;background:#fff}
+.form-input:focus,.form-select:focus{outline:none;border-color:#0a192f}
+.dropzone{border:2px dashed #cbd5e1;border-radius:8px;padding:1.5rem;text-align:center;cursor:pointer;transition:all .2s;background:#f8fafc}
+.dropzone:hover{border-color:#0a192f;background:#f0f9ff}
+.dropzone input{display:none}
+footer{text-align:center;padding:1.5rem;font-size:.8rem;color:#94a3b8;margin-top:2rem}
+</style>
+{% block extra_css %}{% endblock %}
+</head>
+<body>
+<nav>
+  <span class="nav-logo">🎓 PAESTRO</span>
+  <a href="/" class="nav-btn {% if request.path=='/' %}active{% endif %}">
+    <i class="fas fa-home"></i> Início
+  </a>
+  <a href="/progressao" class="nav-btn {% if request.path=='/progressao' %}active{% endif %}">
+    <i class="fas fa-graduation-cap"></i> Progressão
+  </a>
+  <a href="/cartas" class="nav-btn {% if request.path=='/cartas' %}active{% endif %}">
+    <i class="fas fa-envelope"></i> Cartas
+  </a>
+</nav>
+<div id="toast"></div>
+<main>{% block content %}{% endblock %}</main>
+<footer>Secretaria de Educação — Palhoça © {{ now.year }}</footer>
+<script>
+let _tt;
+function toast(msg, ok=true) {
+    const el = document.getElementById('toast');
+    el.textContent = msg;
+    el.style.background = ok ? '#0a192f' : '#dc2626';
+    el.classList.add('show');
+    clearTimeout(_tt);
+    _tt = setTimeout(() => el.classList.remove('show'), 3000);
+}
+</script>
+{% block scripts %}{% endblock %}
+</body>
+</html>
