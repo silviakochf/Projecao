@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}Início{% endblock %}
+{% block content %}
+<div style="text-align:center;padding:3rem 1rem">
+  <h1 style="font-size:2rem;font-weight:700;color:#0a192f;margin-bottom:.5rem">🎓 Sistema de Progressão</h1>
+  <p style="color:#64748b;font-size:1rem;margin-bottom:3rem">Secretaria de Educação de Palhoça</p>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.25rem;max-width:700px;margin:0 auto">
+    <a href="/progressao" style="text-decoration:none">
+      <div class="card" style="text-align:center;padding:2rem;border:2px solid #e2e8f0;transition:border-color .2s" onmouseover="this.style.borderColor='#0a192f'" onmouseout="this.style.borderColor='#e2e8f0'">
+        <div style="font-size:2.5rem;margin-bottom:1rem">📊</div>
+        <h3 style="font-size:1.1rem;font-weight:600;color:#0a192f;margin-bottom:.5rem">Progressão</h3>
+        <p style="font-size:.875rem;color:#64748b">Carregue vagas, importe alunos e execute a análise IA</p>
+      </div>
+    </a>
+    <a href="/cartas" style="text-decoration:none">
+      <div class="card" style="text-align:center;padding:2rem;border:2px solid #e2e8f0;transition:border-color .2s" onmouseover="this.style.borderColor='#0a192f'" onmouseout="this.style.borderColor='#e2e8f0'">
+        <div style="font-size:2.5rem;margin-bottom:1rem">✉️</div>
+        <h3 style="font-size:1.1rem;font-weight:600;color:#0a192f;margin-bottom:.5rem">Cartas</h3>
+        <p style="font-size:.875rem;color:#64748b">Gere cartas de encaminhamento por escola destino</p>
+      </div>
+    </a>
+  </div>
+</div>
+{% endblock %}
