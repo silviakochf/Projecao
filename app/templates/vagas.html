@@ -1,0 +1,198 @@
+{% extends "base.html" %}
+{% block title %}Vagas{% endblock %}
+{% block content %}
+<h2 style="font-size:1.3rem;font-weight:700;margin-bottom:1.25rem">🏫 Gerenciamento de Vagas</h2>
+
+<!-- Importar PDF municipal -->
+<div class="card">
+  <div class="card-title"><i class="fas fa-file-pdf" style="color:#ef4444"></i> Importar PDF de Vagas Municipais</div>
+  <div class="dropzone" id="dropzone-pdf" onclick="document.getElementById('pdf-input').click()">
+    <div style="font-size:2rem;margin-bottom:.5rem">📄</div>
+    <p style="font-weight:500">Arraste o PDF de vagas ou clique para selecionar</p>
+    <p style="font-size:.8rem;color:#94a3b8">Relatório EducarWEB — vagas por série e turno</p>
+    <input type="file" id="pdf-input" accept=".pdf" onchange="importarPDF(this)"/>
+  </div>
+  <div id="pdf-status" style="margin-top:.75rem;font-size:.875rem"></div>
+</div>
+
+<!-- Vagas estaduais -->
+<div class="card">
+  <div class="card-title"><i class="fas fa-school" style="color:#7c3aed"></i> Vagas Estaduais (inserir manualmente)</div>
+  <p style="font-size:.875rem;color:#64748b;margin-bottom:1rem">Insira as vagas disponibilizadas pelas escolas estaduais. A IA só analisa após você salvar.</p>
+
+  <div id="estaduais-form">
+    <div class="form-group" style="display:grid;grid-template-columns:1fr 1fr 1fr auto;gap:.5rem;align-items:end" id="estaduais-rows">
+      <!-- linhas adicionadas via JS -->
+    </div>
+    <button class="btn btn-outline" onclick="addRowEstadual()" style="margin-top:.5rem">
+      <i class="fas fa-plus"></i> Adicionar escola estadual
+    </button>
+  </div>
+  <div style="margin-top:1rem;display:flex;gap:.5rem">
+    <button class="btn btn-primary" onclick="salvarEstaduals()"><i class="fas fa-save"></i> Salvar vagas estaduais</button>
+  </div>
+</div>
+
+<!-- Resumo -->
+<div class="card">
+  <div class="card-title"><i class="fas fa-table"></i> Resumo de Vagas Disponíveis</div>
+  <div style="display:flex;gap:.5rem;margin-bottom:.75rem">
+    <button class="btn btn-outline btn-sm" onclick="filtrarVagas('TODAS')">Todas</button>
+    <button class="btn btn-outline btn-sm" onclick="filtrarVagas('MUNICIPAL')">Municipais</button>
+    <button class="btn btn-outline btn-sm" onclick="filtrarVagas('ESTADUAL')">Estaduais</button>
+  </div>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Escola</th><th>Tipo</th><th>Série</th><th>Turno</th>
+          <th>Existentes</th><th>Ocupadas</th><th>Disponíveis</th>
+        </tr>
+      </thead>
+      <tbody id="vagas-tbody"></tbody>
+    </table>
+    <div id="vagas-empty" style="text-align:center;padding:2rem;color:#94a3b8;display:none">Nenhuma vaga carregada ainda.</div>
+  </div>
+</div>
+{% endblock %}
+{% block scripts %}
+<script>
+let allVagas = [];
+
+document.addEventListener('DOMContentLoaded', async () => {
+  await carregarResumo();
+  await carregarEstaduals();
+});
+
+async function importarPDF(input) {
+  const file = input.files[0];
+  if (!file) return;
+  const status = document.getElementById('pdf-status');
+  status.innerHTML = '⏳ Processando PDF...';
+  const fd = new FormData();
+  fd.append('file', file);
+  try {
+    const r = await fetch('/api/importar_vagas_pdf', {method:'POST', body:fd});
+    const d = await r.json();
+    if (d.success) {
+      status.innerHTML = `✅ ${d.escolas} escolas importadas | ${d.total_vagas_disponiveis} vagas disponíveis`;
+      await carregarResumo();
+      toast('PDF importado com sucesso!');
+    } else {
+      status.innerHTML = `❌ ${d.error}`;
+      toast('Erro ao importar PDF', false);
+    }
+  } catch(e) {
+    status.innerHTML = `❌ Erro: ${e.message}`;
+    toast('Erro de conexão', false);
+  }
+}
+
+async function carregarResumo() {
+  try {
+    const r = await fetch('/api/get_resumo_vagas');
+    const d = await r.json();
+    allVagas = [
+      ...d.municipais.map(v => ({...v, tipo:'MUNICIPAL'})),
+      ...d.estaduais.map(v => ({...v, tipo:'ESTADUAL'}))
+    ];
+    renderVagas(allVagas);
+  } catch(e) { console.error(e); }
+}
+
+function renderVagas(vagas) {
+  const tbody = document.getElementById('vagas-tbody');
+  const empty = document.getElementById('vagas-empty');
+  if (!vagas.length) { tbody.innerHTML=''; empty.style.display=''; return; }
+  empty.style.display='none';
+  tbody.innerHTML = vagas.map((v,i) => {
+    const bg = v.vagas_disponiveis > 0 ? 'background:#d1fae540' : 'background:#fee2e240';
+    const badge = v.tipo === 'ESTADUAL'
+      ? '<span class="badge badge-purple">ESTADUAL</span>'
+      : '<span class="badge badge-blue">MUNICIPAL</span>';
+    const dispColor = v.vagas_disponiveis > 0 ? 'color:#065f46;font-weight:700' : 'color:#991b1b;font-weight:700';
+    return `<tr style="${bg}">
+      <td>${v.escola}</td>
+      <td>${badge}</td>
+      <td>${v.serie}</td>
+      <td>${v.turno}</td>
+      <td style="text-align:center">${v.vagas_existentes ?? '—'}</td>
+      <td style="text-align:center">${v.vagas_ocupadas ?? '—'}</td>
+      <td style="text-align:center;${dispColor}">${v.vagas_disponiveis}</td>
+    </tr>`;
+  }).join('');
+}
+
+function filtrarVagas(tipo) {
+  const filtered = tipo === 'TODAS' ? allVagas : allVagas.filter(v => v.tipo === tipo);
+  renderVagas(filtered);
+}
+
+// Vagas estaduais
+let estaduaisRows = [];
+
+function addRowEstadual(data={}) {
+  const id = Date.now();
+  estaduaisRows.push(id);
+  const container = document.getElementById('estaduais-rows');
+  const div = document.createElement('div');
+  div.id = `est-row-${id}`;
+  div.style.cssText = 'display:contents';
+  div.innerHTML = `
+    <input class="form-input" placeholder="Nome da escola estadual" value="${data.escola||''}" id="est-escola-${id}"/>
+    <input class="form-input" placeholder="Série (ex: 1º ANO)" value="${data.serie||''}" id="est-serie-${id}"/>
+    <div style="display:flex;gap:.35rem">
+      <input class="form-input" placeholder="Vagas manhã" type="number" min="0" value="${data.manha||0}" id="est-manha-${id}" style="width:90px"/>
+      <input class="form-input" placeholder="Vagas tarde" type="number" min="0" value="${data.tarde||0}" id="est-tarde-${id}" style="width:90px"/>
+    </div>
+    <button class="btn btn-red" style="padding:.5rem .7rem" onclick="removeRowEstadual(${id})"><i class="fas fa-trash"></i></button>
+  `;
+  container.appendChild(div);
+}
+
+function removeRowEstadual(id) {
+  document.getElementById(`est-row-${id}`)?.remove();
+  estaduaisRows = estaduaisRows.filter(r => r !== id);
+}
+
+async function carregarEstaduals() {
+  try {
+    const r = await fetch('/api/get_vagas_estaduais');
+    const d = await r.json();
+    document.getElementById('estaduais-rows').innerHTML = '';
+    estaduaisRows = [];
+    for (const [escola, series] of Object.entries(d)) {
+      for (const [serie, turnos] of Object.entries(series)) {
+        addRowEstadual({
+          escola, serie,
+          manha: turnos['MANHÃ'] || 0,
+          tarde: turnos['TARDE'] || 0
+        });
+      }
+    }
+  } catch(e) {}
+}
+
+async function salvarEstaduals() {
+  const data = {};
+  for (const id of estaduaisRows) {
+    const escola = document.getElementById(`est-escola-${id}`)?.value.trim();
+    const serie  = document.getElementById(`est-serie-${id}`)?.value.trim();
+    const manha  = parseInt(document.getElementById(`est-manha-${id}`)?.value) || 0;
+    const tarde  = parseInt(document.getElementById(`est-tarde-${id}`)?.value) || 0;
+    if (!escola || !serie) continue;
+    if (!data[escola]) data[escola] = {};
+    if (!data[escola][serie]) data[escola][serie] = {};
+    if (manha > 0) data[escola][serie]['MANHÃ'] = manha;
+    if (tarde > 0) data[escola][serie]['TARDE'] = tarde;
+  }
+  const r = await fetch('/api/salvar_vagas_estaduais', {
+    method:'POST', headers:{'Content-Type':'application/json'},
+    body: JSON.stringify(data)
+  });
+  const d = await r.json();
+  if (d.success) { toast('✅ Vagas estaduais salvas!'); await carregarResumo(); }
+  else toast('❌ Erro ao salvar', false);
+}
+</script>
+{% endblock %}
