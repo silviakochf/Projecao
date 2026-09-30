@@ -1,0 +1,513 @@
+{% extends "base.html" %}
+{% block title %}Progressão{% endblock %}
+{% block extra_css %}
+<style>
+.step-header {
+    display: flex;
+    align-items: center;
+    gap: .75rem;
+    margin-bottom: 1rem;
+}
+.step-num {
+    width: 32px; height: 32px;
+    background: #0a192f; color: #fff;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: .85rem; font-weight: 700; flex-shrink: 0;
+}
+.step-num.done { background: #10b981; }
+.step-num.pending { background: #94a3b8; }
+.step-title { font-size: 1rem; font-weight: 600; color: #0a192f; }
+.step-subtitle { font-size: .8rem; color: #64748b; }
+.step-block { 
+    border-left: 3px solid #e2e8f0; 
+    padding-left: 1.5rem; 
+    margin-left: 1rem;
+    margin-bottom: .5rem;
+}
+.step-block.done { border-color: #10b981; }
+.step-block.pending { opacity: .5; pointer-events: none; }
+.vagas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: .5rem;
+    margin-bottom: 1rem;
+}
+.vaga-card {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: .75rem 1rem;
+    font-size: .82rem;
+}
+.vaga-card .escola-nome { font-weight: 600; color: #0a192f; margin-bottom: .25rem; font-size: .8rem; }
+.vaga-card .vaga-serie { color: #64748b; font-size: .75rem; }
+.vaga-card .vaga-num { font-size: 1.4rem; font-weight: 700; color: #10b981; }
+.vaga-card .vaga-num.zero { color: #ef4444; }
+.aloc-row { background: #f0fdf9; border: 1px solid #86efac; border-radius: 8px; padding: .75rem 1rem; margin-bottom: .5rem; }
+.aloc-row.sem-vaga { background: #fff7ed; border-color: #fed7aa; }
+.aloc-row .turma-info { font-weight: 600; color: #0a192f; font-size: .9rem; }
+.aloc-row .escola-dest { color: #065f46; font-size: .85rem; margin-top: .2rem; }
+.aloc-row.sem-vaga .escola-dest { color: #c2410c; }
+.aloc-row .alunos-badge { font-size: .75rem; background: #e2e8f0; padding: .15rem .5rem; border-radius: 4px; }
+</style>
+{% endblock %}
+{% block content %}
+<h2 style="font-size:1.3rem;font-weight:700;margin-bottom:1.5rem">🎓 Progressão de Alunos</h2>
+
+<!-- ── PASSO 1: VAGAS ─────────────────────────────── -->
+<div class="step-header">
+    <div class="step-num" id="num1">1</div>
+    <div>
+        <div class="step-title">Carregar Vagas</div>
+        <div class="step-subtitle">PDF municipal + vagas estaduais manuais</div>
+    </div>
+</div>
+<div class="step-block" id="block1">
+    <div class="card" style="margin-bottom:.75rem">
+        <div class="card-title"><i class="fas fa-file-pdf" style="color:#ef4444"></i> Vagas Municipais — PDF EducarWEB</div>
+        <div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap">
+            <div class="dropzone" id="dropzone-pdf" style="flex:1;min-width:250px;padding:1.25rem"
+                 onclick="document.getElementById('pdf-input').click()">
+                <i class="fas fa-cloud-upload-alt" style="font-size:1.5rem;color:#94a3b8"></i>
+                <p style="margin:.35rem 0 0;font-size:.875rem;font-weight:500">Clique para importar o PDF de vagas</p>
+                <input type="file" id="pdf-input" accept=".pdf" onchange="importarPDF(this)"/>
+            </div>
+            <div id="pdf-status" style="font-size:.85rem;color:#475569"></div>
+        </div>
+    </div>
+
+    <div class="card" style="margin-bottom:.75rem">
+        <div class="card-title"><i class="fas fa-school" style="color:#7c3aed"></i> Vagas Estaduais — Inserir manualmente</div>
+        <p style="font-size:.82rem;color:#64748b;margin-bottom:.75rem">Informe as vagas disponibilizadas pelas escolas estaduais. A análise só inicia após salvar.</p>
+        <div id="estaduais-rows" style="display:flex;flex-direction:column;gap:.5rem"></div>
+        <button class="btn btn-outline" onclick="addRowEstadual()" style="margin-top:.5rem;font-size:.82rem">
+            <i class="fas fa-plus"></i> Adicionar escola estadual
+        </button>
+        <div style="margin-top:.75rem">
+            <button class="btn btn-primary" onclick="salvarEstaduals()">
+                <i class="fas fa-save"></i> Salvar vagas estaduais
+            </button>
+        </div>
+    </div>
+
+    <!-- Resumo de vagas carregadas -->
+    <div class="card" id="vagas-resumo-card" style="display:none">
+        <div class="card-title"><i class="fas fa-chart-bar" style="color:#10b981"></i> Vagas disponíveis por série destino</div>
+        <div class="vagas-grid" id="vagas-resumo-grid"></div>
+        <div style="display:flex;gap:.5rem;margin-top:.5rem">
+            <button class="btn btn-outline btn-sm" onclick="filtrarResumoPor('1º ANO')">1º ANO</button>
+            <button class="btn btn-outline btn-sm" onclick="filtrarResumoPor('6º ANO')">6º ANO</button>
+            <button class="btn btn-outline btn-sm" onclick="filtrarResumoPor('GT')">GT</button>
+            <button class="btn btn-outline btn-sm" onclick="filtrarResumoPor('')">Todos</button>
+        </div>
+    </div>
+</div>
+
+<!-- ── PASSO 2: ALUNOS ────────────────────────────── -->
+<div class="step-header" style="margin-top:1.5rem">
+    <div class="step-num pending" id="num2">2</div>
+    <div>
+        <div class="step-title">Importar Alunos</div>
+        <div class="step-subtitle">HTML do EducarWEB com estudantes matriculados</div>
+    </div>
+</div>
+<div class="step-block pending" id="block2">
+    <div class="card">
+        <div class="card-title"><i class="fas fa-users" style="color:#2563eb"></i> Relatório de Alunos Matriculados</div>
+        <div class="dropzone" id="dropzone-html" onclick="document.getElementById('html-input').click()">
+            <i class="fas fa-file-code" style="font-size:1.5rem;color:#94a3b8"></i>
+            <p style="margin:.35rem 0 0;font-size:.875rem;font-weight:500">Clique para importar o HTML de alunos</p>
+            <input type="file" id="html-input" accept=".html,.htm" onchange="importarAlunos(this)"/>
+        </div>
+        <div id="alunos-status" style="margin-top:.75rem;font-size:.85rem"></div>
+    </div>
+</div>
+
+<!-- ── PASSO 3: CONFIGURAR E ANALISAR ─────────────── -->
+<div class="step-header" style="margin-top:1.5rem">
+    <div class="step-num pending" id="num3">3</div>
+    <div>
+        <div class="step-title">Configurar e Executar Análise</div>
+        <div class="step-subtitle">A IA sugere escolas com base nas vagas disponíveis</div>
+    </div>
+</div>
+<div class="step-block pending" id="block3">
+    <div class="card">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem">
+            <div class="form-group">
+                <label class="form-label">Escola de origem</label>
+                <input class="form-input" id="escola-origem" placeholder="Ex: CEI CIRANDA COLORIDA"/>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Bairro</label>
+                <select class="form-select" id="bairro-origem">
+                    <option value="">Selecione o bairro</option>
+                    <option>PASSA VINTE</option><option>CENTRO</option><option>BELA VISTA</option>
+                    <option>ARIRIÚ</option><option>ALTO ARIRIÚ</option><option>BARRA DO ARIRIÚ</option>
+                    <option>NOVA PALHOÇA</option><option>RIO GRANDE</option><option>CAMINHO NOVO</option>
+                    <option>SÃO SEBASTIÃO</option><option>FREI DAMIÃO</option><option>JARDIM ELDORADO</option>
+                    <option>PRAIA DE FORA</option><option>FURADINHO</option><option>GUARDA DO CUBATÃO</option>
+                    <option>PACHECO</option><option>PONTE DO IMARUIM</option><option>ENSEADA DO BRITO</option>
+                    <option>PINHEIRA</option><option>ENSEADA DA PINHEIRA</option><option>PRAIA DO SONHO</option>
+                    <option>BREJARU</option><option>MORRETE</option><option>ALBARDÃO</option>
+                    <option>TRÊS BARRAS</option><option>GUARDA DO EMBAÚ</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-label">Séries para progressão</label>
+            <div style="display:flex;gap:.5rem;flex-wrap:wrap">
+                {% for s in ['GT 5','GT 4','GT 3','GT 2','GT 1','5º ANO','8º ANO','9º ANO'] %}
+                <label style="display:flex;align-items:center;gap:.35rem;padding:.35rem .75rem;border:1px solid #cbd5e1;border-radius:99px;cursor:pointer;font-size:.82rem">
+                    <input type="checkbox" value="{{ s }}" {% if s in ['GT 5','5º ANO','8º ANO'] %}checked{% endif %}/> {{ s }}
+                </label>
+                {% endfor %}
+            </div>
+        </div>
+        <button class="btn btn-green" id="btn-analisar" onclick="analisarProgressao()">
+            <i class="fas fa-robot"></i> Executar Análise IA
+        </button>
+        <div id="analise-status" style="margin-top:.75rem;font-size:.85rem"></div>
+    </div>
+</div>
+
+<!-- ── PASSO 4: RESULTADO ─────────────────────────── -->
+<div class="step-header" style="margin-top:1.5rem">
+    <div class="step-num pending" id="num4">4</div>
+    <div>
+        <div class="step-title">Resultado e Exportação</div>
+        <div class="step-subtitle">Alocações sugeridas pela IA e exportação para o Drive</div>
+    </div>
+</div>
+<div class="step-block pending" id="block4">
+    <div class="card" id="resultado-card">
+        <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.5rem;margin-bottom:1rem">
+            <div class="card-title" style="margin-bottom:0"><i class="fas fa-check-circle"></i> Alocações Sugeridas</div>
+            <div style="display:flex;gap:.5rem">
+                <button class="btn btn-outline" onclick="baixarExcel()"><i class="fas fa-download"></i> Baixar Excel</button>
+                <button class="btn btn-blue" onclick="exportarDrive()"><i class="fas fa-cloud-upload-alt"></i> Exportar Drive</button>
+            </div>
+        </div>
+        <div class="stats-grid" id="prog-stats"></div>
+        <div id="alocacoes-lista"></div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+// ── Estado global ────────────────────────────────
+let vagasCarregadas = false;
+let alunosCarregados = false;
+let allVagas = [];
+let estaduaisRows = [];
+let progressaoData = [];
+
+// ── Init ─────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', async () => {
+    await carregarEstaduals();
+    await carregarResumoVagas();
+});
+
+// ── Controle de passos ───────────────────────────
+function atualizarPassos() {
+    // Passo 2: libera quando vagas carregadas
+    document.getElementById('block2').classList.toggle('pending', !vagasCarregadas);
+    document.getElementById('num2').classList.toggle('pending', !vagasCarregadas);
+    document.getElementById('num2').classList.toggle('done', vagasCarregadas);
+
+    // Passo 3: libera quando alunos carregados
+    document.getElementById('block3').classList.toggle('pending', !alunosCarregados);
+    document.getElementById('num3').classList.toggle('pending', !alunosCarregados);
+    document.getElementById('num3').classList.toggle('done', alunosCarregados);
+
+    // Passo 4: sempre visible mas conteúdo vazio até análise
+    document.getElementById('block4').classList.toggle('pending', !alunosCarregados);
+    document.getElementById('num4').classList.toggle('pending', !alunosCarregados);
+}
+
+// ── PASSO 1: Vagas ───────────────────────────────
+async function importarPDF(input) {
+    const file = input.files[0]; if (!file) return;
+    const status = document.getElementById('pdf-status');
+    status.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processando PDF...';
+    const fd = new FormData(); fd.append('file', file);
+    try {
+        const r = await fetch('/api/importar_vagas_pdf', {method:'POST', body:fd});
+        const d = await r.json();
+        if (d.success) {
+            status.innerHTML = `<span style="color:#065f46">✅ ${d.escolas} escolas | ${d.total_vagas_disponiveis} vagas disponíveis</span>`;
+            vagasCarregadas = true;
+            document.getElementById('num1').classList.add('done');
+            await carregarResumoVagas();
+            atualizarPassos();
+            toast('PDF importado com sucesso!');
+        } else {
+            status.innerHTML = `<span style="color:#991b1b">❌ ${d.error}</span>`;
+        }
+    } catch(e) { status.innerHTML = `<span style="color:#991b1b">❌ ${e.message}</span>`; }
+}
+
+// Vagas estaduais
+function addRowEstadual(data={}) {
+    const id = Date.now() + Math.random();
+    estaduaisRows.push(id);
+    const div = document.createElement('div');
+    div.id = `est-${id}`;
+    div.style.cssText = 'display:grid;grid-template-columns:2fr 1fr 90px 90px auto;gap:.4rem;align-items:center';
+    div.innerHTML = `
+        <input class="form-input" style="font-size:.82rem" placeholder="Nome da escola estadual" value="${data.escola||''}" id="est-e-${id}"/>
+        <input class="form-input" style="font-size:.82rem" placeholder="Série (ex: 1º ANO)" value="${data.serie||''}" id="est-s-${id}"/>
+        <input class="form-input" style="font-size:.82rem" type="number" min="0" placeholder="Manhã" value="${data.manha||0}" id="est-m-${id}"/>
+        <input class="form-input" style="font-size:.82rem" type="number" min="0" placeholder="Tarde" value="${data.tarde||0}" id="est-t-${id}"/>
+        <button class="btn btn-red" style="padding:.4rem .6rem" onclick="removeRow('est-${id}', ${id})"><i class="fas fa-trash"></i></button>
+    `;
+    document.getElementById('estaduais-rows').appendChild(div);
+}
+function removeRow(divId, id) {
+    document.getElementById(divId)?.remove();
+    estaduaisRows = estaduaisRows.filter(r => r !== id);
+}
+async function carregarEstaduals() {
+    const r = await fetch('/api/get_vagas_estaduais');
+    const d = await r.json();
+    document.getElementById('estaduais-rows').innerHTML = '';
+    estaduaisRows = [];
+    for (const [escola, series] of Object.entries(d)) {
+        for (const [serie, turnos] of Object.entries(series)) {
+            addRowEstadual({escola, serie, manha: turnos['MANHÃ']||0, tarde: turnos['TARDE']||0});
+        }
+    }
+    if (Object.keys(d).length > 0) vagasCarregadas = true;
+}
+async function salvarEstaduals() {
+    const data = {};
+    for (const id of estaduaisRows) {
+        const escola = document.getElementById(`est-e-${id}`)?.value.trim();
+        const serie  = document.getElementById(`est-s-${id}`)?.value.trim();
+        const manha  = parseInt(document.getElementById(`est-m-${id}`)?.value) || 0;
+        const tarde  = parseInt(document.getElementById(`est-t-${id}`)?.value) || 0;
+        if (!escola || !serie) continue;
+        if (!data[escola]) data[escola] = {};
+        if (!data[escola][serie]) data[escola][serie] = {};
+        if (manha > 0) data[escola][serie]['MANHÃ'] = manha;
+        if (tarde > 0) data[escola][serie]['TARDE'] = tarde;
+    }
+    const r = await fetch('/api/salvar_vagas_estaduais', {
+        method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(data)
+    });
+    const d = await r.json();
+    if (d.success) {
+        vagasCarregadas = true;
+        document.getElementById('num1').classList.add('done');
+        await carregarResumoVagas();
+        atualizarPassos();
+        toast('✅ Vagas estaduais salvas!');
+    } else toast('❌ Erro ao salvar', false);
+}
+
+// Resumo de vagas
+async function carregarResumoVagas() {
+    try {
+        const r = await fetch('/api/get_resumo_vagas');
+        const d = await r.json();
+        allVagas = [
+            ...d.municipais.map(v => ({...v, tipo:'MUNICIPAL'})),
+            ...d.estaduais.map(v => ({...v, tipo:'ESTADUAL'}))
+        ];
+        if (allVagas.length > 0) {
+            document.getElementById('vagas-resumo-card').style.display = '';
+            vagasCarregadas = true;
+            atualizarPassos();
+        }
+        renderVagasResumo(allVagas);
+    } catch(e) {}
+}
+
+function renderVagasResumo(vagas) {
+    // Agrupa por série
+    const porSerie = {};
+    for (const v of vagas) {
+        if (!porSerie[v.serie]) porSerie[v.serie] = {total:0, escolas:[], tipo: v.tipo};
+        porSerie[v.serie].total += v.vagas_disponiveis;
+        if (v.vagas_disponiveis > 0) porSerie[v.serie].escolas.push(v.escola);
+    }
+    const grid = document.getElementById('vagas-resumo-grid');
+    grid.innerHTML = Object.entries(porSerie)
+        .sort((a,b) => b[1].total - a[1].total)
+        .slice(0, 20)
+        .map(([serie, info]) => `
+        <div class="vaga-card" title="${info.escolas.slice(0,3).join(', ')}">
+            <div class="vaga-serie">${serie}</div>
+            <div class="vaga-num ${info.total===0?'zero':''}">${info.total}</div>
+            <div class="vaga-serie">${info.escolas.length} escola(s) c/ vaga</div>
+        </div>`).join('');
+}
+
+function filtrarResumoPor(filtro) {
+    const filtered = filtro ? allVagas.filter(v => v.serie.includes(filtro)) : allVagas;
+    renderVagasResumo(filtered);
+}
+
+// ── PASSO 2: Alunos ──────────────────────────────
+async function importarAlunos(input) {
+    const file = input.files[0]; if (!file) return;
+    const status = document.getElementById('alunos-status');
+    status.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processando...';
+    const fd = new FormData(); fd.append('file', file);
+    try {
+        const r = await fetch('/api/importar_alunos_html', {method:'POST', body:fd});
+        const d = await r.json();
+        if (d.success) {
+            status.innerHTML = `<span style="color:#065f46">✅ ${d.total_alunos} alunos | Escola: ${d.escolas.join(', ')}</span>`;
+            if (d.escolas.length===1) document.getElementById('escola-origem').value = d.escolas[0];
+            alunosCarregados = true;
+            document.getElementById('num2').classList.add('done');
+            atualizarPassos();
+            toast('Alunos importados!');
+        } else {
+            status.innerHTML = `<span style="color:#991b1b">❌ ${d.error}</span>`;
+        }
+    } catch(e) { status.innerHTML = `<span style="color:#991b1b">❌ ${e.message}</span>`; }
+}
+
+// ── PASSO 3: Análise ─────────────────────────────
+async function analisarProgressao() {
+    const escola = document.getElementById('escola-origem').value.trim();
+    const bairro = document.getElementById('bairro-origem').value;
+    const series = Array.from(document.querySelectorAll('input[type=checkbox]:checked')).map(c => c.value);
+
+    if (!escola) { toast('Informe a escola de origem', false); return; }
+    if (!bairro) { toast('Selecione o bairro', false); return; }
+    if (!series.length) { toast('Selecione ao menos uma série', false); return; }
+
+    const btn = document.getElementById('btn-analisar');
+    btn.disabled = true;
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Analisando...';
+    document.getElementById('analise-status').innerHTML = '⏳ A IA está verificando vagas e sugerindo escolas...';
+
+    try {
+        const r = await fetch('/api/analisar_progressao', {
+            method:'POST', headers:{'Content-Type':'application/json'},
+            body: JSON.stringify({escola_origem:escola, bairro, series_progressao:series})
+        });
+        const d = await r.json();
+        if (d.success) {
+            progressaoData = d.turmas;
+            document.getElementById('analise-status').innerHTML = 
+                `<span style="color:#065f46">✅ ${d.total_turmas} turmas | ${d.total_alunos} alunos analisados</span>`;
+            document.getElementById('num3').classList.add('done');
+            document.getElementById('num4').classList.add('done');
+            document.getElementById('block4').classList.remove('pending');
+            renderResultado(d.turmas);
+            toast('Análise concluída!');
+        } else {
+            document.getElementById('analise-status').innerHTML = `<span style="color:#991b1b">❌ ${d.error}</span>`;
+            toast('Erro: ' + d.error, false);
+        }
+    } catch(e) {
+        document.getElementById('analise-status').innerHTML = `<span style="color:#991b1b">❌ ${e.message}</span>`;
+    } finally {
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fas fa-robot"></i> Executar Análise IA';
+    }
+}
+
+// ── PASSO 4: Resultado ───────────────────────────
+function renderResultado(turmas) {
+    const semVaga = turmas.filter(t => !t.escola_sugerida).length;
+    const comVaga = turmas.filter(t => t.escola_sugerida).length;
+    const mesmoBairro = turmas.filter(t => t.escola_sugerida?.mesmo_bairro).length;
+    const totalAlunos = turmas.reduce((s,t) => s+t.total_alunos, 0);
+
+    document.getElementById('prog-stats').innerHTML = `
+        <div class="stat"><div class="stat-num">${turmas.length}</div><div class="stat-label">Turmas</div></div>
+        <div class="stat"><div class="stat-num">${totalAlunos}</div><div class="stat-label">Alunos</div></div>
+        <div class="stat"><div class="stat-num" style="color:#065f46">${comVaga}</div><div class="stat-label">Com vaga</div></div>
+        <div class="stat"><div class="stat-num" style="color:#1e40af">${mesmoBairro}</div><div class="stat-label">Mesmo bairro</div></div>
+        <div class="stat"><div class="stat-num" style="color:#991b1b">${semVaga}</div><div class="stat-label">Sem vaga</div></div>
+    `;
+
+    document.getElementById('alocacoes-lista').innerHTML = turmas.map((t,i) => {
+        const sug = t.escola_sugerida;
+        const temVaga = !!sug;
+        return `
+        <div class="aloc-row ${temVaga?'':'sem-vaga'}" onclick="toggleAlunos(${i})" style="cursor:pointer">
+            <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.5rem">
+                <div>
+                    <span class="turma-info">${t.turma || t.serie_atual}</span>
+                    <span style="color:#94a3b8;margin:0 .4rem">→</span>
+                    <span style="font-weight:700;color:#2563eb">${t.serie_destino}</span>
+                    <span style="margin-left:.5rem;font-size:.78rem;color:#64748b">${t.turno}</span>
+                </div>
+                <span class="alunos-badge">${t.total_alunos} alunos</span>
+            </div>
+            <div class="escola-dest" style="margin-top:.3rem">
+                ${temVaga
+                    ? `<i class="fas fa-school"></i> <strong>${sug.escola}</strong>
+                       <span style="margin-left:.5rem;font-size:.75rem;color:#64748b">${sug.tipo} · ${sug.bairro} · ${sug.vagas_disponiveis} vagas</span>
+                       ${sug.mesmo_bairro ? '<span class="badge badge-green" style="margin-left:.4rem">Mesmo bairro</span>' : '<span class="badge badge-yellow" style="margin-left:.4rem">Bairro próximo</span>'}`
+                    : `<i class="fas fa-exclamation-triangle"></i> <strong>Nenhuma vaga disponível para ${t.serie_destino}</strong>`}
+            </div>
+            <div id="alunos-${i}" style="display:none;margin-top:.5rem">
+                <div style="display:flex;flex-wrap:wrap;gap:.25rem">
+                    ${(t.alunos||[]).map(a => `<span style="background:#f1f5f9;padding:.1rem .4rem;border-radius:4px;font-size:.75rem">${a.nome}</span>`).join('')}
+                </div>
+                ${t.sugestoes?.length > 1 ? `
+                <div style="margin-top:.4rem;font-size:.78rem;color:#64748b">
+                    Outras opções: ${t.sugestoes.slice(1,4).map(s => `${s.escola} (${s.vagas_disponiveis}v)`).join(' · ')}
+                </div>` : ''}
+            </div>
+        </div>`;
+    }).join('');
+}
+
+function toggleAlunos(i) {
+    const el = document.getElementById(`alunos-${i}`);
+    el.style.display = el.style.display === 'none' ? '' : 'none';
+}
+
+async function exportarDrive() {
+    const escola = document.getElementById('escola-origem').value.trim();
+    const bairro = document.getElementById('bairro-origem').value;
+    const btn = event.target.closest('button');
+    btn.disabled = true; btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
+    try {
+        const r = await fetch('/api/exportar_excel_progressao', {
+            method:'POST', headers:{'Content-Type':'application/json'},
+            body: JSON.stringify({escola_origem:escola, bairro})
+        });
+        const ct = r.headers.get('content-type')||'';
+        if (ct.includes('application/json')) {
+            const d = await r.json();
+            if (d.success) toast('✅ Excel enviado para o Drive!');
+            else toast('❌ ' + d.error, false);
+        } else {
+            // fallback: download local
+            const blob = await r.blob();
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a'); a.href=url;
+            a.download=`progressao_${escola}.xlsx`.replace(/\s+/g,'_'); a.click();
+            URL.revokeObjectURL(url); toast('✅ Excel baixado localmente!');
+        }
+    } catch(e) { toast('❌ Erro: ' + e.message, false); }
+    finally { btn.disabled=false; btn.innerHTML='<i class="fas fa-cloud-upload-alt"></i> Exportar Drive'; }
+}
+
+async function baixarExcel() {
+    const escola = document.getElementById('escola-origem').value.trim();
+    const bairro = document.getElementById('bairro-origem').value;
+    const r = await fetch('/api/baixar_excel_progressao', {
+        method:'POST', headers:{'Content-Type':'application/json'},
+        body: JSON.stringify({escola_origem:escola, bairro})
+    });
+    if (!r.ok) { toast('Erro ao baixar', false); return; }
+    const blob = await r.blob();
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href=url; a.download=`progressao_${escola}.xlsx`.replace(/\s+/g,'_'); a.click();
+    URL.revokeObjectURL(url);
+}
+</script>
+{% endblock %}
