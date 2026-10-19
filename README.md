@@ -1,4 +1,3 @@
-# Projecao
 Sistema para projeção de alunos utilizando como base os dados exportados do sistema EducarWeb
 
 FUNCIONALIDADES PRINCIPAIS
