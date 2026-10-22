@@ -1,0 +1,7477 @@
+{
+  "CAIC - PROFº FEBRÔNIO TANCREDO DE OLIVEIRA": {
+    "6º ANO": [
+      {
+        "turma": "6º ANO - 1",
+        "turno": "MANHÃ",
+        "sala": "SALA 08",
+        "vagas_existentes": 33,
+        "vagas_ocupadas": 32,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "6º ANO - 2",
+        "turno": "MANHÃ",
+        "sala": "SALA 01",
+        "vagas_existentes": 33,
+        "vagas_ocupadas": 32,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "6º ANO - 3",
+        "turno": "MANHÃ",
+        "sala": "SALA 06",
+        "vagas_existentes": 33,
+        "vagas_ocupadas": 32,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "6º ANO - 4",
+        "turno": "MANHÃ",
+        "sala": "SALA 07",
+        "vagas_existentes": 21,
+        "vagas_ocupadas": 21,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "6º ANO - 5",
+        "turno": "TARDE",
+        "sala": "SALA 08",
+        "vagas_existentes": 33,
+        "vagas_ocupadas": 32,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "6º ANO 6",
+        "turno": "TARDE",
+        "sala": "SALA 01",
+        "vagas_existentes": 33,
+        "vagas_ocupadas": 33,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "6º ANO 7",
+        "turno": "TARDE",
+        "sala": "SALA 06",
+        "vagas_existentes": 33,
+        "vagas_ocupadas": 33,
+        "vagas_disponiveis": 0
+      }
+    ],
+    "7º ANO": [
+      {
+        "turma": "7º ANO - 1",
+        "turno": "MANHÃ",
+        "sala": "SALA 13",
+        "vagas_existentes": 33,
+        "vagas_ocupadas": 33,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "7º ANO - 2",
+        "turno": "MANHÃ",
+        "sala": "SALA 02",
+        "vagas_existentes": 33,
+        "vagas_ocupadas": 33,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "7º ANO - 3",
+        "turno": "TARDE",
+        "sala": "SALA 05",
+        "vagas_existentes": 33,
+        "vagas_ocupadas": 33,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "7º ANO - 4",
+        "turno": "TARDE",
+        "sala": "SALA 13",
+        "vagas_existentes": 33,
+        "vagas_ocupadas": 33,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "7º ANO - 5",
+        "turno": "TARDE",
+        "sala": "SALA 04",
+        "vagas_existentes": 33,
+        "vagas_ocupadas": 33,
+        "vagas_disponiveis": 0
+      }
+    ],
+    "8º ANO": [
+      {
+        "turma": "8º ANO - 1",
+        "turno": "MANHÃ",
+        "sala": "SALA 03",
+        "vagas_existentes": 32,
+        "vagas_ocupadas": 30,
+        "vagas_disponiveis": 2
+      },
+      {
+        "turma": "8º ANO - 2",
+        "turno": "MANHÃ",
+        "sala": "SALA 04",
+        "vagas_existentes": 33,
+        "vagas_ocupadas": 32,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "8º ANO - 3",
+        "turno": "MANHÃ",
+        "sala": "SALA 05",
+        "vagas_existentes": 33,
+        "vagas_ocupadas": 33,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "8º ANO - 4",
+        "turno": "TARDE",
+        "sala": "SALA 02",
+        "vagas_existentes": 33,
+        "vagas_ocupadas": 31,
+        "vagas_disponiveis": 2
+      },
+      {
+        "turma": "8º ANO - 5",
+        "turno": "TARDE",
+        "sala": "SALA 07",
+        "vagas_existentes": 21,
+        "vagas_ocupadas": 20,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "8º ANO - 6",
+        "turno": "TARDE",
+        "sala": "SALA 03",
+        "vagas_existentes": 29,
+        "vagas_ocupadas": 28,
+        "vagas_disponiveis": 1
+      }
+    ],
+    "1º ANO": [
+      {
+        "turma": "1º ANO - 1",
+        "turno": "MANHÃ",
+        "sala": "SALA 22",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 30,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "1º ANO - 2",
+        "turno": "MANHÃ",
+        "sala": "SALA 15",
+        "vagas_existentes": 21,
+        "vagas_ocupadas": 21,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "1º ANO - 3",
+        "turno": "MANHÃ",
+        "sala": "SALA 14",
+        "vagas_existentes": 22,
+        "vagas_ocupadas": 22,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "1º ANO - 4",
+        "turno": "TARDE",
+        "sala": "SALA 15",
+        "vagas_existentes": 21,
+        "vagas_ocupadas": 21,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "1º ANO - 5",
+        "turno": "TARDE",
+        "sala": "SALA 22",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 30,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "1º ANO - 6",
+        "turno": "TARDE",
+        "sala": "SALA 14",
+        "vagas_existentes": 22,
+        "vagas_ocupadas": 22,
+        "vagas_disponiveis": 0
+      }
+    ],
+    "2º ANO": [
+      {
+        "turma": "2º ANO - 1",
+        "turno": "MANHÃ",
+        "sala": "SALA 17",
+        "vagas_existentes": 21,
+        "vagas_ocupadas": 21,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "2º ANO - 2",
+        "turno": "MANHÃ",
+        "sala": "SALA 21",
+        "vagas_existentes": 26,
+        "vagas_ocupadas": 26,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "2º ANO - 3",
+        "turno": "TARDE",
+        "sala": "SALA 18",
+        "vagas_existentes": 29,
+        "vagas_ocupadas": 29,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "2º ANO - 4",
+        "turno": "TARDE",
+        "sala": "SALA 21",
+        "vagas_existentes": 26,
+        "vagas_ocupadas": 27,
+        "vagas_disponiveis": 0
+      }
+    ],
+    "3º ANO": [
+      {
+        "turma": "3º ANO - 1",
+        "turno": "MANHÃ",
+        "sala": "SALA 18",
+        "vagas_existentes": 29,
+        "vagas_ocupadas": 27,
+        "vagas_disponiveis": 2
+      },
+      {
+        "turma": "3º ANO - 2",
+        "turno": "MANHÃ",
+        "sala": "SALA 19",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 27,
+        "vagas_disponiveis": 3
+      },
+      {
+        "turma": "3º ANO - 3",
+        "turno": "TARDE",
+        "sala": "SALA 11",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 30,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "3º ANO - 4",
+        "turno": "TARDE",
+        "sala": "SALA 19",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 30,
+        "vagas_disponiveis": 0
+      }
+    ],
+    "4º ANO": [
+      {
+        "turma": "4º ANO - 1",
+        "turno": "MANHÃ",
+        "sala": "SALA 11",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 30,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "4º ANO - 2",
+        "turno": "MANHÃ",
+        "sala": "SALA 16",
+        "vagas_existentes": 21,
+        "vagas_ocupadas": 21,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "4º ANO - 3",
+        "turno": "MANHÃ",
+        "sala": "SALA 10",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 30,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "4º ANO - 4",
+        "turno": "TARDE",
+        "sala": "SALA 16",
+        "vagas_existentes": 21,
+        "vagas_ocupadas": 21,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "4º ANO - 5",
+        "turno": "TARDE",
+        "sala": "SALA 20",
+        "vagas_existentes": 26,
+        "vagas_ocupadas": 26,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "4º ANO - 6",
+        "turno": "TARDE",
+        "sala": "SALA 17",
+        "vagas_existentes": 21,
+        "vagas_ocupadas": 22,
+        "vagas_disponiveis": 0
+      }
+    ],
+    "5º ANO": [
+      {
+        "turma": "5º ANO - 1",
+        "turno": "MANHÃ",
+        "sala": "SALA 12",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 30,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "5º ANO - 2",
+        "turno": "MANHÃ",
+        "sala": "SALA 09",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 30,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "5º ANO - 3",
+        "turno": "MANHÃ",
+        "sala": "SALA 20",
+        "vagas_existentes": 26,
+        "vagas_ocupadas": 26,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "5º ANO - 4",
+        "turno": "TARDE",
+        "sala": "SALA 12",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 30,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "5º ANO - 5",
+        "turno": "TARDE",
+        "sala": "SALA 09",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 30,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "5º ANO - 6",
+        "turno": "TARDE",
+        "sala": "SALA 10",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 30,
+        "vagas_disponiveis": 0
+      }
+    ]
+  },
+  "EB ABÍLIO MANOEL DE ABREU": {
+    "6º ANO": [],
+    "7º ANO": [
+      {
+        "turma": "7º ANO - 1",
+        "turno": "MANHÃ",
+        "sala": "SALA 14",
+        "vagas_existentes": 24,
+        "vagas_ocupadas": 24,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "7º ANO - 2",
+        "turno": "MANHÃ",
+        "sala": "SALA 01",
+        "vagas_existentes": 33,
+        "vagas_ocupadas": 33,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "7º ANO - 3",
+        "turno": "TARDE",
+        "sala": "SALA 03",
+        "vagas_existentes": 25,
+        "vagas_ocupadas": 25,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "7º ANO - 4",
+        "turno": "TARDE",
+        "sala": "SALA 01",
+        "vagas_existentes": 25,
+        "vagas_ocupadas": 25,
+        "vagas_disponiveis": 0
+      }
+    ],
+    "8º ANO": [
+      {
+        "turma": "8º ANO - 1",
+        "turno": "MANHÃ",
+        "sala": "SALA 04",
+        "vagas_existentes": 31,
+        "vagas_ocupadas": 29,
+        "vagas_disponiveis": 2
+      },
+      {
+        "turma": "8º ANO - 2",
+        "turno": "TARDE",
+        "sala": "SALA 02",
+        "vagas_existentes": 27,
+        "vagas_ocupadas": 24,
+        "vagas_disponiveis": 3
+      },
+      {
+        "turma": "8º ANO - 3",
+        "turno": "TARDE",
+        "sala": "SALA 04",
+        "vagas_existentes": 28,
+        "vagas_ocupadas": 27,
+        "vagas_disponiveis": 1
+      }
+    ],
+    "9º ANO": [],
+    "1º ANO": [],
+    "2º ANO": [],
+    "3º ANO": [],
+    "4º ANO": [],
+    "5º ANO": []
+  },
+  "EB PROFª FRANCISCA RAIMUNDA FARIAS DA COSTA": {
+    "6º ANO": [
+      {
+        "turma": "6º ANO - 1",
+        "turno": "MANHÃ",
+        "sala": "SALA 05",
+        "vagas_existentes": 35,
+        "vagas_ocupadas": 29,
+        "vagas_disponiveis": 6
+      },
+      {
+        "turma": "6º ANO - 2",
+        "turno": "TARDE",
+        "sala": "SALA 05",
+        "vagas_existentes": 35,
+        "vagas_ocupadas": 35,
+        "vagas_disponiveis": 0
+      }
+    ],
+    "7º ANO": [
+      {
+        "turma": "7º ANO - 1",
+        "turno": "MANHÃ",
+        "sala": "SALA 04",
+        "vagas_existentes": 35,
+        "vagas_ocupadas": 33,
+        "vagas_disponiveis": 2
+      },
+      {
+        "turma": "7º ANO - 2",
+        "turno": "TARDE",
+        "sala": "SALA 04",
+        "vagas_existentes": 35,
+        "vagas_ocupadas": 31,
+        "vagas_disponiveis": 4
+      }
+    ],
+    "8º ANO": [
+      {
+        "turma": "8º ANO - 1",
+        "turno": "MANHÃ",
+        "sala": "SALA 03",
+        "vagas_existentes": 35,
+        "vagas_ocupadas": 33,
+        "vagas_disponiveis": 2
+      },
+      {
+        "turma": "8º ANO - 2",
+        "turno": "TARDE",
+        "sala": "SALA 03",
+        "vagas_existentes": 35,
+        "vagas_ocupadas": 26,
+        "vagas_disponiveis": 9
+      }
+    ],
+    "9º ANO": [
+      {
+        "turma": "9º ANO - 1",
+        "turno": "MANHÃ",
+        "sala": "SALA 01",
+        "vagas_existentes": 35,
+        "vagas_ocupadas": 34,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "9º ANO - 2",
+        "turno": "TARDE",
+        "sala": "SALA 01",
+        "vagas_existentes": 35,
+        "vagas_ocupadas": 26,
+        "vagas_disponiveis": 9
+      }
+    ],
+    "1º ANO": [
+      {
+        "turma": "1º ANO - 1",
+        "turno": "MANHÃ",
+        "sala": "SALA 11",
+        "vagas_existentes": 16,
+        "vagas_ocupadas": 16,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "1º ANO - 2",
+        "turno": "TARDE",
+        "sala": "SALA 11",
+        "vagas_existentes": 16,
+        "vagas_ocupadas": 16,
+        "vagas_disponiveis": 0
+      }
+    ],
+    "2º ANO": [
+      {
+        "turma": "2º ANO - 1",
+        "turno": "MANHÃ",
+        "sala": "SALA 10",
+        "vagas_existentes": 17,
+        "vagas_ocupadas": 17,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "2º ANO - 2",
+        "turno": "TARDE",
+        "sala": "SALA 07",
+        "vagas_existentes": 22,
+        "vagas_ocupadas": 22,
+        "vagas_disponiveis": 0
+      }
+    ],
+    "3º ANO": [
+      {
+        "turma": "3º ANO - 1",
+        "turno": "MANHÃ",
+        "sala": "SALA 07",
+        "vagas_existentes": 22,
+        "vagas_ocupadas": 21,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "3º ANO - 2",
+        "turno": "TARDE",
+        "sala": "SALA 02",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 28,
+        "vagas_disponiveis": 2
+      }
+    ],
+    "4º ANO": [
+      {
+        "turma": "4º ANO - 1",
+        "turno": "MANHÃ",
+        "sala": "SALA 02",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 30,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "4º ANO - 2",
+        "turno": "TARDE",
+        "sala": "SALA 10",
+        "vagas_existentes": 17,
+        "vagas_ocupadas": 17,
+        "vagas_disponiveis": 0
+      }
+    ],
+    "5º ANO": [
+      {
+        "turma": "5º ANO - 1",
+        "turno": "MANHÃ",
+        "sala": "SALA 06",
+        "vagas_existentes": 23,
+        "vagas_ocupadas": 22,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "5º ANO - 2",
+        "turno": "TARDE",
+        "sala": "SALA 06",
+        "vagas_existentes": 23,
+        "vagas_ocupadas": 19,
+        "vagas_disponiveis": 4
+      }
+    ]
+  },
+  "EB FREI DAMIÃO": {
+    "6º ANO": [
+      {
+        "turma": "6º ANO - 1",
+        "turno": "MANHÃ",
+        "sala": "SALA 08",
+        "vagas_existentes": 35,
+        "vagas_ocupadas": 34,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "6º ANO - 2",
+        "turno": "TARDE",
+        "sala": "SALA 08",
+        "vagas_existentes": 35,
+        "vagas_ocupadas": 35,
+        "vagas_disponiveis": 0
+      }
+    ],
+    "7º ANO": [
+      {
+        "turma": "7º ANO - 1",
+        "turno": "MANHÃ",
+        "sala": "SALA 02",
+        "vagas_existentes": 35,
+        "vagas_ocupadas": 29,
+        "vagas_disponiveis": 6
+      },
+      {
+        "turma": "7º ANO - 2",
+        "turno": "TARDE",
+        "sala": "SALA 02",
+        "vagas_existentes": 26,
+        "vagas_ocupadas": 27,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "7º ANO - 3",
+        "turno": "TARDE",
+        "sala": "SALA 01",
+        "vagas_existentes": 23,
+        "vagas_ocupadas": 23,
+        "vagas_disponiveis": 0
+      }
+    ],
+    "8º ANO": [
+      {
+        "turma": "8º ANO - 1",
+        "turno": "MANHÃ",
+        "sala": "SALA 04",
+        "vagas_existentes": 23,
+        "vagas_ocupadas": 20,
+        "vagas_disponiveis": 3
+      },
+      {
+        "turma": "8º ANO - 2",
+        "turno": "MANHÃ",
+        "sala": "SALA 03",
+        "vagas_existentes": 19,
+        "vagas_ocupadas": 19,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "8º ANO - 3",
+        "turno": "TARDE",
+        "sala": "SALA 04",
+        "vagas_existentes": 24,
+        "vagas_ocupadas": 23,
+        "vagas_disponiveis": 1
+      }
+    ],
+    "9º ANO": [],
+    "1º ANO": [
+      {
+        "turma": "1º ANO - 1",
+        "turno": "MANHÃ",
+        "sala": "SALA 23",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 30,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "1º ANO - 2",
+        "turno": "TARDE",
+        "sala": "SALA 23",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 30,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "1º ANO - 3",
+        "turno": "MANHÃ",
+        "sala": "SALA 22",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 30,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "1° ANO - 4",
+        "turno": "TARDE",
+        "sala": "SALA 22",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 30,
+        "vagas_disponiveis": 0
+      }
+    ],
+    "2º ANO": [
+      {
+        "turma": "2º ANO - 1",
+        "turno": "MANHÃ",
+        "sala": "SALA 10",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 29,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "2º ANO - 2",
+        "turno": "TARDE",
+        "sala": "SALA 10",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 30,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "2º ANO - 3",
+        "turno": "TARDE",
+        "sala": "SALA 12",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 31,
+        "vagas_disponiveis": 0
+      }
+    ],
+    "3º ANO": [
+      {
+        "turma": "3º ANO - 1",
+        "turno": "MANHÃ",
+        "sala": "SALA 11",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 30,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "3º ANO - 2",
+        "turno": "MANHÃ",
+        "sala": "SALA 12",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 29,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "3º ANO - 3",
+        "turno": "TARDE",
+        "sala": "SALA 11",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 29,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "3º ANO - 4",
+        "turno": "TARDE",
+        "sala": "SALA 16",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 30,
+        "vagas_disponiveis": 0
+      }
+    ],
+    "4º ANO": [
+      {
+        "turma": "4º ANO - 1",
+        "turno": "TARDE",
+        "sala": "SALA 03",
+        "vagas_existentes": 23,
+        "vagas_ocupadas": 21,
+        "vagas_disponiveis": 2
+      },
+      {
+        "turma": "4º ANO - 2",
+        "turno": "MANHÃ",
+        "sala": "SALA 16",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 29,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "4º ANO - 3",
+        "turno": "TARDE",
+        "sala": "SALA 09",
+        "vagas_existentes": 27,
+        "vagas_ocupadas": 26,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "4º ANO - 4",
+        "turno": "MANHÃ",
+        "sala": "SALA 09",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 27,
+        "vagas_disponiveis": 3
+      }
+    ],
+    "5º ANO": [
+      {
+        "turma": "5º ANO - 1",
+        "turno": "MANHÃ",
+        "sala": "SALA 06",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 30,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "5º ANO - 2",
+        "turno": "TARDE",
+        "sala": "SALA 06",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 28,
+        "vagas_disponiveis": 2
+      },
+      {
+        "turma": "5º ANO - 3",
+        "turno": "TARDE",
+        "sala": "SALA 14",
+        "vagas_existentes": 25,
+        "vagas_ocupadas": 24,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "5º ANO - 4",
+        "turno": "MANHÃ",
+        "sala": "SALA 14",
+        "vagas_existentes": 25,
+        "vagas_ocupadas": 24,
+        "vagas_disponiveis": 1
+      }
+    ]
+  },
+  "EB GUILHERME WIETHORN FILHO": {
+    "6º ANO": [
+      {
+        "turma": "6º ANO - 1",
+        "turno": "MANHÃ",
+        "sala": "SALA 12",
+        "vagas_existentes": 32,
+        "vagas_ocupadas": 33,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "6º ANO - 2",
+        "turno": "TARDE",
+        "sala": "SALA 08",
+        "vagas_existentes": 31,
+        "vagas_ocupadas": 31,
+        "vagas_disponiveis": 0
+      }
+    ],
+    "7º ANO": [
+      {
+        "turma": "7º ANO - 1",
+        "turno": "MANHÃ",
+        "sala": "SALA 13",
+        "vagas_existentes": 32,
+        "vagas_ocupadas": 33,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "7º ANO - 2",
+        "turno": "MANHÃ",
+        "sala": "SALA 12",
+        "vagas_existentes": 32,
+        "vagas_ocupadas": 31,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "7º ANO - 3",
+        "turno": "TARDE",
+        "sala": "SALA 08",
+        "vagas_existentes": 31,
+        "vagas_ocupadas": 31,
+        "vagas_disponiveis": 0
+      }
+    ],
+    "8º ANO": [
+      {
+        "turma": "8º ANO - 1",
+        "turno": "MANHÃ",
+        "sala": "SALA 32",
+        "vagas_existentes": 35,
+        "vagas_ocupadas": 35,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "8º ANO - 2",
+        "turno": "TARDE",
+        "sala": "SALA 32",
+        "vagas_existentes": 35,
+        "vagas_ocupadas": 35,
+        "vagas_disponiveis": 0
+      }
+    ],
+    "1º ANO": [
+      {
+        "turma": "1º ANO - 1",
+        "turno": "MANHÃ",
+        "sala": "SALA 28",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 30,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "1º ANO - 2",
+        "turno": "MANHÃ",
+        "sala": "SALA 27",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 29,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "1º ANO - 3",
+        "turno": "MANHÃ",
+        "sala": "SALA 17",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 28,
+        "vagas_disponiveis": 2
+      },
+      {
+        "turma": "1º ANO - 4",
+        "turno": "TARDE",
+        "sala": "SALA 28",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 31,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "1º ANO - 5",
+        "turno": "TARDE",
+        "sala": "SALA 27",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 29,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "1º ANO - 6",
+        "turno": "TARDE",
+        "sala": "SALA 17",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 29,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "1º ANO - 7",
+        "turno": "MANHÃ",
+        "sala": "SALA 23",
+        "vagas_existentes": 24,
+        "vagas_ocupadas": 23,
+        "vagas_disponiveis": 1
+      }
+    ],
+    "2º ANO": [
+      {
+        "turma": "2º ANO - 1",
+        "turno": "MANHÃ",
+        "sala": "SALA 18",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 30,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "2º ANO - 2",
+        "turno": "MANHÃ",
+        "sala": "SALA 22",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 30,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "2º ANO - 3",
+        "turno": "MANHÃ",
+        "sala": "SALA 19",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 29,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "2º ANO - 4",
+        "turno": "TARDE",
+        "sala": "SALA 18",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 30,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "2º ANO - 5",
+        "turno": "TARDE",
+        "sala": "SALA 19",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 29,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "2º ANO - 6",
+        "turno": "TARDE",
+        "sala": "SALA 22",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 30,
+        "vagas_disponiveis": 0
+      }
+    ],
+    "3º ANO": [
+      {
+        "turma": "3º ANO - 1",
+        "turno": "MANHÃ",
+        "sala": "SALA 20",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 30,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "3º ANO - 2",
+        "turno": "MANHÃ",
+        "sala": "SALA 21",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 30,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "3º ANO - 3",
+        "turno": "MANHÃ",
+        "sala": "SALA 31",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 29,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "3º ANO - 4",
+        "turno": "TARDE",
+        "sala": "SALA 31",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 30,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "3º ANO - 5",
+        "turno": "TARDE",
+        "sala": "SALA 21",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 30,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "3º ANO - 6",
+        "turno": "TARDE",
+        "sala": "SALA 23",
+        "vagas_existentes": 24,
+        "vagas_ocupadas": 24,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "3º ANO - 7",
+        "turno": "TARDE",
+        "sala": "SALA 20",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 29,
+        "vagas_disponiveis": 1
+      }
+    ],
+    "4º ANO": [
+      {
+        "turma": "4º ANO - 1",
+        "turno": "MANHÃ",
+        "sala": "SALA 24",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 30,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "4º ANO - 2",
+        "turno": "TARDE",
+        "sala": "SALA 24",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 30,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "4º ANO - 3",
+        "turno": "TARDE",
+        "sala": "SALA 13",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 30,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "4º ANO - 4",
+        "turno": "MANHÃ",
+        "sala": "SALA 09",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 30,
+        "vagas_disponiveis": 0
+      }
+    ],
+    "5º ANO": [
+      {
+        "turma": "5º ANO - 1",
+        "turno": "MANHÃ",
+        "sala": "SALA 26",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 30,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "5º ANO - 2",
+        "turno": "MANHÃ",
+        "sala": "SALA 25",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 30,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "5º ANO - 3",
+        "turno": "TARDE",
+        "sala": "SALA 25",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 30,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "5º ANO - 4",
+        "turno": "TARDE",
+        "sala": "SALA 26",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 30,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "5º ANO - 5",
+        "turno": "TARDE",
+        "sala": "SALA 09",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 30,
+        "vagas_disponiveis": 0
+      }
+    ]
+  },
+  "EB PROFª LAURITA WAGNER DA SILVEIRA": {
+    "6º ANO": [
+      {
+        "turma": "6º ANO - 1",
+        "turno": "MANHÃ",
+        "sala": "SALA 22",
+        "vagas_existentes": 28,
+        "vagas_ocupadas": 27,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "6º ANO - 2",
+        "turno": "TARDE",
+        "sala": "SALA 15",
+        "vagas_existentes": 35,
+        "vagas_ocupadas": 31,
+        "vagas_disponiveis": 4
+      }
+    ],
+    "7º ANO": [
+      {
+        "turma": "7º ANO - 1",
+        "turno": "MANHÃ",
+        "sala": "SALA 17",
+        "vagas_existentes": 33,
+        "vagas_ocupadas": 27,
+        "vagas_disponiveis": 6
+      },
+      {
+        "turma": "7º ANO - 2",
+        "turno": "TARDE",
+        "sala": "SALA 16",
+        "vagas_existentes": 23,
+        "vagas_ocupadas": 21,
+        "vagas_disponiveis": 2
+      }
+    ],
+    "8º ANO": [
+      {
+        "turma": "8º ANO - 1",
+        "turno": "MANHÃ",
+        "sala": "SALA 15",
+        "vagas_existentes": 22,
+        "vagas_ocupadas": 22,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "8º ANO - 2",
+        "turno": "TARDE",
+        "sala": "SALA 18",
+        "vagas_existentes": 16,
+        "vagas_ocupadas": 16,
+        "vagas_disponiveis": 0
+      }
+    ],
+    "9º ANO": [],
+    "1º ANO": [
+      {
+        "turma": "1º ANO - 1",
+        "turno": "MANHÃ",
+        "sala": "SALA 20",
+        "vagas_existentes": 23,
+        "vagas_ocupadas": 25,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "1º ANO - 2",
+        "turno": "TARDE",
+        "sala": "SALA 20",
+        "vagas_existentes": 23,
+        "vagas_ocupadas": 24,
+        "vagas_disponiveis": 0
+      }
+    ],
+    "2º ANO": [
+      {
+        "turma": "2º ANO - 1",
+        "turno": "MANHÃ",
+        "sala": "SALA 19",
+        "vagas_existentes": 19,
+        "vagas_ocupadas": 19,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "2º ANO - 2",
+        "turno": "TARDE",
+        "sala": "SALA 23",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 27,
+        "vagas_disponiveis": 3
+      }
+    ],
+    "3º ANO": [
+      {
+        "turma": "3º ANO - 1",
+        "turno": "MANHÃ",
+        "sala": "SALA 23",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 30,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "3º ANO - 2",
+        "turno": "TARDE",
+        "sala": "SALA 21",
+        "vagas_existentes": 27,
+        "vagas_ocupadas": 25,
+        "vagas_disponiveis": 2
+      }
+    ],
+    "4º ANO": [
+      {
+        "turma": "4º ANO - 1",
+        "turno": "MANHÃ",
+        "sala": "SALA 18",
+        "vagas_existentes": 19,
+        "vagas_ocupadas": 19,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "4º ANO - 2",
+        "turno": "TARDE",
+        "sala": "SALA 17",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 29,
+        "vagas_disponiveis": 1
+      }
+    ],
+    "5º ANO": [
+      {
+        "turma": "5º ANO - 1",
+        "turno": "MANHÃ",
+        "sala": "SALA 21",
+        "vagas_existentes": 27,
+        "vagas_ocupadas": 27,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "5º ANO - 2",
+        "turno": "TARDE",
+        "sala": "SALA 22",
+        "vagas_existentes": 28,
+        "vagas_ocupadas": 27,
+        "vagas_disponiveis": 1
+      }
+    ]
+  },
+  "EB PROFº NERI BRASILIANO MARTINS": {
+    "6º ANO": [
+      {
+        "turma": "6º ANO - 1",
+        "turno": "MANHÃ",
+        "sala": "SALA 15",
+        "vagas_existentes": 34,
+        "vagas_ocupadas": 34,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "6º ANO - 2",
+        "turno": "TARDE",
+        "sala": "SALA 15",
+        "vagas_existentes": 34,
+        "vagas_ocupadas": 34,
+        "vagas_disponiveis": 0
+      }
+    ],
+    "7º ANO": [
+      {
+        "turma": "7º ANO - 1",
+        "turno": "MANHÃ",
+        "sala": "SALA 17",
+        "vagas_existentes": 35,
+        "vagas_ocupadas": 29,
+        "vagas_disponiveis": 6
+      },
+      {
+        "turma": "7º ANO - 2",
+        "turno": "TARDE",
+        "sala": "SALA 17",
+        "vagas_existentes": 35,
+        "vagas_ocupadas": 26,
+        "vagas_disponiveis": 9
+      }
+    ],
+    "8º ANO": [
+      {
+        "turma": "8º ANO - 1",
+        "turno": "MANHÃ",
+        "sala": "SALA 18",
+        "vagas_existentes": 35,
+        "vagas_ocupadas": 35,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "8º ANO - 2",
+        "turno": "TARDE",
+        "sala": "SALA 18",
+        "vagas_existentes": 35,
+        "vagas_ocupadas": 34,
+        "vagas_disponiveis": 1
+      }
+    ],
+    "9º ANO": [
+      {
+        "turma": "9º ANO - 1",
+        "turno": "MANHÃ",
+        "sala": "SALA 20",
+        "vagas_existentes": 34,
+        "vagas_ocupadas": 24,
+        "vagas_disponiveis": 10
+      },
+      {
+        "turma": "9º ANO - 2",
+        "turno": "TARDE",
+        "sala": "SALA 20",
+        "vagas_existentes": 34,
+        "vagas_ocupadas": 29,
+        "vagas_disponiveis": 5
+      }
+    ],
+    "1º ANO": [
+      {
+        "turma": "1º ANO - 1",
+        "turno": "MANHÃ",
+        "sala": "SALA 01",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 21,
+        "vagas_disponiveis": 9
+      },
+      {
+        "turma": "1º ANO - 2",
+        "turno": "TARDE",
+        "sala": "SALA 01",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 23,
+        "vagas_disponiveis": 7
+      }
+    ],
+    "2º ANO": [
+      {
+        "turma": "2º ANO - 1",
+        "turno": "MANHÃ",
+        "sala": "SALA 02",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 30,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "2º ANO - 2",
+        "turno": "TARDE",
+        "sala": "SALA 02",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 30,
+        "vagas_disponiveis": 0
+      }
+    ],
+    "3º ANO": [
+      {
+        "turma": "3º ANO - 1",
+        "turno": "MANHÃ",
+        "sala": "SALA 07",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 30,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "3º ANO - 2",
+        "turno": "TARDE",
+        "sala": "SALA 07",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 28,
+        "vagas_disponiveis": 2
+      }
+    ],
+    "4º ANO": [
+      {
+        "turma": "4º ANO - 1",
+        "turno": "MANHÃ",
+        "sala": "SALA 08",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 29,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "4º ANO - 2",
+        "turno": "TARDE",
+        "sala": "SALA 08",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 29,
+        "vagas_disponiveis": 1
+      }
+    ],
+    "5º ANO": [
+      {
+        "turma": "5º ANO - 1",
+        "turno": "MANHÃ",
+        "sala": "SALA 14",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 29,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "5º ANO - 2",
+        "turno": "TARDE",
+        "sala": "SALA 14",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 30,
+        "vagas_disponiveis": 0
+      }
+    ]
+  },
+  "EB NOSSA SENHORA DE FÁTIMA - ARIRIÚ/ALTO ARIRIÚ": {
+    "6º ANO": [
+      {
+        "turma": "6º ANO - 1",
+        "turno": "MANHÃ",
+        "sala": "SALA 15",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 30,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "6º ANO - 2",
+        "turno": "TARDE",
+        "sala": "SALA 15",
+        "vagas_existentes": 28,
+        "vagas_ocupadas": 27,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "6º ANO - 3",
+        "turno": "MANHÃ",
+        "sala": "SALA 12",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 30,
+        "vagas_disponiveis": 0
+      }
+    ],
+    "7º ANO": [
+      {
+        "turma": "7º ANO - 1",
+        "turno": "MANHÃ",
+        "sala": "SALA 16",
+        "vagas_existentes": 35,
+        "vagas_ocupadas": 34,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "7º ANO - 2",
+        "turno": "TARDE",
+        "sala": "SALA 16",
+        "vagas_existentes": 35,
+        "vagas_ocupadas": 35,
+        "vagas_disponiveis": 0
+      }
+    ],
+    "8º ANO": [
+      {
+        "turma": "8º ANO - 1",
+        "turno": "MANHÃ",
+        "sala": "SALA 19",
+        "vagas_existentes": 28,
+        "vagas_ocupadas": 24,
+        "vagas_disponiveis": 4
+      },
+      {
+        "turma": "8º ANO - 2",
+        "turno": "TARDE",
+        "sala": "SALA 19",
+        "vagas_existentes": 35,
+        "vagas_ocupadas": 22,
+        "vagas_disponiveis": 13
+      }
+    ],
+    "1º ANO": [
+      {
+        "turma": "1º ANO - 1",
+        "turno": "MANHÃ",
+        "sala": "SALA 09",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 24,
+        "vagas_disponiveis": 6
+      },
+      {
+        "turma": "1º ANO - 2",
+        "turno": "TARDE",
+        "sala": "SALA 09",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 28,
+        "vagas_disponiveis": 2
+      }
+    ],
+    "2º ANO": [
+      {
+        "turma": "2º ANO - 1",
+        "turno": "MANHÃ",
+        "sala": "SALA 08",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 29,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "2º ANO - 2",
+        "turno": "TARDE",
+        "sala": "SALA 10",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 30,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "2º ANO - 3",
+        "turno": "MANHÃ",
+        "sala": "SALA 10",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 31,
+        "vagas_disponiveis": 0
+      }
+    ],
+    "3º ANO": [
+      {
+        "turma": "3º ANO - 1",
+        "turno": "MANHÃ",
+        "sala": "SALA 11",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 30,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "3º ANO - 2",
+        "turno": "TARDE",
+        "sala": "SALA 08",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 25,
+        "vagas_disponiveis": 5
+      },
+      {
+        "turma": "3º ANO - 4",
+        "turno": "TARDE",
+        "sala": "SALA 11",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 24,
+        "vagas_disponiveis": 6
+      }
+    ],
+    "4º ANO": [
+      {
+        "turma": "4º ANO - 1",
+        "turno": "MANHÃ",
+        "sala": "SALA 13",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 28,
+        "vagas_disponiveis": 2
+      },
+      {
+        "turma": "4º ANO - 2",
+        "turno": "TARDE",
+        "sala": "SALA 12",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 23,
+        "vagas_disponiveis": 7
+      },
+      {
+        "turma": "4º ANO - 4",
+        "turno": "TARDE",
+        "sala": "SALA 13",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 22,
+        "vagas_disponiveis": 8
+      }
+    ],
+    "5º ANO": [
+      {
+        "turma": "5º ANO - 1",
+        "turno": "MANHÃ",
+        "sala": "SALA 14",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 30,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "5º ANO - 2",
+        "turno": "TARDE",
+        "sala": "SALA 14",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 30,
+        "vagas_disponiveis": 0
+      }
+    ]
+  },
+  "GE PEQUENO PRINCIPE": {
+    "1º ANO": [
+      {
+        "turma": "1° ANO - 1",
+        "turno": "MANHÃ",
+        "sala": "SALA 10",
+        "vagas_existentes": 25,
+        "vagas_ocupadas": 25,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "1° ANO - 2",
+        "turno": "TARDE",
+        "sala": "SALA 10",
+        "vagas_existentes": 25,
+        "vagas_ocupadas": 25,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "1º ANO - 3",
+        "turno": "MANHÃ",
+        "sala": "SALA 08",
+        "vagas_existentes": 26,
+        "vagas_ocupadas": 26,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "1º ANO - 4",
+        "turno": "TARDE",
+        "sala": "SALA 08",
+        "vagas_existentes": 26,
+        "vagas_ocupadas": 25,
+        "vagas_disponiveis": 1
+      }
+    ],
+    "2º ANO": [
+      {
+        "turma": "2º ANO - 1",
+        "turno": "MANHÃ",
+        "sala": "SALA 07",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 30,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "2º ANO - 2",
+        "turno": "TARDE",
+        "sala": "SALA 07",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 29,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "2º ANO - 3",
+        "turno": "MANHÃ",
+        "sala": "SALA 16",
+        "vagas_existentes": 25,
+        "vagas_ocupadas": 24,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "2º ANO - 4",
+        "turno": "TARDE",
+        "sala": "SALA 16",
+        "vagas_existentes": 25,
+        "vagas_ocupadas": 23,
+        "vagas_disponiveis": 2
+      }
+    ],
+    "3º ANO": [
+      {
+        "turma": "3º ANO - 1",
+        "turno": "MANHÃ",
+        "sala": "SALA 05",
+        "vagas_existentes": 29,
+        "vagas_ocupadas": 26,
+        "vagas_disponiveis": 3
+      },
+      {
+        "turma": "3º ANO - 2",
+        "turno": "TARDE",
+        "sala": "SALA 09",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 29,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "3º ANO - 3",
+        "turno": "MANHÃ",
+        "sala": "SALA 11",
+        "vagas_existentes": 25,
+        "vagas_ocupadas": 21,
+        "vagas_disponiveis": 4
+      },
+      {
+        "turma": "3º ANO - 4",
+        "turno": "TARDE",
+        "sala": "SALA 05",
+        "vagas_existentes": 27,
+        "vagas_ocupadas": 27,
+        "vagas_disponiveis": 0
+      }
+    ],
+    "4º ANO": [
+      {
+        "turma": "4º ANO - 1",
+        "turno": "MANHÃ",
+        "sala": "SALA 17",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 30,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "4º ANO - 2",
+        "turno": "TARDE",
+        "sala": "SALA 17",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 30,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "4º ANO - 3",
+        "turno": "TARDE",
+        "sala": "SALA 11",
+        "vagas_existentes": 25,
+        "vagas_ocupadas": 23,
+        "vagas_disponiveis": 2
+      }
+    ],
+    "5º ANO": []
+  },
+  "EBM PROFª  ADRIANA WEINGARTNER": {
+    "6º ANO": [
+      {
+        "turma": "6º ANO - 1",
+        "turno": "MANHÃ",
+        "sala": "SALA 10",
+        "vagas_existentes": 35,
+        "vagas_ocupadas": 35,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "6º ANO - 2",
+        "turno": "TARDE",
+        "sala": "SALA 10",
+        "vagas_existentes": 24,
+        "vagas_ocupadas": 24,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "6º ANO - 3",
+        "turno": "TARDE",
+        "sala": "SALA 09",
+        "vagas_existentes": 25,
+        "vagas_ocupadas": 25,
+        "vagas_disponiveis": 0
+      }
+    ],
+    "7º ANO": [
+      {
+        "turma": "7º ANO - 1",
+        "turno": "MANHÃ",
+        "sala": "SALA 11",
+        "vagas_existentes": 26,
+        "vagas_ocupadas": 26,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "7º ANO - 2",
+        "turno": "TARDE",
+        "sala": "SALA 11",
+        "vagas_existentes": 25,
+        "vagas_ocupadas": 28,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "7º ANO - 3",
+        "turno": "MANHÃ",
+        "sala": "SALA 12",
+        "vagas_existentes": 21,
+        "vagas_ocupadas": 23,
+        "vagas_disponiveis": 0
+      }
+    ],
+    "8º ANO": [
+      {
+        "turma": "8º ANO - 1",
+        "turno": "MANHÃ",
+        "sala": "SALA 13",
+        "vagas_existentes": 35,
+        "vagas_ocupadas": 35,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "8º ANO - 2",
+        "turno": "TARDE",
+        "sala": "SALA 13",
+        "vagas_existentes": 35,
+        "vagas_ocupadas": 33,
+        "vagas_disponiveis": 2
+      },
+      {
+        "turma": "8º ANO - 3",
+        "turno": "TARDE",
+        "sala": "SALA 12",
+        "vagas_existentes": 35,
+        "vagas_ocupadas": 31,
+        "vagas_disponiveis": 4
+      }
+    ],
+    "1º ANO": [
+      {
+        "turma": "1º ANO - 1",
+        "turno": "MANHÃ",
+        "sala": "SALA 05",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 29,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "1º ANO - 2",
+        "turno": "TARDE",
+        "sala": "SALA 05",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 30,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "1º ANO - 4",
+        "turno": "MANHÃ",
+        "sala": "SALA 06",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 28,
+        "vagas_disponiveis": 2
+      }
+    ],
+    "2º ANO": [
+      {
+        "turma": "2º ANO - 1",
+        "turno": "MANHÃ",
+        "sala": "SALA 04",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 26,
+        "vagas_disponiveis": 4
+      },
+      {
+        "turma": "2º ANO - 2",
+        "turno": "TARDE",
+        "sala": "SALA 04",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 30,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "2º ANO - 3",
+        "turno": "MANHÃ",
+        "sala": "SALA 21",
+        "vagas_existentes": 28,
+        "vagas_ocupadas": 22,
+        "vagas_disponiveis": 6
+      },
+      {
+        "turma": "2º ANO - 5",
+        "turno": "TARDE",
+        "sala": "SALA 21",
+        "vagas_existentes": 28,
+        "vagas_ocupadas": 26,
+        "vagas_disponiveis": 2
+      }
+    ],
+    "3º ANO": [
+      {
+        "turma": "3º ANO - 1",
+        "turno": "MANHÃ",
+        "sala": "SALA 09",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 30,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "3º ANO - 2",
+        "turno": "TARDE",
+        "sala": "SALA 06",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 30,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "3º ANO - 3",
+        "turno": "MANHÃ",
+        "sala": "SALA 03",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 29,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "3º ANO - 4",
+        "turno": "TARDE",
+        "sala": "SALA 03",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 30,
+        "vagas_disponiveis": 0
+      }
+    ],
+    "4º ANO": [
+      {
+        "turma": "4º ANO - 1",
+        "turno": "MANHÃ",
+        "sala": "SALA 07",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 30,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "4º ANO - 2",
+        "turno": "TARDE",
+        "sala": "SALA 07",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 30,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "4º ANO - 3",
+        "turno": "MANHÃ",
+        "sala": "SALA 02",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 30,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "4º ANO - 4",
+        "turno": "TARDE",
+        "sala": "SALA 02",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 30,
+        "vagas_disponiveis": 0
+      }
+    ],
+    "5º ANO": [
+      {
+        "turma": "5º ANO - 1",
+        "turno": "MANHÃ",
+        "sala": "SALA 08",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 30,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "5º ANO - 2",
+        "turno": "TARDE",
+        "sala": "SALA 08",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 30,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "5º ANO - 3",
+        "turno": "MANHÃ",
+        "sala": "SALA 01",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 30,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "5º ANO - 4",
+        "turno": "TARDE",
+        "sala": "SALA 01",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 30,
+        "vagas_disponiveis": 0
+      }
+    ]
+  },
+  "EB PROFª ANTONIETA SILVEIRA DE SOUZA": {
+    "6º ANO": [
+      {
+        "turma": "6º ANO - 1",
+        "turno": "MANHÃ",
+        "sala": "SALA 26",
+        "vagas_existentes": 35,
+        "vagas_ocupadas": 35,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "6º ANO - 2",
+        "turno": "TARDE",
+        "sala": "SALA 15",
+        "vagas_existentes": 35,
+        "vagas_ocupadas": 34,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "6º ANO - 3",
+        "turno": "MANHÃ",
+        "sala": "SALA 15",
+        "vagas_existentes": 35,
+        "vagas_ocupadas": 34,
+        "vagas_disponiveis": 1
+      }
+    ],
+    "7º ANO": [
+      {
+        "turma": "7° ANO - 1",
+        "turno": "MANHÃ",
+        "sala": "SALA 17",
+        "vagas_existentes": 35,
+        "vagas_ocupadas": 35,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "7º ANO - 2",
+        "turno": "TARDE",
+        "sala": "SALA 17",
+        "vagas_existentes": 35,
+        "vagas_ocupadas": 35,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "7º ANO - 3",
+        "turno": "MANHÃ",
+        "sala": "SALA 18",
+        "vagas_existentes": 35,
+        "vagas_ocupadas": 35,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "7º ANO - 4",
+        "turno": "TARDE",
+        "sala": "SALA 18",
+        "vagas_existentes": 35,
+        "vagas_ocupadas": 34,
+        "vagas_disponiveis": 1
+      }
+    ],
+    "8º ANO": [
+      {
+        "turma": "8º ANO - 1",
+        "turno": "MANHÃ",
+        "sala": "SALA 14",
+        "vagas_existentes": 34,
+        "vagas_ocupadas": 34,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "8º ANO - 2",
+        "turno": "TARDE",
+        "sala": "SALA 14",
+        "vagas_existentes": 34,
+        "vagas_ocupadas": 33,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "8º ANO - 3",
+        "turno": "TARDE",
+        "sala": "SALA 19",
+        "vagas_existentes": 34,
+        "vagas_ocupadas": 33,
+        "vagas_disponiveis": 1
+      }
+    ],
+    "9º ANO": [
+      {
+        "turma": "9º ANO - 1",
+        "turno": "MANHÃ",
+        "sala": "SALA 20",
+        "vagas_existentes": 35,
+        "vagas_ocupadas": 31,
+        "vagas_disponiveis": 4
+      },
+      {
+        "turma": "9º ANO - 2",
+        "turno": "MANHÃ",
+        "sala": "SALA 19",
+        "vagas_existentes": 35,
+        "vagas_ocupadas": 31,
+        "vagas_disponiveis": 4
+      },
+      {
+        "turma": "9º ANO - 3",
+        "turno": "TARDE",
+        "sala": "SALA 20",
+        "vagas_existentes": 35,
+        "vagas_ocupadas": 24,
+        "vagas_disponiveis": 11
+      }
+    ],
+    "1º ANO": [
+      {
+        "turma": "1º ANO - 1",
+        "turno": "MANHÃ",
+        "sala": "SALA 06",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 30,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "1º ANO - 2",
+        "turno": "TARDE",
+        "sala": "SALA 06",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 28,
+        "vagas_disponiveis": 2
+      },
+      {
+        "turma": "1º ANO - 3",
+        "turno": "TARDE",
+        "sala": "SALA 07",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 29,
+        "vagas_disponiveis": 1
+      }
+    ],
+    "2º ANO": [
+      {
+        "turma": "2º ANO - 1",
+        "turno": "MANHÃ",
+        "sala": "SALA 04",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 29,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "2º ANO - 2",
+        "turno": "MANHÃ",
+        "sala": "SALA 07",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 30,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "2º ANO - 3",
+        "turno": "TARDE",
+        "sala": "SALA 04",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 30,
+        "vagas_disponiveis": 0
+      }
+    ],
+    "3º ANO": [
+      {
+        "turma": "3º ANO - 1",
+        "turno": "MANHÃ",
+        "sala": "SALA 12",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 30,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "3º ANO - 2",
+        "turno": "TARDE",
+        "sala": "SALA 12",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 30,
+        "vagas_disponiveis": 0
+      }
+    ],
+    "4º ANO": [
+      {
+        "turma": "4º ANO - 1",
+        "turno": "MANHÃ",
+        "sala": "SALA 03",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 30,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "4º ANO - 2",
+        "turno": "TARDE",
+        "sala": "SALA 03",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 30,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "4º ANO - 3",
+        "turno": "TARDE",
+        "sala": "SALA 26",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 30,
+        "vagas_disponiveis": 0
+      }
+    ],
+    "5º ANO": [
+      {
+        "turma": "5º ANO - 1",
+        "turno": "MANHÃ",
+        "sala": "SALA 01",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 30,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "5º ANO - 2",
+        "turno": "TARDE",
+        "sala": "SALA 01",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 30,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "5º ANO - 3",
+        "turno": "MANHÃ",
+        "sala": "SALA 02",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 30,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "5º ANO - 4",
+        "turno": "TARDE",
+        "sala": "SALA 02",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 30,
+        "vagas_disponiveis": 0
+      }
+    ]
+  },
+  "EBM PROFª MARA LUIZA VIEIRA LIBERATO - SÃO SEBASTIÃO": {
+    "6º ANO": [
+      {
+        "turma": "6º ANO - 1",
+        "turno": "MANHÃ",
+        "sala": "SALA 22",
+        "vagas_existentes": 33,
+        "vagas_ocupadas": 33,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "6º ANO - 2",
+        "turno": "TARDE",
+        "sala": "SALA 22",
+        "vagas_existentes": 33,
+        "vagas_ocupadas": 33,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "6º ANO - 3",
+        "turno": "TARDE",
+        "sala": "SALA 07",
+        "vagas_existentes": 28,
+        "vagas_ocupadas": 28,
+        "vagas_disponiveis": 0
+      }
+    ],
+    "7º ANO": [
+      {
+        "turma": "7º ANO - 1",
+        "turno": "MANHÃ",
+        "sala": "SALA 24",
+        "vagas_existentes": 34,
+        "vagas_ocupadas": 34,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "7º ANO - 2",
+        "turno": "TARDE",
+        "sala": "SALA 23",
+        "vagas_existentes": 35,
+        "vagas_ocupadas": 35,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "7º ANO - 3",
+        "turno": "MANHÃ",
+        "sala": "SALA 23",
+        "vagas_existentes": 35,
+        "vagas_ocupadas": 33,
+        "vagas_disponiveis": 2
+      }
+    ],
+    "8º ANO": [
+      {
+        "turma": "8º ANO - 1",
+        "turno": "MANHÃ",
+        "sala": "SALA 07",
+        "vagas_existentes": 28,
+        "vagas_ocupadas": 27,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "8º ANO - 2",
+        "turno": "TARDE",
+        "sala": "SALA 24",
+        "vagas_existentes": 34,
+        "vagas_ocupadas": 31,
+        "vagas_disponiveis": 3
+      },
+      {
+        "turma": "8º ANO - 3",
+        "turno": "MANHÃ",
+        "sala": "SALA 01",
+        "vagas_existentes": 25,
+        "vagas_ocupadas": 24,
+        "vagas_disponiveis": 1
+      }
+    ],
+    "1º ANO": [
+      {
+        "turma": "1º ANO - 1",
+        "turno": "MANHÃ",
+        "sala": "SALA 11",
+        "vagas_existentes": 16,
+        "vagas_ocupadas": 16,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "1º ANO - 2",
+        "turno": "TARDE",
+        "sala": "SALA 11",
+        "vagas_existentes": 16,
+        "vagas_ocupadas": 16,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "1º ANO - 3",
+        "turno": "MANHÃ",
+        "sala": "SALA 21",
+        "vagas_existentes": 28,
+        "vagas_ocupadas": 27,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "1º ANO - 4",
+        "turno": "MANHÃ",
+        "sala": "SALA 12",
+        "vagas_existentes": 17,
+        "vagas_ocupadas": 17,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "1º ANO - 5",
+        "turno": "TARDE",
+        "sala": "SALA 12",
+        "vagas_existentes": 17,
+        "vagas_ocupadas": 17,
+        "vagas_disponiveis": 0
+      }
+    ],
+    "2º ANO": [
+      {
+        "turma": "2º ANO - 1",
+        "turno": "MANHÃ",
+        "sala": "SALA 04",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 30,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "2º ANO - 2",
+        "turno": "TARDE",
+        "sala": "SALA 04",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 30,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "2º ANO - 3",
+        "turno": "TARDE",
+        "sala": "SALA 21",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 30,
+        "vagas_disponiveis": 0
+      }
+    ],
+    "3º ANO": [
+      {
+        "turma": "3º ANO - 1",
+        "turno": "MANHÃ",
+        "sala": "SALA 03",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 30,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "3º ANO - 2",
+        "turno": "TARDE",
+        "sala": "SALA 03",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 29,
+        "vagas_disponiveis": 1
+      }
+    ],
+    "4º ANO": [
+      {
+        "turma": "4º ANO - 1",
+        "turno": "MANHÃ",
+        "sala": "SALA 02",
+        "vagas_existentes": 23,
+        "vagas_ocupadas": 23,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "4º ANO - 2",
+        "turno": "TARDE",
+        "sala": "SALA 02",
+        "vagas_existentes": 23,
+        "vagas_ocupadas": 23,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "4º ANO - 3",
+        "turno": "TARDE",
+        "sala": "SALA 01",
+        "vagas_existentes": 25,
+        "vagas_ocupadas": 25,
+        "vagas_disponiveis": 0
+      }
+    ],
+    "5º ANO": [
+      {
+        "turma": "5º ANO - 1",
+        "turno": "MANHÃ",
+        "sala": "SALA 05",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 30,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "5º ANO - 2",
+        "turno": "TARDE",
+        "sala": "SALA 05",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 30,
+        "vagas_disponiveis": 0
+      }
+    ]
+  },
+  "EB VIVIANE LAURITA DE QUADROS COELHO - BARRA DO ARIRIÚ/RIO GRANDE/PACHECO/NOVA PALHOÇA/CENTRO": {
+    "6º ANO": [
+      {
+        "turma": "6º ANO - 1",
+        "turno": "MANHÃ",
+        "sala": "SALA 01",
+        "vagas_existentes": 35,
+        "vagas_ocupadas": 34,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "6º ANO - 2",
+        "turno": "TARDE",
+        "sala": "SALA 01",
+        "vagas_existentes": 35,
+        "vagas_ocupadas": 34,
+        "vagas_disponiveis": 1
+      }
+    ],
+    "7º ANO": [
+      {
+        "turma": "7º ANO - 1",
+        "turno": "MANHÃ",
+        "sala": "SALA 02",
+        "vagas_existentes": 31,
+        "vagas_ocupadas": 20,
+        "vagas_disponiveis": 11
+      },
+      {
+        "turma": "7º ANO - 2",
+        "turno": "MANHÃ",
+        "sala": "SALA 03",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 21,
+        "vagas_disponiveis": 9
+      },
+      {
+        "turma": "7º ANO - 3",
+        "turno": "TARDE",
+        "sala": "SALA 02",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 26,
+        "vagas_disponiveis": 4
+      }
+    ],
+    "8º ANO": [
+      {
+        "turma": "8º ANO - 1",
+        "turno": "MANHÃ",
+        "sala": "SALA 05",
+        "vagas_existentes": 32,
+        "vagas_ocupadas": 28,
+        "vagas_disponiveis": 4
+      },
+      {
+        "turma": "8º ANO - 2",
+        "turno": "TARDE",
+        "sala": "SALA 03",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 26,
+        "vagas_disponiveis": 4
+      }
+    ],
+    "9º ANO": [],
+    "1º ANO": [],
+    "2º ANO": [],
+    "3º ANO": [
+      {
+        "turma": "3º ANO - 1",
+        "turno": "MANHÃ",
+        "sala": "SALA 08",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 30,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "3º ANO - 2",
+        "turno": "TARDE",
+        "sala": "SALA 08",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 30,
+        "vagas_disponiveis": 0
+      }
+    ],
+    "4º ANO": [
+      {
+        "turma": "4º ANO - 1",
+        "turno": "MANHÃ",
+        "sala": "SALA 07",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 30,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "4º ANO - 2",
+        "turno": "MANHÃ",
+        "sala": "SALA 04",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 26,
+        "vagas_disponiveis": 4
+      },
+      {
+        "turma": "4º ANO - 3",
+        "turno": "TARDE",
+        "sala": "SALA 07",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 30,
+        "vagas_disponiveis": 0
+      }
+    ],
+    "5º ANO": [
+      {
+        "turma": "5º ANO - 1",
+        "turno": "MANHÃ",
+        "sala": "SALA 06",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 30,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "5º ANO - 2",
+        "turno": "TARDE",
+        "sala": "SALA 06",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 30,
+        "vagas_disponiveis": 0
+      }
+    ]
+  },
+  "EBM PROFº OSMAR ANTÔNIO VIEIRA": {
+    "6º ANO": [
+      {
+        "turma": "6º ANO - 1",
+        "turno": "MANHÃ",
+        "sala": "SALA 18",
+        "vagas_existentes": 34,
+        "vagas_ocupadas": 34,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "6º ANO - 10",
+        "turno": "TARDE",
+        "sala": "SALA 31",
+        "vagas_existentes": 18,
+        "vagas_ocupadas": 17,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "6º ANO - 2",
+        "turno": "TARDE",
+        "sala": "SALA 17",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 30,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "6º ANO - 3",
+        "turno": "MANHÃ",
+        "sala": "SALA 04",
+        "vagas_existentes": 35,
+        "vagas_ocupadas": 35,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "6º ANO - 4",
+        "turno": "TARDE",
+        "sala": "SALA 16",
+        "vagas_existentes": 31,
+        "vagas_ocupadas": 31,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "6º ANO - 5",
+        "turno": "MANHÃ",
+        "sala": "SALA 17",
+        "vagas_existentes": 33,
+        "vagas_ocupadas": 33,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "6º ANO - 6",
+        "turno": "TARDE",
+        "sala": "SALA 18",
+        "vagas_existentes": 32,
+        "vagas_ocupadas": 31,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "6º ANO - 7",
+        "turno": "MANHÃ",
+        "sala": "SALA 16",
+        "vagas_existentes": 35,
+        "vagas_ocupadas": 33,
+        "vagas_disponiveis": 2
+      },
+      {
+        "turma": "6º ANO - 8",
+        "turno": "TARDE",
+        "sala": "SALA 20",
+        "vagas_existentes": 25,
+        "vagas_ocupadas": 23,
+        "vagas_disponiveis": 2
+      }
+    ],
+    "7º ANO": [
+      {
+        "turma": "7º ANO - 1",
+        "turno": "MANHÃ",
+        "sala": "SALA 15",
+        "vagas_existentes": 35,
+        "vagas_ocupadas": 34,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "7º ANO - 2",
+        "turno": "TARDE",
+        "sala": "SALA 15",
+        "vagas_existentes": 35,
+        "vagas_ocupadas": 35,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "7º ANO - 3",
+        "turno": "MANHÃ",
+        "sala": "SALA 14",
+        "vagas_existentes": 35,
+        "vagas_ocupadas": 35,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "7º ANO - 4",
+        "turno": "TARDE",
+        "sala": "SALA 14",
+        "vagas_existentes": 35,
+        "vagas_ocupadas": 35,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "7º ANO - 5",
+        "turno": "MANHÃ",
+        "sala": "SALA 13",
+        "vagas_existentes": 35,
+        "vagas_ocupadas": 35,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "7º ANO - 6",
+        "turno": "TARDE",
+        "sala": "SALA 13",
+        "vagas_existentes": 32,
+        "vagas_ocupadas": 32,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "7º ANO - 7",
+        "turno": "MANHÃ",
+        "sala": "SALA 30",
+        "vagas_existentes": 35,
+        "vagas_ocupadas": 33,
+        "vagas_disponiveis": 2
+      },
+      {
+        "turma": "7º ANO - 8",
+        "turno": "TARDE",
+        "sala": "SALA 30",
+        "vagas_existentes": 35,
+        "vagas_ocupadas": 32,
+        "vagas_disponiveis": 3
+      },
+      {
+        "turma": "7º ANO - 9",
+        "turno": "MANHÃ",
+        "sala": "SALA 31",
+        "vagas_existentes": 24,
+        "vagas_ocupadas": 24,
+        "vagas_disponiveis": 0
+      }
+    ],
+    "8º ANO": [
+      {
+        "turma": "8º ANO - 1",
+        "turno": "MANHÃ",
+        "sala": "SALA 21",
+        "vagas_existentes": 35,
+        "vagas_ocupadas": 35,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "8º ANO - 2",
+        "turno": "TARDE",
+        "sala": "SALA 02",
+        "vagas_existentes": 34,
+        "vagas_ocupadas": 34,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "8º ANO - 3",
+        "turno": "MANHÃ",
+        "sala": "SALA 02",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 30,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "8º ANO - 4",
+        "turno": "TARDE",
+        "sala": "SALA 21",
+        "vagas_existentes": 33,
+        "vagas_ocupadas": 33,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "8º ANO - 5",
+        "turno": "MANHÃ",
+        "sala": "SALA 22",
+        "vagas_existentes": 31,
+        "vagas_ocupadas": 31,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "8º ANO - 6",
+        "turno": "TARDE",
+        "sala": "SALA 22",
+        "vagas_existentes": 32,
+        "vagas_ocupadas": 32,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "8º ANO - 7",
+        "turno": "MANHÃ",
+        "sala": "SALA 23",
+        "vagas_existentes": 35,
+        "vagas_ocupadas": 35,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "8º ANO - 8",
+        "turno": "TARDE",
+        "sala": "SALA 01",
+        "vagas_existentes": 35,
+        "vagas_ocupadas": 35,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "8º ANO - 9",
+        "turno": "MANHÃ",
+        "sala": "SALA 24",
+        "vagas_existentes": 35,
+        "vagas_ocupadas": 35,
+        "vagas_disponiveis": 0
+      }
+    ],
+    "9º ANO": [
+      {
+        "turma": "9º ANO - 1",
+        "turno": "MANHÃ",
+        "sala": "SALA 01",
+        "vagas_existentes": 36,
+        "vagas_ocupadas": 36,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "9º ANO - 2",
+        "turno": "TARDE",
+        "sala": "SALA 23",
+        "vagas_existentes": 35,
+        "vagas_ocupadas": 35,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "9º ANO - 3",
+        "turno": "MANHÃ",
+        "sala": "SALA 25",
+        "vagas_existentes": 35,
+        "vagas_ocupadas": 35,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "9º ANO - 4",
+        "turno": "TARDE",
+        "sala": "SALA 24",
+        "vagas_existentes": 35,
+        "vagas_ocupadas": 34,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "9º ANO - 5",
+        "turno": "MANHÃ",
+        "sala": "SALA 20",
+        "vagas_existentes": 35,
+        "vagas_ocupadas": 34,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "9º ANO - 6",
+        "turno": "TARDE",
+        "sala": "SALA 25",
+        "vagas_existentes": 35,
+        "vagas_ocupadas": 35,
+        "vagas_disponiveis": 0
+      }
+    ],
+    "5º ANO": [
+      {
+        "turma": "5º ANO - 1",
+        "turno": "MANHÃ",
+        "sala": "SALA 05",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 30,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "5º ANO - 10",
+        "turno": "TARDE",
+        "sala": "SALA 09",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 30,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "5º ANO - 12",
+        "turno": "TARDE",
+        "sala": "SALA 07",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 30,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "5º ANO - 2",
+        "turno": "TARDE",
+        "sala": "SALA 08",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 30,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "5º ANO - 3",
+        "turno": "MANHÃ",
+        "sala": "SALA 03",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 30,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "5º ANO - 4",
+        "turno": "TARDE",
+        "sala": "SALA 05",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 29,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "5º ANO - 5",
+        "turno": "MANHÃ",
+        "sala": "SALA 08",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 30,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "5º ANO - 6",
+        "turno": "TARDE",
+        "sala": "SALA 03",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 30,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "5º ANO - 7",
+        "turno": "MANHÃ",
+        "sala": "SALA 07",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 30,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "5º ANO - 8",
+        "turno": "TARDE",
+        "sala": "SALA 04",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 30,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "5º ANO - 9",
+        "turno": "MANHÃ",
+        "sala": "SALA 09",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 30,
+        "vagas_disponiveis": 0
+      }
+    ]
+  },
+  "ER ALBARDÃO": {
+    "GT 4": [],
+    "GT 5": [],
+    "1º ANO": [],
+    "2º ANO": [],
+    "3º ANO": [],
+    "4º ANO": [],
+    "5º ANO": []
+  },
+  "EBM PREFEITO REINALDO WEINGARTNER": {
+    "1º ANO": [],
+    "2º ANO": [],
+    "3º ANO": [],
+    "4º ANO": []
+  },
+  "EI RINCÃO": {
+    "GT 4": [],
+    "GT 5": [],
+    "1º ANO": [],
+    "2º ANO": [],
+    "3º ANO": [],
+    "4º ANO": [],
+    "5º ANO": []
+  },
+  "EM MANOEL DA SILVA - SÃO SEBASTIÃO": {
+    "1º ANO": [
+      {
+        "turma": "1º ANO - 1",
+        "turno": "MANHÃ",
+        "sala": "SALA 09",
+        "vagas_existentes": 20,
+        "vagas_ocupadas": 19,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "1º ANO - 2",
+        "turno": "TARDE",
+        "sala": "SALA 09",
+        "vagas_existentes": 20,
+        "vagas_ocupadas": 20,
+        "vagas_disponiveis": 0
+      }
+    ],
+    "2º ANO": [
+      {
+        "turma": "2º ANO - 1",
+        "turno": "MANHÃ",
+        "sala": "SALA 10",
+        "vagas_existentes": 20,
+        "vagas_ocupadas": 19,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "2º ANO - 2",
+        "turno": "TARDE",
+        "sala": "SALA 10",
+        "vagas_existentes": 20,
+        "vagas_ocupadas": 19,
+        "vagas_disponiveis": 1
+      }
+    ],
+    "3º ANO": [
+      {
+        "turma": "3º ANO - 1",
+        "turno": "MANHÃ",
+        "sala": "SALA 06",
+        "vagas_existentes": 20,
+        "vagas_ocupadas": 19,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "3º ANO - 2",
+        "turno": "TARDE",
+        "sala": "SALA 06",
+        "vagas_existentes": 20,
+        "vagas_ocupadas": 19,
+        "vagas_disponiveis": 1
+      }
+    ],
+    "4º ANO": [
+      {
+        "turma": "4º ANO - 1",
+        "turno": "MANHÃ",
+        "sala": "SALA 02",
+        "vagas_existentes": 18,
+        "vagas_ocupadas": 18,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "4º ANO - 2",
+        "turno": "TARDE",
+        "sala": "SALA 02",
+        "vagas_existentes": 18,
+        "vagas_ocupadas": 18,
+        "vagas_disponiveis": 0
+      }
+    ],
+    "5º ANO": [
+      {
+        "turma": "5º ANO - 1",
+        "turno": "MANHÃ",
+        "sala": "SALA 05",
+        "vagas_existentes": 18,
+        "vagas_ocupadas": 18,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "5º ANO - 2",
+        "turno": "TARDE",
+        "sala": "SALA 05",
+        "vagas_existentes": 18,
+        "vagas_ocupadas": 18,
+        "vagas_disponiveis": 0
+      }
+    ]
+  },
+  "ER PROFª  ISABEL BOTELHO DE PAULO": {
+    "1º ANO": [],
+    "2º ANO": [
+      {
+        "turma": "2º ANO - 1",
+        "turno": "MANHÃ",
+        "sala": "SALA 04",
+        "vagas_existentes": 18,
+        "vagas_ocupadas": 18,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "2º ANO - 2",
+        "turno": "TARDE",
+        "sala": "SALA 04",
+        "vagas_existentes": 18,
+        "vagas_ocupadas": 18,
+        "vagas_disponiveis": 0
+      }
+    ],
+    "3º ANO": [],
+    "4º ANO": [],
+    "5º ANO": []
+  },
+  "ER OLGA CERINO": {
+    "1º ANO": [
+      {
+        "turma": "1º ANO - 1",
+        "turno": "MANHÃ",
+        "sala": "SALA 06",
+        "vagas_existentes": 9,
+        "vagas_ocupadas": 9,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "1º ANO - 2",
+        "turno": "TARDE",
+        "sala": "SALA 06",
+        "vagas_existentes": 15,
+        "vagas_ocupadas": 15,
+        "vagas_disponiveis": 0
+      }
+    ],
+    "2º ANO": [
+      {
+        "turma": "2º ANO - 1",
+        "turno": "MANHÃ",
+        "sala": "SALA 03",
+        "vagas_existentes": 20,
+        "vagas_ocupadas": 17,
+        "vagas_disponiveis": 3
+      },
+      {
+        "turma": "2º ANO - 2",
+        "turno": "TARDE",
+        "sala": "SALA 03",
+        "vagas_existentes": 20,
+        "vagas_ocupadas": 20,
+        "vagas_disponiveis": 0
+      }
+    ],
+    "3º ANO": [],
+    "4º ANO": [],
+    "5º ANO": [
+      {
+        "turma": "5º ANO - 1",
+        "turno": "MANHÃ",
+        "sala": "SALA 05",
+        "vagas_existentes": 11,
+        "vagas_ocupadas": 11,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "5º ANO - 2",
+        "turno": "TARDE",
+        "sala": "SALA 05",
+        "vagas_existentes": 13,
+        "vagas_ocupadas": 13,
+        "vagas_disponiveis": 0
+      }
+    ]
+  },
+  "ER PROFº BENTO JOSÉ DO NASCIMENTO": {
+    "GT 4": [],
+    "GT 5": [],
+    "1º ANO": [],
+    "2º ANO": [],
+    "3º ANO": [],
+    "4º ANO": [],
+    "5º ANO": []
+  },
+  "ER PROFº DANIEL CARLOS WEINGARTNER": {
+    "1º ANO": [],
+    "2º ANO": [],
+    "3º ANO": [],
+    "4º ANO": [
+      {
+        "turma": "4º ANO - 1",
+        "turno": "MANHÃ",
+        "sala": "SALA 05",
+        "vagas_existentes": 21,
+        "vagas_ocupadas": 21,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "4º ANO - 2",
+        "turno": "TARDE",
+        "sala": "SALA 04",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 30,
+        "vagas_disponiveis": 0
+      }
+    ],
+    "5º ANO": []
+  },
+  "GE NAJLA CARONE GUEDERT": {
+    "2º ANO": [
+      {
+        "turma": "2º ANO - 1",
+        "turno": "MANHÃ",
+        "sala": "SALA 03",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 30,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "2º ANO - 2",
+        "turno": "TARDE",
+        "sala": "SALA 03",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 29,
+        "vagas_disponiveis": 1
+      }
+    ],
+    "3º ANO": [
+      {
+        "turma": "3º ANO - 1",
+        "turno": "MANHÃ",
+        "sala": "SALA 04",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 25,
+        "vagas_disponiveis": 5
+      },
+      {
+        "turma": "3º ANO - 2",
+        "turno": "TARDE",
+        "sala": "SALA 04",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 26,
+        "vagas_disponiveis": 4
+      }
+    ],
+    "4º ANO": [
+      {
+        "turma": "4º ANO - 1",
+        "turno": "MANHÃ",
+        "sala": "SALA 02",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 30,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "4º ANO - 2",
+        "turno": "TARDE",
+        "sala": "SALA 02",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 30,
+        "vagas_disponiveis": 0
+      }
+    ],
+    "5º ANO": [
+      {
+        "turma": "5º ANO - 1",
+        "turno": "MANHÃ",
+        "sala": "SALA 01",
+        "vagas_existentes": 28,
+        "vagas_ocupadas": 27,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "5º ANO - 2",
+        "turno": "TARDE",
+        "sala": "SALA 01",
+        "vagas_existentes": 29,
+        "vagas_ocupadas": 28,
+        "vagas_disponiveis": 1
+      }
+    ]
+  },
+  "GE PROFª EVANDA SUELI JUTTEL MACHADO - BARRA DO ARIRIÚ/RIO GRANDE/PACHECO/NOVA PALHOÇA/CENTRO": {
+    "1º ANO": [
+      {
+        "turma": "1º ANO - 1",
+        "turno": "MANHÃ",
+        "sala": "SALA 01",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 27,
+        "vagas_disponiveis": 3
+      },
+      {
+        "turma": "1º ANO - 2",
+        "turno": "TARDE",
+        "sala": "SALA 01",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 30,
+        "vagas_disponiveis": 0
+      }
+    ],
+    "2º ANO": [
+      {
+        "turma": "2º ANO - 1",
+        "turno": "MANHÃ",
+        "sala": "SALA 08",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 30,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "2º ANO - 2",
+        "turno": "TARDE",
+        "sala": "SALA 08",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 30,
+        "vagas_disponiveis": 0
+      }
+    ],
+    "3º ANO": [
+      {
+        "turma": "3º ANO - 1",
+        "turno": "MANHÃ",
+        "sala": "SALA 04",
+        "vagas_existentes": 25,
+        "vagas_ocupadas": 25,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "3º ANO - 2",
+        "turno": "TARDE",
+        "sala": "SALA 04",
+        "vagas_existentes": 24,
+        "vagas_ocupadas": 24,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "3º ANO - 3",
+        "turno": "TARDE",
+        "sala": "SALA 09",
+        "vagas_existentes": 21,
+        "vagas_ocupadas": 21,
+        "vagas_disponiveis": 0
+      }
+    ],
+    "4º ANO": [
+      {
+        "turma": "4º ANO - 1",
+        "turno": "MANHÃ",
+        "sala": "SALA 03",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 29,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "4º ANO - 2",
+        "turno": "TARDE",
+        "sala": "SALA 03",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 30,
+        "vagas_disponiveis": 0
+      }
+    ],
+    "5º ANO": [
+      {
+        "turma": "5º ANO - 1",
+        "turno": "MANHÃ",
+        "sala": "SALA 14",
+        "vagas_existentes": 27,
+        "vagas_ocupadas": 27,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "5º ANO - 2",
+        "turno": "TARDE",
+        "sala": "SALA 14",
+        "vagas_existentes": 28,
+        "vagas_ocupadas": 28,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "5º ANO - 3",
+        "turno": "MANHÃ",
+        "sala": "SALA 09",
+        "vagas_existentes": 21,
+        "vagas_ocupadas": 21,
+        "vagas_disponiveis": 0
+      }
+    ]
+  },
+  "GE PROFª MARIA DOS SANTOS SILVA": {
+    "GT 4": [],
+    "GT 5": [],
+    "1º ANO": [
+      {
+        "turma": "1º ANO - 1",
+        "turno": "MANHÃ",
+        "sala": "SALA 03",
+        "vagas_existentes": 16,
+        "vagas_ocupadas": 15,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "1º ANO - 2",
+        "turno": "TARDE",
+        "sala": "SALA 03",
+        "vagas_existentes": 22,
+        "vagas_ocupadas": 20,
+        "vagas_disponiveis": 2
+      }
+    ],
+    "3º ANO": []
+  },
+  "GE PROFª MARIA LUZIA DE SOUZA": {
+    "1º ANO": [],
+    "2º ANO": [
+      {
+        "turma": "2º ANO - 1",
+        "turno": "MANHÃ",
+        "sala": "SALA 03",
+        "vagas_existentes": 17,
+        "vagas_ocupadas": 17,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "2º ANO - 2",
+        "turno": "TARDE",
+        "sala": "SALA 05",
+        "vagas_existentes": 30,
+        "vagas_ocupadas": 24,
+        "vagas_disponiveis": 6
+      }
+    ],
+    "3º ANO": [],
+    "4º ANO": [
+      {
+        "turma": "4º ANO - 1",
+        "turno": "MANHÃ",
+        "sala": "SALA 08",
+        "vagas_existentes": 28,
+        "vagas_ocupadas": 25,
+        "vagas_disponiveis": 3
+      },
+      {
+        "turma": "4º ANO - 2",
+        "turno": "TARDE",
+        "sala": "SALA 08",
+        "vagas_existentes": 28,
+        "vagas_ocupadas": 24,
+        "vagas_disponiveis": 4
+      }
+    ],
+    "5º ANO": [
+      {
+        "turma": "5º ANO - 1",
+        "turno": "MANHÃ",
+        "sala": "SALA 07",
+        "vagas_existentes": 25,
+        "vagas_ocupadas": 25,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "5° ANO - 2",
+        "turno": "TARDE",
+        "sala": "SALA 07",
+        "vagas_existentes": 23,
+        "vagas_ocupadas": 22,
+        "vagas_disponiveis": 1
+      }
+    ],
+    "GT 1": [
+      {
+        "turma": "GT 1 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 09",
+        "vagas_existentes": 14,
+        "vagas_ocupadas": 13,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "GT 1 B",
+        "turno": "TARDE",
+        "sala": "SALA 09",
+        "vagas_existentes": 14,
+        "vagas_ocupadas": 14,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 1 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 07",
+        "vagas_existentes": 15,
+        "vagas_ocupadas": 15,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 1 B",
+        "turno": "TARDE",
+        "sala": "SALA 06",
+        "vagas_existentes": 15,
+        "vagas_ocupadas": 15,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 1 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 10",
+        "vagas_existentes": 15,
+        "vagas_ocupadas": 14,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "GT 1 B",
+        "turno": "TARDE",
+        "sala": "SALA 06",
+        "vagas_existentes": 15,
+        "vagas_ocupadas": 15,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 1 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 05",
+        "vagas_existentes": 15,
+        "vagas_ocupadas": 15,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 1 B",
+        "turno": "TARDE",
+        "sala": "SALA 05",
+        "vagas_existentes": 15,
+        "vagas_ocupadas": 15,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 1 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 05",
+        "vagas_existentes": 15,
+        "vagas_ocupadas": 15,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 1 B",
+        "turno": "TARDE",
+        "sala": "SALA 05",
+        "vagas_existentes": 15,
+        "vagas_ocupadas": 15,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 1 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 08",
+        "vagas_existentes": 10,
+        "vagas_ocupadas": 10,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 1 B",
+        "turno": "TARDE",
+        "sala": "SALA 08",
+        "vagas_existentes": 10,
+        "vagas_ocupadas": 10,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 1 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 07",
+        "vagas_existentes": 10,
+        "vagas_ocupadas": 10,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 1 B",
+        "turno": "TARDE",
+        "sala": "SALA 07",
+        "vagas_existentes": 10,
+        "vagas_ocupadas": 10,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 1 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 01",
+        "vagas_existentes": 15,
+        "vagas_ocupadas": 15,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 1 B",
+        "turno": "TARDE",
+        "sala": "SALA 01",
+        "vagas_existentes": 15,
+        "vagas_ocupadas": 15,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 1 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 05",
+        "vagas_existentes": 15,
+        "vagas_ocupadas": 12,
+        "vagas_disponiveis": 3
+      },
+      {
+        "turma": "GT 1 B",
+        "turno": "TARDE",
+        "sala": "SALA 05",
+        "vagas_existentes": 15,
+        "vagas_ocupadas": 15,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 1 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 01",
+        "vagas_existentes": 15,
+        "vagas_ocupadas": 14,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "GT 1 B",
+        "turno": "TARDE",
+        "sala": "SALA 02",
+        "vagas_existentes": 15,
+        "vagas_ocupadas": 15,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 1 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 23",
+        "vagas_existentes": 15,
+        "vagas_ocupadas": 15,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 1 B",
+        "turno": "TARDE",
+        "sala": "SALA 23",
+        "vagas_existentes": 15,
+        "vagas_ocupadas": 15,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 1 C",
+        "turno": "TARDE",
+        "sala": "SALA 18",
+        "vagas_existentes": 15,
+        "vagas_ocupadas": 14,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "GT 1 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 01",
+        "vagas_existentes": 15,
+        "vagas_ocupadas": 15,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 1 B",
+        "turno": "TARDE",
+        "sala": "SALA 01",
+        "vagas_existentes": 15,
+        "vagas_ocupadas": 15,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 1 C",
+        "turno": "MANHÃ",
+        "sala": "SALA 02",
+        "vagas_existentes": 15,
+        "vagas_ocupadas": 14,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "GT 1 D",
+        "turno": "TARDE",
+        "sala": "SALA 02",
+        "vagas_existentes": 15,
+        "vagas_ocupadas": 15,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 1 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 10",
+        "vagas_existentes": 15,
+        "vagas_ocupadas": 13,
+        "vagas_disponiveis": 2
+      },
+      {
+        "turma": "GT 1 B",
+        "turno": "TARDE",
+        "sala": "SALA 10",
+        "vagas_existentes": 15,
+        "vagas_ocupadas": 15,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 1 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 05",
+        "vagas_existentes": 15,
+        "vagas_ocupadas": 15,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 1 B",
+        "turno": "TARDE",
+        "sala": "SALA 05",
+        "vagas_existentes": 15,
+        "vagas_ocupadas": 15,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 1 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 01",
+        "vagas_existentes": 15,
+        "vagas_ocupadas": 15,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 1 B",
+        "turno": "TARDE",
+        "sala": "SALA 01",
+        "vagas_existentes": 15,
+        "vagas_ocupadas": 15,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 1 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 05",
+        "vagas_existentes": 15,
+        "vagas_ocupadas": 15,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 1 B",
+        "turno": "TARDE",
+        "sala": "SALA 05",
+        "vagas_existentes": 15,
+        "vagas_ocupadas": 15,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 1 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 05",
+        "vagas_existentes": 15,
+        "vagas_ocupadas": 16,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 1 B",
+        "turno": "TARDE",
+        "sala": "SALA 05",
+        "vagas_existentes": 15,
+        "vagas_ocupadas": 15,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 1 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 01",
+        "vagas_existentes": 0,
+        "vagas_ocupadas": 0,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 1 B",
+        "turno": "TARDE",
+        "sala": "SALA 01",
+        "vagas_existentes": 15,
+        "vagas_ocupadas": 14,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "GT 1 A",
+        "turno": "INTEGRAL",
+        "sala": "SALA 01",
+        "vagas_existentes": 15,
+        "vagas_ocupadas": 15,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 1 B",
+        "turno": "MANHÃ",
+        "sala": "SALA 02",
+        "vagas_existentes": 15,
+        "vagas_ocupadas": 15,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 1 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 05",
+        "vagas_existentes": 13,
+        "vagas_ocupadas": 13,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 1 B",
+        "turno": "MANHÃ",
+        "sala": "SALA 02",
+        "vagas_existentes": 15,
+        "vagas_ocupadas": 15,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 1 C",
+        "turno": "TARDE",
+        "sala": "SALA 05",
+        "vagas_existentes": 13,
+        "vagas_ocupadas": 13,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 1 D",
+        "turno": "INTEGRAL",
+        "sala": "SALA 05",
+        "vagas_existentes": 2,
+        "vagas_ocupadas": 2,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 1 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 12",
+        "vagas_existentes": 15,
+        "vagas_ocupadas": 13,
+        "vagas_disponiveis": 2
+      },
+      {
+        "turma": "GT 1 B",
+        "turno": "TARDE",
+        "sala": "SALA 12",
+        "vagas_existentes": 15,
+        "vagas_ocupadas": 15,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 1 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 12",
+        "vagas_existentes": 15,
+        "vagas_ocupadas": 11,
+        "vagas_disponiveis": 4
+      },
+      {
+        "turma": "GT 1 B",
+        "turno": "TARDE",
+        "sala": "SALA 12",
+        "vagas_existentes": 15,
+        "vagas_ocupadas": 14,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "GT 1 C",
+        "turno": "TARDE",
+        "sala": "SALA 09",
+        "vagas_existentes": 15,
+        "vagas_ocupadas": 12,
+        "vagas_disponiveis": 3
+      },
+      {
+        "turma": "GT 1 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 01",
+        "vagas_existentes": 15,
+        "vagas_ocupadas": 15,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 1 B",
+        "turno": "TARDE",
+        "sala": "SALA 01",
+        "vagas_existentes": 15,
+        "vagas_ocupadas": 15,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 1 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 04",
+        "vagas_existentes": 15,
+        "vagas_ocupadas": 15,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 1 B",
+        "turno": "TARDE",
+        "sala": "SALA 04",
+        "vagas_existentes": 15,
+        "vagas_ocupadas": 15,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 1 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 11",
+        "vagas_existentes": 15,
+        "vagas_ocupadas": 14,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "GT 1 B",
+        "turno": "MANHÃ",
+        "sala": "SALA 16",
+        "vagas_existentes": 9,
+        "vagas_ocupadas": 8,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "GT 1 C",
+        "turno": "TARDE",
+        "sala": "SALA 16",
+        "vagas_existentes": 9,
+        "vagas_ocupadas": 9,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 1 D",
+        "turno": "INTEGRAL",
+        "sala": "SALA 16",
+        "vagas_existentes": 6,
+        "vagas_ocupadas": 6,
+        "vagas_disponiveis": 0
+      }
+    ],
+    "GT 2": [
+      {
+        "turma": "GT 2 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 11",
+        "vagas_existentes": 14,
+        "vagas_ocupadas": 10,
+        "vagas_disponiveis": 4
+      },
+      {
+        "turma": "GT 2 B",
+        "turno": "TARDE",
+        "sala": "SALA 11",
+        "vagas_existentes": 14,
+        "vagas_ocupadas": 13,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "GT 2 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 03",
+        "vagas_existentes": 20,
+        "vagas_ocupadas": 20,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 2 B",
+        "turno": "TARDE",
+        "sala": "SALA 07",
+        "vagas_existentes": 20,
+        "vagas_ocupadas": 20,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 2 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 09",
+        "vagas_existentes": 8,
+        "vagas_ocupadas": 9,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 2 B",
+        "turno": "TARDE",
+        "sala": "SALA 09",
+        "vagas_existentes": 8,
+        "vagas_ocupadas": 8,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 2 C",
+        "turno": "TARDE",
+        "sala": "SALA 02",
+        "vagas_existentes": 11,
+        "vagas_ocupadas": 11,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 2 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 03",
+        "vagas_existentes": 15,
+        "vagas_ocupadas": 15,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 2 B",
+        "turno": "TARDE",
+        "sala": "SALA 02",
+        "vagas_existentes": 7,
+        "vagas_ocupadas": 7,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 2 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 04",
+        "vagas_existentes": 15,
+        "vagas_ocupadas": 15,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 2 B",
+        "turno": "MANHÃ",
+        "sala": "SALA 08",
+        "vagas_existentes": 17,
+        "vagas_ocupadas": 14,
+        "vagas_disponiveis": 3
+      },
+      {
+        "turma": "GT 2 C",
+        "turno": "TARDE",
+        "sala": "SALA 08",
+        "vagas_existentes": 17,
+        "vagas_ocupadas": 17,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 2 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 04",
+        "vagas_existentes": 17,
+        "vagas_ocupadas": 17,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 2 B",
+        "turno": "TARDE",
+        "sala": "SALA 04",
+        "vagas_existentes": 17,
+        "vagas_ocupadas": 17,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 2 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 03",
+        "vagas_existentes": 20,
+        "vagas_ocupadas": 20,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 2 B",
+        "turno": "TARDE",
+        "sala": "SALA 03",
+        "vagas_existentes": 20,
+        "vagas_ocupadas": 20,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 2 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 09",
+        "vagas_existentes": 10,
+        "vagas_ocupadas": 10,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 2 B",
+        "turno": "TARDE",
+        "sala": "SALA 09",
+        "vagas_existentes": 10,
+        "vagas_ocupadas": 11,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 2 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 04",
+        "vagas_existentes": 13,
+        "vagas_ocupadas": 13,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 2 B",
+        "turno": "TARDE",
+        "sala": "SALA 03",
+        "vagas_existentes": 13,
+        "vagas_ocupadas": 13,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 2 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 05",
+        "vagas_existentes": 16,
+        "vagas_ocupadas": 10,
+        "vagas_disponiveis": 6
+      },
+      {
+        "turma": "GT 2 B",
+        "turno": "TARDE",
+        "sala": "SALA 05",
+        "vagas_existentes": 16,
+        "vagas_ocupadas": 15,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "GT 2 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 10",
+        "vagas_existentes": 20,
+        "vagas_ocupadas": 19,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "GT 2 B",
+        "turno": "TARDE",
+        "sala": "SALA 10",
+        "vagas_existentes": 20,
+        "vagas_ocupadas": 20,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 2 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 03",
+        "vagas_existentes": 20,
+        "vagas_ocupadas": 20,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 2 B",
+        "turno": "TARDE",
+        "sala": "SALA 03",
+        "vagas_existentes": 20,
+        "vagas_ocupadas": 20,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 2 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 05",
+        "vagas_existentes": 17,
+        "vagas_ocupadas": 11,
+        "vagas_disponiveis": 6
+      },
+      {
+        "turma": "GT 2 B",
+        "turno": "TARDE",
+        "sala": "SALA 05",
+        "vagas_existentes": 17,
+        "vagas_ocupadas": 15,
+        "vagas_disponiveis": 2
+      },
+      {
+        "turma": "GT 2 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 06",
+        "vagas_existentes": 20,
+        "vagas_ocupadas": 7,
+        "vagas_disponiveis": 13
+      },
+      {
+        "turma": "GT 2 B",
+        "turno": "TARDE",
+        "sala": "SALA 08",
+        "vagas_existentes": 20,
+        "vagas_ocupadas": 20,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 2 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 03",
+        "vagas_existentes": 20,
+        "vagas_ocupadas": 16,
+        "vagas_disponiveis": 4
+      },
+      {
+        "turma": "GT 2 B",
+        "turno": "TARDE",
+        "sala": "SALA 01",
+        "vagas_existentes": 20,
+        "vagas_ocupadas": 20,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 2 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 02",
+        "vagas_existentes": 17,
+        "vagas_ocupadas": 15,
+        "vagas_disponiveis": 2
+      },
+      {
+        "turma": "GT 2 B",
+        "turno": "TARDE",
+        "sala": "SALA 03",
+        "vagas_existentes": 18,
+        "vagas_ocupadas": 18,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 2 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 03",
+        "vagas_existentes": 12,
+        "vagas_ocupadas": 12,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 2 B",
+        "turno": "MANHÃ",
+        "sala": "SALA 02",
+        "vagas_existentes": 15,
+        "vagas_ocupadas": 15,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 2 C",
+        "turno": "TARDE",
+        "sala": "SALA 02",
+        "vagas_existentes": 15,
+        "vagas_ocupadas": 15,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 2 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 18",
+        "vagas_existentes": 15,
+        "vagas_ocupadas": 15,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 2 B",
+        "turno": "MANHÃ",
+        "sala": "SALA 19",
+        "vagas_existentes": 14,
+        "vagas_ocupadas": 14,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 2 C",
+        "turno": "MANHÃ",
+        "sala": "SALA 20",
+        "vagas_existentes": 13,
+        "vagas_ocupadas": 13,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 2 D",
+        "turno": "TARDE",
+        "sala": "SALA 19",
+        "vagas_existentes": 14,
+        "vagas_ocupadas": 14,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 2 E",
+        "turno": "TARDE",
+        "sala": "SALA 20",
+        "vagas_existentes": 13,
+        "vagas_ocupadas": 13,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 2 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 11",
+        "vagas_existentes": 20,
+        "vagas_ocupadas": 20,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 2 B",
+        "turno": "TARDE",
+        "sala": "SALA 11",
+        "vagas_existentes": 20,
+        "vagas_ocupadas": 20,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 2 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 06",
+        "vagas_existentes": 20,
+        "vagas_ocupadas": 22,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 2 B",
+        "turno": "TARDE",
+        "sala": "SALA 06",
+        "vagas_existentes": 20,
+        "vagas_ocupadas": 21,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 2 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 03",
+        "vagas_existentes": 20,
+        "vagas_ocupadas": 15,
+        "vagas_disponiveis": 5
+      },
+      {
+        "turma": "GT 2 B",
+        "turno": "MANHÃ",
+        "sala": "SALA 10",
+        "vagas_existentes": 20,
+        "vagas_ocupadas": 15,
+        "vagas_disponiveis": 5
+      },
+      {
+        "turma": "GT 2 C",
+        "turno": "TARDE",
+        "sala": "SALA 10",
+        "vagas_existentes": 20,
+        "vagas_ocupadas": 20,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 2 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 09",
+        "vagas_existentes": 20,
+        "vagas_ocupadas": 20,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 2 B",
+        "turno": "TARDE",
+        "sala": "SALA 09",
+        "vagas_existentes": 20,
+        "vagas_ocupadas": 20,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 2 C",
+        "turno": "MANHÃ",
+        "sala": "SALA 10",
+        "vagas_existentes": 20,
+        "vagas_ocupadas": 16,
+        "vagas_disponiveis": 4
+      },
+      {
+        "turma": "GT 2 D",
+        "turno": "TARDE",
+        "sala": "SALA 10",
+        "vagas_existentes": 20,
+        "vagas_ocupadas": 20,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 2 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 03",
+        "vagas_existentes": 20,
+        "vagas_ocupadas": 18,
+        "vagas_disponiveis": 2
+      },
+      {
+        "turma": "GT 2 B",
+        "turno": "TARDE",
+        "sala": "SALA 03",
+        "vagas_existentes": 20,
+        "vagas_ocupadas": 20,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 2 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 03",
+        "vagas_existentes": 19,
+        "vagas_ocupadas": 18,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "GT 2 B",
+        "turno": "TARDE",
+        "sala": "SALA 02",
+        "vagas_existentes": 19,
+        "vagas_ocupadas": 18,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "GT 2 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 07",
+        "vagas_existentes": 20,
+        "vagas_ocupadas": 20,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 2 B",
+        "turno": "TARDE",
+        "sala": "SALA 07",
+        "vagas_existentes": 20,
+        "vagas_ocupadas": 20,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 2 A",
+        "turno": "TARDE",
+        "sala": "SALA 02",
+        "vagas_existentes": 16,
+        "vagas_ocupadas": 16,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 2 B",
+        "turno": "MANHÃ",
+        "sala": "SALA 07",
+        "vagas_existentes": 14,
+        "vagas_ocupadas": 9,
+        "vagas_disponiveis": 5
+      },
+      {
+        "turma": "GT 2 C",
+        "turno": "MANHÃ",
+        "sala": "SALA 03",
+        "vagas_existentes": 20,
+        "vagas_ocupadas": 15,
+        "vagas_disponiveis": 5
+      },
+      {
+        "turma": "GT 2 D",
+        "turno": "TARDE",
+        "sala": "SALA 07",
+        "vagas_existentes": 14,
+        "vagas_ocupadas": 12,
+        "vagas_disponiveis": 2
+      },
+      {
+        "turma": "GT 2 E",
+        "turno": "INTEGRAL",
+        "sala": "SALA 07",
+        "vagas_existentes": 6,
+        "vagas_ocupadas": 6,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 2 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 11",
+        "vagas_existentes": 20,
+        "vagas_ocupadas": 18,
+        "vagas_disponiveis": 2
+      },
+      {
+        "turma": "GT 2 B",
+        "turno": "TARDE",
+        "sala": "SALA 11",
+        "vagas_existentes": 20,
+        "vagas_ocupadas": 20,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 2 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 03",
+        "vagas_existentes": 17,
+        "vagas_ocupadas": 17,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 2 B",
+        "turno": "TARDE",
+        "sala": "SALA 03",
+        "vagas_existentes": 17,
+        "vagas_ocupadas": 16,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "GT 2 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 09",
+        "vagas_existentes": 20,
+        "vagas_ocupadas": 19,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "GT 2 B",
+        "turno": "TARDE",
+        "sala": "SALA 09",
+        "vagas_existentes": 20,
+        "vagas_ocupadas": 20,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 2 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 08",
+        "vagas_existentes": 20,
+        "vagas_ocupadas": 17,
+        "vagas_disponiveis": 3
+      },
+      {
+        "turma": "GT 2 B",
+        "turno": "TARDE",
+        "sala": "SALA 08",
+        "vagas_existentes": 20,
+        "vagas_ocupadas": 20,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 2 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 02",
+        "vagas_existentes": 20,
+        "vagas_ocupadas": 16,
+        "vagas_disponiveis": 4
+      },
+      {
+        "turma": "GT 2 B",
+        "turno": "TARDE",
+        "sala": "SALA 02",
+        "vagas_existentes": 20,
+        "vagas_ocupadas": 20,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 2 C",
+        "turno": "MANHÃ",
+        "sala": "SALA 03",
+        "vagas_existentes": 20,
+        "vagas_ocupadas": 14,
+        "vagas_disponiveis": 6
+      },
+      {
+        "turma": "GT 2 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 11",
+        "vagas_existentes": 20,
+        "vagas_ocupadas": 12,
+        "vagas_disponiveis": 8
+      },
+      {
+        "turma": "GT 2 B",
+        "turno": "TARDE",
+        "sala": "SALA 11",
+        "vagas_existentes": 20,
+        "vagas_ocupadas": 18,
+        "vagas_disponiveis": 2
+      },
+      {
+        "turma": "GT 2 C",
+        "turno": "TARDE",
+        "sala": "SALA 02",
+        "vagas_existentes": 20,
+        "vagas_ocupadas": 14,
+        "vagas_disponiveis": 6
+      },
+      {
+        "turma": "GT 2 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 07",
+        "vagas_existentes": 14,
+        "vagas_ocupadas": 14,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 2 B",
+        "turno": "TARDE",
+        "sala": "SALA 07",
+        "vagas_existentes": 14,
+        "vagas_ocupadas": 12,
+        "vagas_disponiveis": 2
+      },
+      {
+        "turma": "GT 2 C",
+        "turno": "TARDE",
+        "sala": "SALA 11",
+        "vagas_existentes": 15,
+        "vagas_ocupadas": 14,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "GT 2 D",
+        "turno": "MANHÃ",
+        "sala": "SALA 17",
+        "vagas_existentes": 5,
+        "vagas_ocupadas": 5,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 2 E",
+        "turno": "TARDE",
+        "sala": "SALA 17",
+        "vagas_existentes": 5,
+        "vagas_ocupadas": 4,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "GT 2 F",
+        "turno": "INTEGRAL",
+        "sala": "SALA 17",
+        "vagas_existentes": 14,
+        "vagas_ocupadas": 14,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 2 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 02",
+        "vagas_existentes": 18,
+        "vagas_ocupadas": 18,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 2 B",
+        "turno": "TARDE",
+        "sala": "SALA 02",
+        "vagas_existentes": 18,
+        "vagas_ocupadas": 18,
+        "vagas_disponiveis": 0
+      }
+    ],
+    "GT 3": [
+      {
+        "turma": "GT 3 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 01",
+        "vagas_existentes": 19,
+        "vagas_ocupadas": 11,
+        "vagas_disponiveis": 8
+      },
+      {
+        "turma": "GT 3 B",
+        "turno": "TARDE",
+        "sala": "SALA 01",
+        "vagas_existentes": 19,
+        "vagas_ocupadas": 19,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 3 C",
+        "turno": "INTEGRAL",
+        "sala": "SALA 04",
+        "vagas_existentes": 18,
+        "vagas_ocupadas": 18,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 3 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 06",
+        "vagas_existentes": 19,
+        "vagas_ocupadas": 14,
+        "vagas_disponiveis": 5
+      },
+      {
+        "turma": "GT 3 B",
+        "turno": "TARDE",
+        "sala": "SALA 06",
+        "vagas_existentes": 19,
+        "vagas_ocupadas": 19,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 3 C",
+        "turno": "MANHÃ",
+        "sala": "SALA 10",
+        "vagas_existentes": 20,
+        "vagas_ocupadas": 11,
+        "vagas_disponiveis": 9
+      },
+      {
+        "turma": "GT 3 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 01",
+        "vagas_existentes": 16,
+        "vagas_ocupadas": 15,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "GT 3 B",
+        "turno": "TARDE",
+        "sala": "SALA 01",
+        "vagas_existentes": 16,
+        "vagas_ocupadas": 16,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 3 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 04",
+        "vagas_existentes": 20,
+        "vagas_ocupadas": 20,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 3 B",
+        "turno": "TARDE",
+        "sala": "SALA 04",
+        "vagas_existentes": 20,
+        "vagas_ocupadas": 20,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 3 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 09",
+        "vagas_existentes": 20,
+        "vagas_ocupadas": 20,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 3 B",
+        "turno": "TARDE",
+        "sala": "SALA 09",
+        "vagas_existentes": 20,
+        "vagas_ocupadas": 20,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 3 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 05",
+        "vagas_existentes": 7,
+        "vagas_ocupadas": 6,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "GT 3 B",
+        "turno": "TARDE",
+        "sala": "SALA 05",
+        "vagas_existentes": 7,
+        "vagas_ocupadas": 7,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 3 C",
+        "turno": "MANHÃ",
+        "sala": "SALA 06",
+        "vagas_existentes": 11,
+        "vagas_ocupadas": 11,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 3 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 12",
+        "vagas_existentes": 17,
+        "vagas_ocupadas": 17,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 3 B",
+        "turno": "TARDE",
+        "sala": "SALA 12",
+        "vagas_existentes": 17,
+        "vagas_ocupadas": 17,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 3 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 07",
+        "vagas_existentes": 20,
+        "vagas_ocupadas": 20,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 3 B",
+        "turno": "TARDE",
+        "sala": "SALA 07",
+        "vagas_existentes": 20,
+        "vagas_ocupadas": 20,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 3 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 06",
+        "vagas_existentes": 20,
+        "vagas_ocupadas": 19,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "GT 3 B",
+        "turno": "TARDE",
+        "sala": "SALA 06",
+        "vagas_existentes": 20,
+        "vagas_ocupadas": 20,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 3 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 02",
+        "vagas_existentes": 20,
+        "vagas_ocupadas": 20,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 3 B",
+        "turno": "TARDE",
+        "sala": "SALA 02",
+        "vagas_existentes": 20,
+        "vagas_ocupadas": 20,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 3 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 05",
+        "vagas_existentes": 11,
+        "vagas_ocupadas": 9,
+        "vagas_disponiveis": 2
+      },
+      {
+        "turma": "GT 3 B",
+        "turno": "MANHÃ",
+        "sala": "SALA 04",
+        "vagas_existentes": 12,
+        "vagas_ocupadas": 9,
+        "vagas_disponiveis": 3
+      },
+      {
+        "turma": "GT 3 C",
+        "turno": "TARDE",
+        "sala": "SALA 04",
+        "vagas_existentes": 12,
+        "vagas_ocupadas": 12,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 3 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 02",
+        "vagas_existentes": 11,
+        "vagas_ocupadas": 10,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "GT 3 B",
+        "turno": "TARDE",
+        "sala": "SALA 04",
+        "vagas_existentes": 11,
+        "vagas_ocupadas": 12,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 3 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 03",
+        "vagas_existentes": 13,
+        "vagas_ocupadas": 12,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "GT 3 B",
+        "turno": "MANHÃ",
+        "sala": "SALA 05",
+        "vagas_existentes": 13,
+        "vagas_ocupadas": 12,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "GT 3 C",
+        "turno": "TARDE",
+        "sala": "SALA 05",
+        "vagas_existentes": 13,
+        "vagas_ocupadas": 13,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 3 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 09",
+        "vagas_existentes": 20,
+        "vagas_ocupadas": 20,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 3 B",
+        "turno": "TARDE",
+        "sala": "SALA 09",
+        "vagas_existentes": 20,
+        "vagas_ocupadas": 20,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 3 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 10",
+        "vagas_existentes": 20,
+        "vagas_ocupadas": 18,
+        "vagas_disponiveis": 2
+      },
+      {
+        "turma": "GT 3 B",
+        "turno": "TARDE",
+        "sala": "SALA 10",
+        "vagas_existentes": 20,
+        "vagas_ocupadas": 20,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 3 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 03",
+        "vagas_existentes": 20,
+        "vagas_ocupadas": 20,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 3 B",
+        "turno": "TARDE",
+        "sala": "SALA 03",
+        "vagas_existentes": 20,
+        "vagas_ocupadas": 18,
+        "vagas_disponiveis": 2
+      },
+      {
+        "turma": "GT 3 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 08",
+        "vagas_existentes": 20,
+        "vagas_ocupadas": 15,
+        "vagas_disponiveis": 5
+      },
+      {
+        "turma": "GT 3 B",
+        "turno": "TARDE",
+        "sala": "SALA 07",
+        "vagas_existentes": 20,
+        "vagas_ocupadas": 20,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 3 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 04",
+        "vagas_existentes": 20,
+        "vagas_ocupadas": 20,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 3 B",
+        "turno": "TARDE",
+        "sala": "SALA 03",
+        "vagas_existentes": 20,
+        "vagas_ocupadas": 19,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "GT 3 C",
+        "turno": "TARDE",
+        "sala": "SALA 10",
+        "vagas_existentes": 20,
+        "vagas_ocupadas": 20,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 3 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 03",
+        "vagas_existentes": 18,
+        "vagas_ocupadas": 18,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 3 B",
+        "turno": "TARDE",
+        "sala": "SALA 04",
+        "vagas_existentes": 18,
+        "vagas_ocupadas": 18,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 3 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 03",
+        "vagas_existentes": 18,
+        "vagas_ocupadas": 15,
+        "vagas_disponiveis": 3
+      },
+      {
+        "turma": "GT 3 B",
+        "turno": "TARDE",
+        "sala": "SALA 03",
+        "vagas_existentes": 18,
+        "vagas_ocupadas": 18,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 3 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 22",
+        "vagas_existentes": 17,
+        "vagas_ocupadas": 17,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 3 B",
+        "turno": "MANHÃ",
+        "sala": "SALA 17",
+        "vagas_existentes": 15,
+        "vagas_ocupadas": 15,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 3 C",
+        "turno": "MANHÃ",
+        "sala": "SALA 16",
+        "vagas_existentes": 14,
+        "vagas_ocupadas": 14,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 3 D",
+        "turno": "TARDE",
+        "sala": "SALA 16",
+        "vagas_existentes": 14,
+        "vagas_ocupadas": 14,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 3 E",
+        "turno": "TARDE",
+        "sala": "SALA 22",
+        "vagas_existentes": 16,
+        "vagas_ocupadas": 16,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 3 F",
+        "turno": "TARDE",
+        "sala": "SALA 17",
+        "vagas_existentes": 15,
+        "vagas_ocupadas": 15,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 3 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 02",
+        "vagas_existentes": 20,
+        "vagas_ocupadas": 17,
+        "vagas_disponiveis": 3
+      },
+      {
+        "turma": "GT 3 B",
+        "turno": "TARDE",
+        "sala": "SALA 02",
+        "vagas_existentes": 20,
+        "vagas_ocupadas": 19,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "GT 3 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 09",
+        "vagas_existentes": 20,
+        "vagas_ocupadas": 20,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 3 B",
+        "turno": "TARDE",
+        "sala": "SALA 09",
+        "vagas_existentes": 20,
+        "vagas_ocupadas": 20,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 3 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 18",
+        "vagas_existentes": 20,
+        "vagas_ocupadas": 18,
+        "vagas_disponiveis": 2
+      },
+      {
+        "turma": "GT 3 B",
+        "turno": "MANHÃ",
+        "sala": "SALA 04",
+        "vagas_existentes": 20,
+        "vagas_ocupadas": 17,
+        "vagas_disponiveis": 3
+      },
+      {
+        "turma": "GT 3 C",
+        "turno": "TARDE",
+        "sala": "SALA 03",
+        "vagas_existentes": 20,
+        "vagas_ocupadas": 20,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 3 A",
+        "turno": "TARDE",
+        "sala": "SALA 04",
+        "vagas_existentes": 20,
+        "vagas_ocupadas": 19,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "GT 3 B",
+        "turno": "MANHÃ",
+        "sala": "SALA 08",
+        "vagas_existentes": 20,
+        "vagas_ocupadas": 9,
+        "vagas_disponiveis": 11
+      },
+      {
+        "turma": "GT 3 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 11",
+        "vagas_existentes": 20,
+        "vagas_ocupadas": 20,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 3 B",
+        "turno": "TARDE",
+        "sala": "SALA 11",
+        "vagas_existentes": 20,
+        "vagas_ocupadas": 21,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 3 C",
+        "turno": "MANHÃ",
+        "sala": "SALA 12",
+        "vagas_existentes": 20,
+        "vagas_ocupadas": 20,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 3 D",
+        "turno": "TARDE",
+        "sala": "SALA 12",
+        "vagas_existentes": 20,
+        "vagas_ocupadas": 20,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 3 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 10",
+        "vagas_existentes": 20,
+        "vagas_ocupadas": 19,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "GT 3 B",
+        "turno": "TARDE",
+        "sala": "SALA 10",
+        "vagas_existentes": 20,
+        "vagas_ocupadas": 20,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 3 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 09",
+        "vagas_existentes": 20,
+        "vagas_ocupadas": 16,
+        "vagas_disponiveis": 4
+      },
+      {
+        "turma": "GT 3 B",
+        "turno": "TARDE",
+        "sala": "SALA 03",
+        "vagas_existentes": 19,
+        "vagas_ocupadas": 19,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 3 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 03",
+        "vagas_existentes": 20,
+        "vagas_ocupadas": 20,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 3 B",
+        "turno": "TARDE",
+        "sala": "SALA 03",
+        "vagas_existentes": 20,
+        "vagas_ocupadas": 19,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "GT 3 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 02",
+        "vagas_existentes": 20,
+        "vagas_ocupadas": 13,
+        "vagas_disponiveis": 7
+      },
+      {
+        "turma": "GT 3 B",
+        "turno": "TARDE",
+        "sala": "SALA 02",
+        "vagas_existentes": 20,
+        "vagas_ocupadas": 13,
+        "vagas_disponiveis": 7
+      },
+      {
+        "turma": "GT 3 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 09",
+        "vagas_existentes": 20,
+        "vagas_ocupadas": 19,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "GT 3 B",
+        "turno": "TARDE",
+        "sala": "SALA 03",
+        "vagas_existentes": 20,
+        "vagas_ocupadas": 18,
+        "vagas_disponiveis": 2
+      },
+      {
+        "turma": "GT 3 C",
+        "turno": "MANHÃ",
+        "sala": "SALA 08",
+        "vagas_existentes": 12,
+        "vagas_ocupadas": 11,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "GT 3 D",
+        "turno": "TARDE",
+        "sala": "SALA 08",
+        "vagas_existentes": 12,
+        "vagas_ocupadas": 9,
+        "vagas_disponiveis": 3
+      },
+      {
+        "turma": "GT 3 E",
+        "turno": "INTEGRAL",
+        "sala": "SALA 08",
+        "vagas_existentes": 8,
+        "vagas_ocupadas": 8,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 3 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 10",
+        "vagas_existentes": 20,
+        "vagas_ocupadas": 18,
+        "vagas_disponiveis": 2
+      },
+      {
+        "turma": "GT 3 B",
+        "turno": "TARDE",
+        "sala": "SALA 10",
+        "vagas_existentes": 20,
+        "vagas_ocupadas": 20,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 3 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 01",
+        "vagas_existentes": 20,
+        "vagas_ocupadas": 19,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "GT 3 B",
+        "turno": "TARDE",
+        "sala": "SALA 01",
+        "vagas_existentes": 20,
+        "vagas_ocupadas": 20,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 3 D",
+        "turno": "TARDE",
+        "sala": "SALA 02",
+        "vagas_existentes": 20,
+        "vagas_ocupadas": 20,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 3 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 15",
+        "vagas_existentes": 20,
+        "vagas_ocupadas": 10,
+        "vagas_disponiveis": 10
+      },
+      {
+        "turma": "GT 3 B",
+        "turno": "TARDE",
+        "sala": "SALA 15",
+        "vagas_existentes": 20,
+        "vagas_ocupadas": 18,
+        "vagas_disponiveis": 2
+      },
+      {
+        "turma": "GT 3 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 01",
+        "vagas_existentes": 20,
+        "vagas_ocupadas": 10,
+        "vagas_disponiveis": 10
+      },
+      {
+        "turma": "GT 3 B",
+        "turno": "TARDE",
+        "sala": "SALA 01",
+        "vagas_existentes": 20,
+        "vagas_ocupadas": 16,
+        "vagas_disponiveis": 4
+      },
+      {
+        "turma": "GT 3 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 02",
+        "vagas_existentes": 20,
+        "vagas_ocupadas": 13,
+        "vagas_disponiveis": 7
+      },
+      {
+        "turma": "GT 3 B",
+        "turno": "TARDE",
+        "sala": "SALA 02",
+        "vagas_existentes": 20,
+        "vagas_ocupadas": 18,
+        "vagas_disponiveis": 2
+      },
+      {
+        "turma": "GT 3 C",
+        "turno": "TARDE",
+        "sala": "SALA 07",
+        "vagas_existentes": 20,
+        "vagas_ocupadas": 18,
+        "vagas_disponiveis": 2
+      },
+      {
+        "turma": "GT 3 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 04",
+        "vagas_existentes": 20,
+        "vagas_ocupadas": 18,
+        "vagas_disponiveis": 2
+      },
+      {
+        "turma": "GT 3 B",
+        "turno": "TARDE",
+        "sala": "SALA 04",
+        "vagas_existentes": 20,
+        "vagas_ocupadas": 17,
+        "vagas_disponiveis": 3
+      },
+      {
+        "turma": "GT 3 C",
+        "turno": "TARDE",
+        "sala": "SALA 03",
+        "vagas_existentes": 20,
+        "vagas_ocupadas": 8,
+        "vagas_disponiveis": 12
+      },
+      {
+        "turma": "GT 3 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 05",
+        "vagas_existentes": 20,
+        "vagas_ocupadas": 19,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "GT 3 B",
+        "turno": "TARDE",
+        "sala": "SALA 05",
+        "vagas_existentes": 20,
+        "vagas_ocupadas": 20,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 3 C",
+        "turno": "TARDE",
+        "sala": "SALA 06",
+        "vagas_existentes": 20,
+        "vagas_ocupadas": 19,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "GT 3 D",
+        "turno": "TARDE",
+        "sala": "SALA 02",
+        "vagas_existentes": 0,
+        "vagas_ocupadas": 0,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 3 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 08",
+        "vagas_existentes": 19,
+        "vagas_ocupadas": 18,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "GT 3 B",
+        "turno": "TARDE",
+        "sala": "SALA 08",
+        "vagas_existentes": 19,
+        "vagas_ocupadas": 19,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 3 C",
+        "turno": "MANHÃ",
+        "sala": "SALA 03",
+        "vagas_existentes": 14,
+        "vagas_ocupadas": 11,
+        "vagas_disponiveis": 3
+      },
+      {
+        "turma": "GT 3 D",
+        "turno": "MANHÃ",
+        "sala": "SALA 10",
+        "vagas_existentes": 2,
+        "vagas_ocupadas": 1,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "GT 3 E",
+        "turno": "TARDE",
+        "sala": "SALA 10",
+        "vagas_existentes": 2,
+        "vagas_ocupadas": 2,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 3 F",
+        "turno": "INTEGRAL",
+        "sala": "SALA 10",
+        "vagas_existentes": 12,
+        "vagas_ocupadas": 12,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 3 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 03",
+        "vagas_existentes": 17,
+        "vagas_ocupadas": 16,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "GT 3 B",
+        "turno": "TARDE",
+        "sala": "SALA 03",
+        "vagas_existentes": 17,
+        "vagas_ocupadas": 17,
+        "vagas_disponiveis": 0
+      }
+    ],
+    "GT 0": [
+      {
+        "turma": "GT 0 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 03",
+        "vagas_existentes": 15,
+        "vagas_ocupadas": 14,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "GT 0 B",
+        "turno": "TARDE",
+        "sala": "SALA 03",
+        "vagas_existentes": 15,
+        "vagas_ocupadas": 16,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 0 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 04",
+        "vagas_existentes": 15,
+        "vagas_ocupadas": 15,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 0 B",
+        "turno": "TARDE",
+        "sala": "SALA 04",
+        "vagas_existentes": 15,
+        "vagas_ocupadas": 15,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 0 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 02",
+        "vagas_existentes": 15,
+        "vagas_ocupadas": 13,
+        "vagas_disponiveis": 2
+      },
+      {
+        "turma": "GT 0 B",
+        "turno": "TARDE",
+        "sala": "SALA 02",
+        "vagas_existentes": 15,
+        "vagas_ocupadas": 15,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 0 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 11",
+        "vagas_existentes": 15,
+        "vagas_ocupadas": 13,
+        "vagas_disponiveis": 2
+      },
+      {
+        "turma": "GT 0 B",
+        "turno": "TARDE",
+        "sala": "SALA 11",
+        "vagas_existentes": 15,
+        "vagas_ocupadas": 16,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 0 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 21",
+        "vagas_existentes": 15,
+        "vagas_ocupadas": 14,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "GT 0 B",
+        "turno": "TARDE",
+        "sala": "SALA 21",
+        "vagas_existentes": 15,
+        "vagas_ocupadas": 16,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 0 A",
+        "turno": "INTEGRAL",
+        "sala": "SALA 07",
+        "vagas_existentes": 15,
+        "vagas_ocupadas": 14,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "GT 0 B",
+        "turno": "MANHÃ",
+        "sala": "SALA 08",
+        "vagas_existentes": 15,
+        "vagas_ocupadas": 12,
+        "vagas_disponiveis": 3
+      },
+      {
+        "turma": "GT 0 C",
+        "turno": "TARDE",
+        "sala": "SALA 08",
+        "vagas_existentes": 15,
+        "vagas_ocupadas": 15,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 0 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 03",
+        "vagas_existentes": 15,
+        "vagas_ocupadas": 15,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 0 B",
+        "turno": "TARDE",
+        "sala": "SALA 03",
+        "vagas_existentes": 15,
+        "vagas_ocupadas": 15,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 0 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 02",
+        "vagas_existentes": 15,
+        "vagas_ocupadas": 15,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 0 B",
+        "turno": "TARDE",
+        "sala": "SALA 02",
+        "vagas_existentes": 15,
+        "vagas_ocupadas": 15,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 0 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 11",
+        "vagas_existentes": 15,
+        "vagas_ocupadas": 12,
+        "vagas_disponiveis": 3
+      },
+      {
+        "turma": "GT 0 B",
+        "turno": "TARDE",
+        "sala": "SALA 11",
+        "vagas_existentes": 15,
+        "vagas_ocupadas": 15,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 0 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 13",
+        "vagas_existentes": 4,
+        "vagas_ocupadas": 4,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 0 B",
+        "turno": "TARDE",
+        "sala": "SALA 13",
+        "vagas_existentes": 4,
+        "vagas_ocupadas": 4,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 0 C",
+        "turno": "INTEGRAL",
+        "sala": "SALA 13",
+        "vagas_existentes": 8,
+        "vagas_ocupadas": 8,
+        "vagas_disponiveis": 0
+      }
+    ],
+    "GT 4": [
+      {
+        "turma": "GT 4 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 07",
+        "vagas_existentes": 14,
+        "vagas_ocupadas": 14,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 4 B",
+        "turno": "TARDE",
+        "sala": "SALA 10",
+        "vagas_existentes": 20,
+        "vagas_ocupadas": 20,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 4 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 03",
+        "vagas_existentes": 16,
+        "vagas_ocupadas": 16,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 4 B",
+        "turno": "TARDE",
+        "sala": "SALA 03",
+        "vagas_existentes": 16,
+        "vagas_ocupadas": 16,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 4 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 15",
+        "vagas_existentes": 25,
+        "vagas_ocupadas": 25,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 4 B",
+        "turno": "TARDE",
+        "sala": "SALA 15",
+        "vagas_existentes": 25,
+        "vagas_ocupadas": 24,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "GT 4 C",
+        "turno": "TARDE",
+        "sala": "SALA 03",
+        "vagas_existentes": 25,
+        "vagas_ocupadas": 20,
+        "vagas_disponiveis": 5
+      },
+      {
+        "turma": "GT 4 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 07",
+        "vagas_existentes": 25,
+        "vagas_ocupadas": 24,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "GT 4 B",
+        "turno": "TARDE",
+        "sala": "SALA 07",
+        "vagas_existentes": 25,
+        "vagas_ocupadas": 25,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 4 C",
+        "turno": "MANHÃ",
+        "sala": "SALA 08",
+        "vagas_existentes": 25,
+        "vagas_ocupadas": 24,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "GT 4 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 08",
+        "vagas_existentes": 16,
+        "vagas_ocupadas": 16,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 4 B",
+        "turno": "TARDE",
+        "sala": "SALA 08",
+        "vagas_existentes": 16,
+        "vagas_ocupadas": 16,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 4 C",
+        "turno": "MANHÃ",
+        "sala": "SALA 02",
+        "vagas_existentes": 11,
+        "vagas_ocupadas": 10,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "GT 4 D",
+        "turno": "TARDE",
+        "sala": "SALA 04",
+        "vagas_existentes": 10,
+        "vagas_ocupadas": 10,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 4 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 04",
+        "vagas_existentes": 15,
+        "vagas_ocupadas": 15,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 4 B",
+        "turno": "TARDE",
+        "sala": "SALA 07",
+        "vagas_existentes": 18,
+        "vagas_ocupadas": 18,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 4 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 02",
+        "vagas_existentes": 19,
+        "vagas_ocupadas": 14,
+        "vagas_disponiveis": 5
+      },
+      {
+        "turma": "GT 4 B",
+        "turno": "TARDE",
+        "sala": "SALA 02",
+        "vagas_existentes": 19,
+        "vagas_ocupadas": 19,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 4 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 06",
+        "vagas_existentes": 21,
+        "vagas_ocupadas": 21,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 4 B",
+        "turno": "TARDE",
+        "sala": "SALA 06",
+        "vagas_existentes": 21,
+        "vagas_ocupadas": 21,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 4 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 07",
+        "vagas_existentes": 25,
+        "vagas_ocupadas": 18,
+        "vagas_disponiveis": 7
+      },
+      {
+        "turma": "GT 4 B",
+        "turno": "MANHÃ",
+        "sala": "SALA 05",
+        "vagas_existentes": 25,
+        "vagas_ocupadas": 17,
+        "vagas_disponiveis": 8
+      },
+      {
+        "turma": "GT 4 C",
+        "turno": "TARDE",
+        "sala": "SALA 07",
+        "vagas_existentes": 25,
+        "vagas_ocupadas": 25,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 4 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 11",
+        "vagas_existentes": 24,
+        "vagas_ocupadas": 22,
+        "vagas_disponiveis": 2
+      },
+      {
+        "turma": "GT 4 B",
+        "turno": "TARDE",
+        "sala": "SALA 11",
+        "vagas_existentes": 24,
+        "vagas_ocupadas": 24,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT  4 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 10",
+        "vagas_existentes": 13,
+        "vagas_ocupadas": 10,
+        "vagas_disponiveis": 3
+      },
+      {
+        "turma": "GT 4 B",
+        "turno": "TARDE",
+        "sala": "SALA 05",
+        "vagas_existentes": 11,
+        "vagas_ocupadas": 10,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "GT 4 C",
+        "turno": "TARDE",
+        "sala": "SALA 10",
+        "vagas_existentes": 12,
+        "vagas_ocupadas": 9,
+        "vagas_disponiveis": 3
+      },
+      {
+        "turma": "GT 4 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 05",
+        "vagas_existentes": 15,
+        "vagas_ocupadas": 15,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 4 B",
+        "turno": "TARDE",
+        "sala": "SALA 05",
+        "vagas_existentes": 15,
+        "vagas_ocupadas": 15,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 4 C",
+        "turno": "TARDE",
+        "sala": "SALA 02",
+        "vagas_existentes": 11,
+        "vagas_ocupadas": 11,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 4 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 07",
+        "vagas_existentes": 13,
+        "vagas_ocupadas": 11,
+        "vagas_disponiveis": 2
+      },
+      {
+        "turma": "GT 4 B",
+        "turno": "TARDE",
+        "sala": "SALA 09",
+        "vagas_existentes": 20,
+        "vagas_ocupadas": 18,
+        "vagas_disponiveis": 2
+      },
+      {
+        "turma": "GT 4 C",
+        "turno": "TARDE",
+        "sala": "SALA 07",
+        "vagas_existentes": 13,
+        "vagas_ocupadas": 8,
+        "vagas_disponiveis": 5
+      },
+      {
+        "turma": "GT 4 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 04",
+        "vagas_existentes": 24,
+        "vagas_ocupadas": 23,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "GT 4 B",
+        "turno": "TARDE",
+        "sala": "SALA 04",
+        "vagas_existentes": 24,
+        "vagas_ocupadas": 24,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 4 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 07",
+        "vagas_existentes": 18,
+        "vagas_ocupadas": 18,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 4 B",
+        "turno": "TARDE",
+        "sala": "SALA 07",
+        "vagas_existentes": 18,
+        "vagas_ocupadas": 18,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 4 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 09",
+        "vagas_existentes": 21,
+        "vagas_ocupadas": 19,
+        "vagas_disponiveis": 2
+      },
+      {
+        "turma": "GT 4 B",
+        "turno": "TARDE",
+        "sala": "SALA 09",
+        "vagas_existentes": 21,
+        "vagas_ocupadas": 21,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 4 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 18",
+        "vagas_existentes": 25,
+        "vagas_ocupadas": 21,
+        "vagas_disponiveis": 4
+      },
+      {
+        "turma": "GT 4 B",
+        "turno": "TARDE",
+        "sala": "SALA 04",
+        "vagas_existentes": 24,
+        "vagas_ocupadas": 24,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 4 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 04",
+        "vagas_existentes": 18,
+        "vagas_ocupadas": 17,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "GT 4 B",
+        "turno": "MANHÃ",
+        "sala": "SALA 05",
+        "vagas_existentes": 23,
+        "vagas_ocupadas": 21,
+        "vagas_disponiveis": 2
+      },
+      {
+        "turma": "GT 4 C",
+        "turno": "TARDE",
+        "sala": "SALA 05",
+        "vagas_existentes": 23,
+        "vagas_ocupadas": 23,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 4 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 06",
+        "vagas_existentes": 14,
+        "vagas_ocupadas": 14,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 4 B",
+        "turno": "TARDE",
+        "sala": "SALA 06",
+        "vagas_existentes": 14,
+        "vagas_ocupadas": 14,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 4 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 02",
+        "vagas_existentes": 19,
+        "vagas_ocupadas": 17,
+        "vagas_disponiveis": 2
+      },
+      {
+        "turma": "GT 4 B",
+        "turno": "TARDE",
+        "sala": "SALA 02",
+        "vagas_existentes": 19,
+        "vagas_ocupadas": 19,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 4 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 14",
+        "vagas_existentes": 15,
+        "vagas_ocupadas": 15,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 4 B",
+        "turno": "MANHÃ",
+        "sala": "SALA 15",
+        "vagas_existentes": 15,
+        "vagas_ocupadas": 12,
+        "vagas_disponiveis": 3
+      },
+      {
+        "turma": "GT 4 C",
+        "turno": "MANHÃ",
+        "sala": "SALA 09",
+        "vagas_existentes": 21,
+        "vagas_ocupadas": 19,
+        "vagas_disponiveis": 2
+      },
+      {
+        "turma": "GT 4 D",
+        "turno": "TARDE",
+        "sala": "SALA 09",
+        "vagas_existentes": 21,
+        "vagas_ocupadas": 21,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 4 E",
+        "turno": "TARDE",
+        "sala": "SALA 15",
+        "vagas_existentes": 15,
+        "vagas_ocupadas": 15,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 4 F",
+        "turno": "TARDE",
+        "sala": "SALA 13",
+        "vagas_existentes": 14,
+        "vagas_ocupadas": 14,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 4 G",
+        "turno": "TARDE",
+        "sala": "SALA 14",
+        "vagas_existentes": 15,
+        "vagas_ocupadas": 15,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 4 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 03",
+        "vagas_existentes": 25,
+        "vagas_ocupadas": 22,
+        "vagas_disponiveis": 3
+      },
+      {
+        "turma": "GT 4 B",
+        "turno": "TARDE",
+        "sala": "SALA 03",
+        "vagas_existentes": 25,
+        "vagas_ocupadas": 25,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 4 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 08",
+        "vagas_existentes": 25,
+        "vagas_ocupadas": 26,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 4 B",
+        "turno": "TARDE",
+        "sala": "SALA 08",
+        "vagas_existentes": 25,
+        "vagas_ocupadas": 26,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 4 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 20",
+        "vagas_existentes": 21,
+        "vagas_ocupadas": 20,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "GT 4 B",
+        "turno": "TARDE",
+        "sala": "SALA 18",
+        "vagas_existentes": 22,
+        "vagas_ocupadas": 22,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 4 C",
+        "turno": "TARDE",
+        "sala": "SALA 04",
+        "vagas_existentes": 21,
+        "vagas_ocupadas": 19,
+        "vagas_disponiveis": 2
+      },
+      {
+        "turma": "GT 4 D",
+        "turno": "TARDE",
+        "sala": "SALA 20",
+        "vagas_existentes": 24,
+        "vagas_ocupadas": 23,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "GT 4 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 10",
+        "vagas_existentes": 22,
+        "vagas_ocupadas": 22,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 4 B",
+        "turno": "TARDE",
+        "sala": "SALA 10",
+        "vagas_existentes": 22,
+        "vagas_ocupadas": 22,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 4 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 13",
+        "vagas_existentes": 21,
+        "vagas_ocupadas": 21,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 4 B",
+        "turno": "TARDE",
+        "sala": "SALA 13",
+        "vagas_existentes": 22,
+        "vagas_ocupadas": 22,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 4 C",
+        "turno": "MANHÃ",
+        "sala": "SALA 14",
+        "vagas_existentes": 21,
+        "vagas_ocupadas": 20,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "GT 4 D",
+        "turno": "TARDE",
+        "sala": "SALA 14",
+        "vagas_existentes": 21,
+        "vagas_ocupadas": 21,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 4 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 02",
+        "vagas_existentes": 25,
+        "vagas_ocupadas": 25,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 4 B",
+        "turno": "TARDE",
+        "sala": "SALA 02",
+        "vagas_existentes": 25,
+        "vagas_ocupadas": 25,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 4 C",
+        "turno": "MANHÃ",
+        "sala": "SALA 08",
+        "vagas_existentes": 25,
+        "vagas_ocupadas": 25,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 4 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 04",
+        "vagas_existentes": 24,
+        "vagas_ocupadas": 18,
+        "vagas_disponiveis": 6
+      },
+      {
+        "turma": "GT 4 B",
+        "turno": "TARDE",
+        "sala": "SALA 04",
+        "vagas_existentes": 24,
+        "vagas_ocupadas": 23,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "GT 4 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 11",
+        "vagas_existentes": 14,
+        "vagas_ocupadas": 14,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 4 B",
+        "turno": "TARDE",
+        "sala": "SALA 09",
+        "vagas_existentes": 20,
+        "vagas_ocupadas": 20,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 4 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 04",
+        "vagas_existentes": 25,
+        "vagas_ocupadas": 22,
+        "vagas_disponiveis": 3
+      },
+      {
+        "turma": "GT 4 B",
+        "turno": "TARDE",
+        "sala": "SALA 04",
+        "vagas_existentes": 25,
+        "vagas_ocupadas": 25,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 4 C",
+        "turno": "MANHÃ",
+        "sala": "SALA 15",
+        "vagas_existentes": 25,
+        "vagas_ocupadas": 21,
+        "vagas_disponiveis": 4
+      },
+      {
+        "turma": "GT 4 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 05",
+        "vagas_existentes": 25,
+        "vagas_ocupadas": 20,
+        "vagas_disponiveis": 5
+      },
+      {
+        "turma": "GT 4 B",
+        "turno": "TARDE",
+        "sala": "SALA 05",
+        "vagas_existentes": 25,
+        "vagas_ocupadas": 25,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 4 C",
+        "turno": "MANHÃ",
+        "sala": "SALA 04",
+        "vagas_existentes": 25,
+        "vagas_ocupadas": 16,
+        "vagas_disponiveis": 9
+      },
+      {
+        "turma": "GT 4 D",
+        "turno": "TARDE",
+        "sala": "SALA 04",
+        "vagas_existentes": 25,
+        "vagas_ocupadas": 25,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 4 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 10",
+        "vagas_existentes": 22,
+        "vagas_ocupadas": 21,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "GT 4 B",
+        "turno": "TARDE",
+        "sala": "SALA 09",
+        "vagas_existentes": 24,
+        "vagas_ocupadas": 23,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "GT 4 C",
+        "turno": "TARDE",
+        "sala": "SALA 10",
+        "vagas_existentes": 22,
+        "vagas_ocupadas": 21,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "GT 4 D",
+        "turno": "INTEGRAL",
+        "sala": "SALA 10",
+        "vagas_existentes": 4,
+        "vagas_ocupadas": 4,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 4 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 09",
+        "vagas_existentes": 25,
+        "vagas_ocupadas": 23,
+        "vagas_disponiveis": 2
+      },
+      {
+        "turma": "GT 4 B",
+        "turno": "TARDE",
+        "sala": "SALA 09",
+        "vagas_existentes": 25,
+        "vagas_ocupadas": 25,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 4 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 04",
+        "vagas_existentes": 25,
+        "vagas_ocupadas": 25,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 4 B",
+        "turno": "TARDE",
+        "sala": "SALA 04",
+        "vagas_existentes": 25,
+        "vagas_ocupadas": 24,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "GT 4 C",
+        "turno": "MANHÃ",
+        "sala": "SALA 05",
+        "vagas_existentes": 25,
+        "vagas_ocupadas": 24,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "GT 4 D",
+        "turno": "TARDE",
+        "sala": "SALA 05",
+        "vagas_existentes": 25,
+        "vagas_ocupadas": 25,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 4 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 13",
+        "vagas_existentes": 22,
+        "vagas_ocupadas": 15,
+        "vagas_disponiveis": 7
+      },
+      {
+        "turma": "GT 4 B",
+        "turno": "TARDE",
+        "sala": "SALA 14",
+        "vagas_existentes": 24,
+        "vagas_ocupadas": 20,
+        "vagas_disponiveis": 4
+      },
+      {
+        "turma": "GT 4 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 03",
+        "vagas_existentes": 24,
+        "vagas_ocupadas": 21,
+        "vagas_disponiveis": 3
+      },
+      {
+        "turma": "GT 4 B",
+        "turno": "TARDE",
+        "sala": "SALA 02",
+        "vagas_existentes": 10,
+        "vagas_ocupadas": 10,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 4 C",
+        "turno": "TARDE",
+        "sala": "SALA 03",
+        "vagas_existentes": 24,
+        "vagas_ocupadas": 19,
+        "vagas_disponiveis": 5
+      },
+      {
+        "turma": "GT 4 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 07",
+        "vagas_existentes": 24,
+        "vagas_ocupadas": 13,
+        "vagas_disponiveis": 11
+      },
+      {
+        "turma": "GT 4 B",
+        "turno": "MANHÃ",
+        "sala": "SALA 01",
+        "vagas_existentes": 25,
+        "vagas_ocupadas": 14,
+        "vagas_disponiveis": 11
+      },
+      {
+        "turma": "GT 4 C",
+        "turno": "TARDE",
+        "sala": "SALA 01",
+        "vagas_existentes": 25,
+        "vagas_ocupadas": 25,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 4 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 07",
+        "vagas_existentes": 20,
+        "vagas_ocupadas": 23,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 4 B",
+        "turno": "TARDE",
+        "sala": "SALA 07",
+        "vagas_existentes": 23,
+        "vagas_ocupadas": 23,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 4 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 10",
+        "vagas_existentes": 25,
+        "vagas_ocupadas": 18,
+        "vagas_disponiveis": 7
+      },
+      {
+        "turma": "GT 4 B",
+        "turno": "MANHÃ",
+        "sala": "SALA 06",
+        "vagas_existentes": 25,
+        "vagas_ocupadas": 18,
+        "vagas_disponiveis": 7
+      },
+      {
+        "turma": "GT 4 C",
+        "turno": "TARDE",
+        "sala": "SALA 10",
+        "vagas_existentes": 25,
+        "vagas_ocupadas": 25,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 4 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 09",
+        "vagas_existentes": 25,
+        "vagas_ocupadas": 25,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 4 B",
+        "turno": "TARDE",
+        "sala": "SALA 09",
+        "vagas_existentes": 25,
+        "vagas_ocupadas": 25,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 4 C",
+        "turno": "TARDE",
+        "sala": "SALA 03",
+        "vagas_existentes": 15,
+        "vagas_ocupadas": 15,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 4 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 03",
+        "vagas_existentes": 20,
+        "vagas_ocupadas": 17,
+        "vagas_disponiveis": 3
+      },
+      {
+        "turma": "GT 4 B",
+        "turno": "TARDE",
+        "sala": "SALA 03",
+        "vagas_existentes": 19,
+        "vagas_ocupadas": 18,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "GT 4 C",
+        "turno": "TARDE",
+        "sala": "SALA 01",
+        "vagas_existentes": 25,
+        "vagas_ocupadas": 22,
+        "vagas_disponiveis": 3
+      },
+      {
+        "turma": "GT 4 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 02",
+        "vagas_existentes": 18,
+        "vagas_ocupadas": 17,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "GT 4 B",
+        "turno": "TARDE",
+        "sala": "SALA 02",
+        "vagas_existentes": 18,
+        "vagas_ocupadas": 18,
+        "vagas_disponiveis": 0
+      }
+    ],
+    "GT 5": [
+      {
+        "turma": "GT 5 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 08",
+        "vagas_existentes": 20,
+        "vagas_ocupadas": 18,
+        "vagas_disponiveis": 2
+      },
+      {
+        "turma": "GT 5 B",
+        "turno": "TARDE",
+        "sala": "SALA 08",
+        "vagas_existentes": 20,
+        "vagas_ocupadas": 20,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 5 C",
+        "turno": "TARDE",
+        "sala": "SALA 07",
+        "vagas_existentes": 14,
+        "vagas_ocupadas": 14,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 5 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 04",
+        "vagas_existentes": 18,
+        "vagas_ocupadas": 18,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 5 B",
+        "turno": "TARDE",
+        "sala": "SALA 04",
+        "vagas_existentes": 18,
+        "vagas_ocupadas": 15,
+        "vagas_disponiveis": 3
+      },
+      {
+        "turma": "GT 5 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 16",
+        "vagas_existentes": 25,
+        "vagas_ocupadas": 25,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 5 B",
+        "turno": "TARDE",
+        "sala": "SALA 16",
+        "vagas_existentes": 25,
+        "vagas_ocupadas": 25,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 5 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 02",
+        "vagas_existentes": 25,
+        "vagas_ocupadas": 25,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 5 B",
+        "turno": "TARDE",
+        "sala": "SALA 02",
+        "vagas_existentes": 25,
+        "vagas_ocupadas": 25,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 5 C",
+        "turno": "TARDE",
+        "sala": "SALA 08",
+        "vagas_existentes": 25,
+        "vagas_ocupadas": 25,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 5 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 03",
+        "vagas_existentes": 19,
+        "vagas_ocupadas": 18,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "GT 5 B",
+        "turno": "TARDE",
+        "sala": "SALA 03",
+        "vagas_existentes": 19,
+        "vagas_ocupadas": 18,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "GT 5 C",
+        "turno": "MANHÃ",
+        "sala": "SALA 04",
+        "vagas_existentes": 10,
+        "vagas_ocupadas": 9,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "GT 5 D",
+        "turno": "TARDE",
+        "sala": "SALA 06",
+        "vagas_existentes": 11,
+        "vagas_ocupadas": 11,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 5 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 07",
+        "vagas_existentes": 18,
+        "vagas_ocupadas": 18,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 5 B",
+        "turno": "TARDE",
+        "sala": "SALA 04",
+        "vagas_existentes": 15,
+        "vagas_ocupadas": 15,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 5 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 13",
+        "vagas_existentes": 20,
+        "vagas_ocupadas": 18,
+        "vagas_disponiveis": 2
+      },
+      {
+        "turma": "GT 5 B",
+        "turno": "TARDE",
+        "sala": "SALA 13",
+        "vagas_existentes": 20,
+        "vagas_ocupadas": 19,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "GT 5 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 09",
+        "vagas_existentes": 20,
+        "vagas_ocupadas": 20,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 5 B",
+        "turno": "TARDE",
+        "sala": "SALA 09",
+        "vagas_existentes": 20,
+        "vagas_ocupadas": 20,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 5 C",
+        "turno": "MANHÃ",
+        "sala": "SALA 10",
+        "vagas_existentes": 20,
+        "vagas_ocupadas": 19,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "GT 5 D",
+        "turno": "TARDE",
+        "sala": "SALA 10",
+        "vagas_existentes": 20,
+        "vagas_ocupadas": 20,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 5 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 10",
+        "vagas_existentes": 25,
+        "vagas_ocupadas": 21,
+        "vagas_disponiveis": 4
+      },
+      {
+        "turma": "GT 5 B",
+        "turno": "TARDE",
+        "sala": "SALA 10",
+        "vagas_existentes": 25,
+        "vagas_ocupadas": 23,
+        "vagas_disponiveis": 2
+      },
+      {
+        "turma": "GT 5 C",
+        "turno": "TARDE",
+        "sala": "SALA 05",
+        "vagas_existentes": 25,
+        "vagas_ocupadas": 24,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "GT 5 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 10",
+        "vagas_existentes": 24,
+        "vagas_ocupadas": 20,
+        "vagas_disponiveis": 4
+      },
+      {
+        "turma": "GT 5 B",
+        "turno": "TARDE",
+        "sala": "SALA 10",
+        "vagas_existentes": 24,
+        "vagas_ocupadas": 23,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "GT 5 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 03",
+        "vagas_existentes": 14,
+        "vagas_ocupadas": 8,
+        "vagas_disponiveis": 6
+      },
+      {
+        "turma": "GT 5 B",
+        "turno": "TARDE",
+        "sala": "SALA 03",
+        "vagas_existentes": 14,
+        "vagas_ocupadas": 14,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 5 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 01",
+        "vagas_existentes": 15,
+        "vagas_ocupadas": 15,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 5 B",
+        "turno": "TARDE",
+        "sala": "SALA 01",
+        "vagas_existentes": 15,
+        "vagas_ocupadas": 15,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 5 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 09",
+        "vagas_existentes": 18,
+        "vagas_ocupadas": 18,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 5 B",
+        "turno": "MANHÃ",
+        "sala": "SALA 06",
+        "vagas_existentes": 19,
+        "vagas_ocupadas": 18,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "GT 5 C",
+        "turno": "TARDE",
+        "sala": "SALA 06",
+        "vagas_existentes": 19,
+        "vagas_ocupadas": 19,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 5 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 17",
+        "vagas_existentes": 25,
+        "vagas_ocupadas": 25,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 5 B",
+        "turno": "TARDE",
+        "sala": "SALA 17",
+        "vagas_existentes": 25,
+        "vagas_ocupadas": 24,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "GT 5 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 06",
+        "vagas_existentes": 18,
+        "vagas_ocupadas": 18,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 5 B",
+        "turno": "TARDE",
+        "sala": "SALA 06",
+        "vagas_existentes": 18,
+        "vagas_ocupadas": 18,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 5 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 04",
+        "vagas_existentes": 12,
+        "vagas_ocupadas": 12,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 5 B",
+        "turno": "TARDE",
+        "sala": "SALA 04",
+        "vagas_existentes": 22,
+        "vagas_ocupadas": 22,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 5 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 05",
+        "vagas_existentes": 25,
+        "vagas_ocupadas": 24,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "GT 5 B",
+        "turno": "TARDE",
+        "sala": "SALA 05",
+        "vagas_existentes": 25,
+        "vagas_ocupadas": 25,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 5 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 06",
+        "vagas_existentes": 24,
+        "vagas_ocupadas": 22,
+        "vagas_disponiveis": 2
+      },
+      {
+        "turma": "GT 5 B",
+        "turno": "TARDE",
+        "sala": "SALA 06",
+        "vagas_existentes": 24,
+        "vagas_ocupadas": 24,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 5 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 04",
+        "vagas_existentes": 17,
+        "vagas_ocupadas": 17,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 5 B",
+        "turno": "TARDE",
+        "sala": "SALA 04",
+        "vagas_existentes": 17,
+        "vagas_ocupadas": 17,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 5 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 04",
+        "vagas_existentes": 17,
+        "vagas_ocupadas": 15,
+        "vagas_disponiveis": 2
+      },
+      {
+        "turma": "GT 5 B",
+        "turno": "TARDE",
+        "sala": "SALA 04",
+        "vagas_existentes": 17,
+        "vagas_ocupadas": 17,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 5 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 06",
+        "vagas_existentes": 22,
+        "vagas_ocupadas": 19,
+        "vagas_disponiveis": 3
+      },
+      {
+        "turma": "GT 5 B",
+        "turno": "MANHÃ",
+        "sala": "SALA 07",
+        "vagas_existentes": 22,
+        "vagas_ocupadas": 21,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "GT 5 C",
+        "turno": "MANHÃ",
+        "sala": "SALA 13",
+        "vagas_existentes": 14,
+        "vagas_ocupadas": 13,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "GT 5 D",
+        "turno": "TARDE",
+        "sala": "SALA 06",
+        "vagas_existentes": 22,
+        "vagas_ocupadas": 22,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 5 E",
+        "turno": "TARDE",
+        "sala": "SALA 07",
+        "vagas_existentes": 22,
+        "vagas_ocupadas": 22,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 5 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 04",
+        "vagas_existentes": 25,
+        "vagas_ocupadas": 24,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "GT 5 B",
+        "turno": "TARDE",
+        "sala": "SALA 04",
+        "vagas_existentes": 25,
+        "vagas_ocupadas": 25,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 5 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 07",
+        "vagas_existentes": 25,
+        "vagas_ocupadas": 24,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "GT 5 B",
+        "turno": "TARDE",
+        "sala": "SALA 07",
+        "vagas_existentes": 25,
+        "vagas_ocupadas": 25,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 5 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 19",
+        "vagas_existentes": 21,
+        "vagas_ocupadas": 20,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "GT 5 B",
+        "turno": "MANHÃ",
+        "sala": "SALA 24",
+        "vagas_existentes": 18,
+        "vagas_ocupadas": 18,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 5 C",
+        "turno": "TARDE",
+        "sala": "SALA 19",
+        "vagas_existentes": 24,
+        "vagas_ocupadas": 24,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 5 D",
+        "turno": "TARDE",
+        "sala": "SALA 24",
+        "vagas_existentes": 25,
+        "vagas_ocupadas": 25,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 5 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 09",
+        "vagas_existentes": 25,
+        "vagas_ocupadas": 22,
+        "vagas_disponiveis": 3
+      },
+      {
+        "turma": "GT 5 B",
+        "turno": "TARDE",
+        "sala": "SALA 09",
+        "vagas_existentes": 25,
+        "vagas_ocupadas": 24,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "GT 5 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 01",
+        "vagas_existentes": 15,
+        "vagas_ocupadas": 14,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "GT 5 B",
+        "turno": "TARDE",
+        "sala": "SALA 01",
+        "vagas_existentes": 15,
+        "vagas_ocupadas": 15,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 5 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 15",
+        "vagas_existentes": 21,
+        "vagas_ocupadas": 20,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "GT 5 B",
+        "turno": "TARDE",
+        "sala": "SALA 15",
+        "vagas_existentes": 21,
+        "vagas_ocupadas": 20,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "GT 5 C",
+        "turno": "MANHÃ",
+        "sala": "SALA 16",
+        "vagas_existentes": 21,
+        "vagas_ocupadas": 20,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "GT 5 D",
+        "turno": "TARDE",
+        "sala": "SALA 16",
+        "vagas_existentes": 21,
+        "vagas_ocupadas": 20,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "GT 5 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 01",
+        "vagas_existentes": 25,
+        "vagas_ocupadas": 23,
+        "vagas_disponiveis": 2
+      },
+      {
+        "turma": "GT 5 B",
+        "turno": "TARDE",
+        "sala": "SALA 01",
+        "vagas_existentes": 25,
+        "vagas_ocupadas": 25,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 5 C",
+        "turno": "TARDE",
+        "sala": "SALA 08",
+        "vagas_existentes": 25,
+        "vagas_ocupadas": 25,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 5 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 16",
+        "vagas_existentes": 25,
+        "vagas_ocupadas": 20,
+        "vagas_disponiveis": 5
+      },
+      {
+        "turma": "GT 5 B",
+        "turno": "TARDE",
+        "sala": "SALA 16",
+        "vagas_existentes": 25,
+        "vagas_ocupadas": 23,
+        "vagas_disponiveis": 2
+      },
+      {
+        "turma": "GT 5 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 12",
+        "vagas_existentes": 14,
+        "vagas_ocupadas": 14,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 5 B",
+        "turno": "TARDE",
+        "sala": "SALA 11",
+        "vagas_existentes": 13,
+        "vagas_ocupadas": 13,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 5 C",
+        "turno": "TARDE",
+        "sala": "SALA 12",
+        "vagas_existentes": 13,
+        "vagas_ocupadas": 13,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 5 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 16",
+        "vagas_existentes": 25,
+        "vagas_ocupadas": 24,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "GT 5 B",
+        "turno": "TARDE",
+        "sala": "SALA 16",
+        "vagas_existentes": 25,
+        "vagas_ocupadas": 23,
+        "vagas_disponiveis": 2
+      },
+      {
+        "turma": "GT 5 C",
+        "turno": "TARDE",
+        "sala": "SALA 15",
+        "vagas_existentes": 25,
+        "vagas_ocupadas": 24,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "GT 5 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 13",
+        "vagas_existentes": 25,
+        "vagas_ocupadas": 15,
+        "vagas_disponiveis": 10
+      },
+      {
+        "turma": "GT 5 B",
+        "turno": "TARDE",
+        "sala": "SALA 13",
+        "vagas_existentes": 25,
+        "vagas_ocupadas": 24,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "GT 5 C",
+        "turno": "MANHÃ",
+        "sala": "SALA 14",
+        "vagas_existentes": 25,
+        "vagas_ocupadas": 14,
+        "vagas_disponiveis": 11
+      },
+      {
+        "turma": "GT 5 D",
+        "turno": "TARDE",
+        "sala": "SALA 14",
+        "vagas_existentes": 25,
+        "vagas_ocupadas": 23,
+        "vagas_disponiveis": 2
+      },
+      {
+        "turma": "GT 5 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 13",
+        "vagas_existentes": 25,
+        "vagas_ocupadas": 23,
+        "vagas_disponiveis": 2
+      },
+      {
+        "turma": "GT 5 B",
+        "turno": "TARDE",
+        "sala": "SALA 13",
+        "vagas_existentes": 25,
+        "vagas_ocupadas": 23,
+        "vagas_disponiveis": 2
+      },
+      {
+        "turma": "GT 5 C",
+        "turno": "MANHÃ",
+        "sala": "SALA 04",
+        "vagas_existentes": 20,
+        "vagas_ocupadas": 16,
+        "vagas_disponiveis": 4
+      },
+      {
+        "turma": "GT 5 D",
+        "turno": "TARDE",
+        "sala": "SALA 04",
+        "vagas_existentes": 20,
+        "vagas_ocupadas": 17,
+        "vagas_disponiveis": 3
+      },
+      {
+        "turma": "GT 5 E",
+        "turno": "INTEGRAL",
+        "sala": "SALA 04",
+        "vagas_existentes": 5,
+        "vagas_ocupadas": 5,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 5 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 08",
+        "vagas_existentes": 25,
+        "vagas_ocupadas": 17,
+        "vagas_disponiveis": 8
+      },
+      {
+        "turma": "GT 5 B",
+        "turno": "TARDE",
+        "sala": "SALA 08",
+        "vagas_existentes": 25,
+        "vagas_ocupadas": 22,
+        "vagas_disponiveis": 3
+      },
+      {
+        "turma": "GT 5 C",
+        "turno": "TARDE",
+        "sala": "SALA 18",
+        "vagas_existentes": 25,
+        "vagas_ocupadas": 20,
+        "vagas_disponiveis": 5
+      },
+      {
+        "turma": "GT 5 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 06",
+        "vagas_existentes": 25,
+        "vagas_ocupadas": 25,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 5 B",
+        "turno": "TARDE",
+        "sala": "SALA 06",
+        "vagas_existentes": 25,
+        "vagas_ocupadas": 25,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 5 C",
+        "turno": "MANHÃ",
+        "sala": "SALA 02",
+        "vagas_existentes": 25,
+        "vagas_ocupadas": 25,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 5 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 04",
+        "vagas_existentes": 24,
+        "vagas_ocupadas": 23,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "GT 5 B",
+        "turno": "TARDE",
+        "sala": "SALA 04",
+        "vagas_existentes": 24,
+        "vagas_ocupadas": 24,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 5 C",
+        "turno": "MANHÃ",
+        "sala": "SALA 02",
+        "vagas_existentes": 10,
+        "vagas_ocupadas": 10,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 5 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 06",
+        "vagas_existentes": 25,
+        "vagas_ocupadas": 25,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 5 B",
+        "turno": "TARDE",
+        "sala": "SALA 06",
+        "vagas_existentes": 25,
+        "vagas_ocupadas": 25,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 5 A",
+        "turno": "TARDE",
+        "sala": "SALA 06",
+        "vagas_existentes": 23,
+        "vagas_ocupadas": 18,
+        "vagas_disponiveis": 5
+      },
+      {
+        "turma": "GT 5 B",
+        "turno": "TARDE",
+        "sala": "SALA 05",
+        "vagas_existentes": 23,
+        "vagas_ocupadas": 21,
+        "vagas_disponiveis": 2
+      },
+      {
+        "turma": "GT 5 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 03",
+        "vagas_existentes": 25,
+        "vagas_ocupadas": 25,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 5 B",
+        "turno": "MANHÃ",
+        "sala": "SALA 02",
+        "vagas_existentes": 25,
+        "vagas_ocupadas": 24,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "GT 5 C",
+        "turno": "TARDE",
+        "sala": "SALA 03",
+        "vagas_existentes": 25,
+        "vagas_ocupadas": 25,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 5 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 04",
+        "vagas_existentes": 15,
+        "vagas_ocupadas": 15,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 5 B",
+        "turno": "TARDE",
+        "sala": "SALA 04",
+        "vagas_existentes": 15,
+        "vagas_ocupadas": 15,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 5 C",
+        "turno": "MANHÃ",
+        "sala": "SALA 19",
+        "vagas_existentes": 16,
+        "vagas_ocupadas": 15,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "GT 5 D",
+        "turno": "TARDE",
+        "sala": "SALA 19",
+        "vagas_existentes": 16,
+        "vagas_ocupadas": 16,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 5 E",
+        "turno": "INTEGRAL",
+        "sala": "SALA 20",
+        "vagas_existentes": 16,
+        "vagas_ocupadas": 16,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 5 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 04",
+        "vagas_existentes": 25,
+        "vagas_ocupadas": 25,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 5 B",
+        "turno": "TARDE",
+        "sala": "SALA 04",
+        "vagas_existentes": 25,
+        "vagas_ocupadas": 25,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 5 C",
+        "turno": "MANHÃ",
+        "sala": "SALA 05",
+        "vagas_existentes": 22,
+        "vagas_ocupadas": 22,
+        "vagas_disponiveis": 0
+      },
+      {
+        "turma": "GT 5 A",
+        "turno": "MANHÃ",
+        "sala": "SALA 08",
+        "vagas_existentes": 15,
+        "vagas_ocupadas": 13,
+        "vagas_disponiveis": 2
+      },
+      {
+        "turma": "GT 5 B",
+        "turno": "MANHÃ",
+        "sala": "SALA 04",
+        "vagas_existentes": 14,
+        "vagas_ocupadas": 13,
+        "vagas_disponiveis": 1
+      },
+      {
+        "turma": "GT 5 C",
+        "turno": "TARDE",
+        "sala": "SALA 04",
+        "vagas_existentes": 17,
+        "vagas_ocupadas": 17,
+        "vagas_disponiveis": 0
+      }
+    ]
+  }
+}
