@@ -4,7 +4,7 @@ from flask import Blueprint, render_template, request, jsonify, send_file, curre
 
 from app.logic.parser_vagas_pdf  import parse_vagas_pdf, get_resumo_vagas
 from app.logic.parser_alunos_html import parse_alunos_html, get_turmas_para_progressao
-from app.logic.progressao_engine  import processar_turmas_para_progressao
+from app.logic.progressao_engine  import processar_turmas
 from app.logic.excel_progressao   import gerar_excel_progressao
 from app.logic.carta_encaminhamento import gerar_todas_cartas
 from app.logic.bairros            import get_bairro_by_escola
@@ -154,7 +154,7 @@ def analisar_progressao():
         return jsonify({'success': False,
                         'error': f'Nenhuma turma encontrada para progressão: {series_progressao}'}), 400
 
-    resultado = processar_turmas_para_progressao(
+    resultado = processar_turmas(
         turmas_alunos, vagas_mun, vagas_est, bairro
     )
     _save('progressao_resultado.json', resultado)
