@@ -146,3 +146,145 @@
 </div>
 {% endblock %}
 {% block scripts %}<script src="{{ url_for('static', filename='js/progressao.js') }}"></script>{% endblock %}
+{% extends "base.html" %}
+{% block title %}Progressão{% endblock %}
+{% block content %}
+<h2 style="font-size:1.3rem;font-weight:700;margin-bottom:1.5rem">🎓 Progressão de Alunos</h2>
+
+<!-- PASSO 1: PDF Municipal -->
+<div class="step-header">
+    <div class="step-num" id="num1">1</div>
+    <div>
+        <div class="step-title">Importar Vagas Municipais</div>
+        <div class="step-subtitle">PDF do EducarWEB com vagas por série e turno</div>
+    </div>
+</div>
+<div class="step-block" id="block1">
+    <div class="card">
+        <div class="card-title"><i class="fas fa-file-pdf" style="color:#ef4444"></i> PDF de Vagas Municipais</div>
+        <div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap">
+            <div class="dropzone" style="flex:1;min-width:250px;padding:1.25rem" onclick="document.getElementById('pdf-input').click()">
+                <i class="fas fa-cloud-upload-alt" style="font-size:1.5rem;color:#94a3b8"></i>
+                <p style="margin:.35rem 0 0;font-size:.875rem;font-weight:500">Clique para importar o PDF de vagas</p>
+                <p style="font-size:.78rem;color:#94a3b8;margin-top:.2rem">Vagas = existentes − ocupadas (calculado automaticamente)</p>
+                <input type="file" id="pdf-input" accept=".pdf" onchange="importarPDF(this)"/>
+            </div>
+            <div id="pdf-status" style="font-size:.85rem;min-width:200px"></div>
+        </div>
+        <div id="vagas-resumo-card" style="display:none;margin-top:1rem">
+            <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.5rem;margin-bottom:.75rem">
+                <span style="font-size:.9rem;font-weight:600;color:#0a192f"><i class="fas fa-chart-bar" style="color:#10b981"></i> Vagas disponíveis por série</span>
+                <div style="display:flex;gap:.35rem;flex-wrap:wrap">
+                    <button class="btn btn-outline btn-sm" onclick="filtrarResumoPor('1º ANO')">1º ANO</button>
+                    <button class="btn btn-outline btn-sm" onclick="filtrarResumoPor('6º ANO')">6º ANO</button>
+                    <button class="btn btn-outline btn-sm" onclick="filtrarResumoPor('GT')">GT</button>
+                    <button class="btn btn-outline btn-sm" onclick="filtrarResumoPor('')">Todos</button>
+                    <button class="btn btn-outline btn-sm" onclick="baixarExcelVagas()"><i class="fas fa-download"></i> Excel vagas</button>
+                </div>
+            </div>
+            <div class="vagas-grid" id="vagas-resumo-grid"></div>
+        </div>
+    </div>
+</div>
+
+<!-- PASSO 2: Vagas Estaduais -->
+<div class="step-header" style="margin-top:1.5rem">
+    <div class="step-num pending" id="num2">2</div>
+    <div>
+        <div class="step-title">Inserir Vagas Estaduais</div>
+        <div class="step-subtitle">Informe as vagas disponibilizadas pelas escolas estaduais</div>
+    </div>
+</div>
+<div class="step-block pending" id="block2">
+    <div class="card">
+        <div class="card-title"><i class="fas fa-school" style="color:#7c3aed"></i> Vagas Estaduais</div>
+        <p style="font-size:.82rem;color:#64748b;margin-bottom:.75rem">
+            Selecione escola, série e quantidade de vagas. Após salvar a IA já pode analisar automaticamente.
+        </p>
+        <div style="display:grid;grid-template-columns:2fr 1.2fr 100px 100px auto;gap:.4rem;margin-bottom:.4rem;padding-bottom:.35rem;border-bottom:1px solid #e2e8f0">
+            <span style="font-size:.75rem;font-weight:600;color:#64748b">Escola Estadual</span>
+            <span style="font-size:.75rem;font-weight:600;color:#64748b">Série</span>
+            <span style="font-size:.75rem;font-weight:600;color:#f59e0b"><i class="fas fa-sun"></i> Manhã</span>
+            <span style="font-size:.75rem;font-weight:600;color:#6366f1"><i class="fas fa-moon"></i> Tarde</span>
+            <span></span>
+        </div>
+        <div id="estaduais-rows"></div>
+        <button class="btn btn-outline btn-sm" onclick="addRowEstadual()" style="margin-top:.5rem">
+            <i class="fas fa-plus"></i> Adicionar escola estadual
+        </button>
+        <div style="margin-top:.75rem;display:flex;gap:.5rem;flex-wrap:wrap">
+            <button class="btn btn-primary" onclick="salvarEstaduals()">
+                <i class="fas fa-save"></i> Salvar vagas estaduais
+            </button>
+            <button class="btn btn-outline" onclick="limparEstaduals()">
+                <i class="fas fa-eraser"></i> Limpar tudo
+            </button>
+        </div>
+        <div id="estaduais-status" style="margin-top:.5rem;font-size:.85rem"></div>
+    </div>
+</div>
+
+<!-- PASSO 3: Análise e Resultado -->
+<div class="step-header" style="margin-top:1.5rem">
+    <div class="step-num pending" id="num3">3</div>
+    <div>
+        <div class="step-title">Análise IA e Resultado</div>
+        <div class="step-subtitle">A IA aloca turmas inteiras priorizando estaduais automaticamente</div>
+    </div>
+</div>
+<div class="step-block pending" id="block3">
+    <div class="card">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem">
+            <div class="form-group">
+                <label class="form-label">Escola de origem</label>
+                <input class="form-input" id="escola-origem" placeholder="Ex: CEI CIRANDA COLORIDA"/>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Bairro</label>
+                <select class="form-select" id="bairro-origem">
+                    <option value="">Selecione o bairro</option>
+                    {% for b in ['PASSA VINTE','CENTRO','BELA VISTA','ARIRIÚ','ALTO ARIRIÚ','BARRA DO ARIRIÚ',
+                                 'NOVA PALHOÇA','RIO GRANDE','CAMINHO NOVO','SÃO SEBASTIÃO','FREI DAMIÃO',
+                                 'JARDIM ELDORADO','PRAIA DE FORA','FURADINHO','GUARDA DO CUBATÃO','PACHECO',
+                                 'PONTE DO IMARUIM','ENSEADA DO BRITO','PINHEIRA','ENSEADA DA PINHEIRA',
+                                 'PRAIA DO SONHO','BREJARU','MORRETE','ALBARDÃO','TRÊS BARRAS','GUARDA DO EMBAÚ'] %}
+                    <option>{{ b }}</option>{% endfor %}
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-label">Séries para progressão</label>
+            <div style="display:flex;gap:.5rem;flex-wrap:wrap">
+                {% for s in ['GT 5','GT 4','GT 3','GT 2','GT 1','5º ANO','8º ANO','9º ANO'] %}
+                <label style="display:flex;align-items:center;gap:.35rem;padding:.35rem .75rem;border:1px solid #cbd5e1;border-radius:99px;cursor:pointer;font-size:.82rem">
+                    <input type="checkbox" value="{{ s }}" {% if s in ['GT 5','5º ANO','8º ANO'] %}checked{% endif %}/> {{ s }}
+                </label>{% endfor %}
+            </div>
+        </div>
+        <div style="background:#eff6ff;border:1px solid #93c5fd;border-radius:8px;padding:.75rem 1rem;margin-bottom:1rem;font-size:.82rem;color:#1e40af">
+            <i class="fas fa-robot"></i>
+            <strong>A IA vai:</strong> alocar turmas inteiras na mesma escola →
+            priorizar estaduais → mesmo bairro primeiro → bairros próximos depois.
+        </div>
+        <button class="btn btn-green" id="btn-analisar" onclick="analisarProgressao()">
+            <i class="fas fa-robot"></i> Executar Análise IA
+        </button>
+        <div id="analise-status" style="margin-top:.75rem;font-size:.85rem"></div>
+    </div>
+
+    <div class="card" id="resultado-card" style="display:none">
+        <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.5rem;margin-bottom:1rem">
+            <div class="card-title" style="margin-bottom:0">
+                <i class="fas fa-check-circle" style="color:#10b981"></i> Alocações Sugeridas
+            </div>
+            <div style="display:flex;gap:.5rem;flex-wrap:wrap">
+                <button class="btn btn-outline" onclick="baixarExcel()"><i class="fas fa-download"></i> Baixar Excel</button>
+                <button class="btn btn-blue" onclick="exportarDrive()"><i class="fas fa-cloud-upload-alt"></i> Exportar Drive</button>
+            </div>
+        </div>
+        <div class="stats-grid" id="prog-stats"></div>
+        <div id="alocacoes-lista"></div>
+    </div>
+</div>
+{% endblock %}
+{% block scripts %}<script src="{{ url_for('static', filename='js/progressao.js') }}"></script>{% endblock %}
