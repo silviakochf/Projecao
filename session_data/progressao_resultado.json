@@ -1,0 +1,62 @@
+[
+  {
+    "turma": "5º ANO",
+    "serie_atual": "5º ANO",
+    "serie_destino": "6º ANO",
+    "turno": "MANHÃ",
+    "total_alunos": 0,
+    "alunos": [],
+    "escola_sugerida": null,
+    "sugestoes": []
+  },
+  {
+    "turma": "8º ANO",
+    "serie_atual": "8º ANO",
+    "serie_destino": "9º ANO",
+    "turno": "MANHÃ",
+    "total_alunos": 0,
+    "alunos": [],
+    "escola_sugerida": null,
+    "sugestoes": []
+  },
+  {
+    "turma": "8º ANO",
+    "serie_atual": "8º ANO",
+    "serie_destino": "9º ANO",
+    "turno": "MANHÃ",
+    "total_alunos": 0,
+    "alunos": [],
+    "escola_sugerida": null,
+    "sugestoes": []
+  },
+  {
+    "turma": "9º ANO",
+    "serie_atual": "9º ANO",
+    "serie_destino": "GT 3",
+    "turno": "MANHÃ",
+    "total_alunos": 0,
+    "alunos": [],
+    "escola_sugerida": null,
+    "sugestoes": []
+  },
+  {
+    "turma": "GT 4",
+    "serie_atual": "GT 4",
+    "serie_destino": "GT 3",
+    "turno": "MANHÃ",
+    "total_alunos": 0,
+    "alunos": [],
+    "escola_sugerida": null,
+    "sugestoes": []
+  },
+  {
+    "turma": "GT 5",
+    "serie_atual": "GT 5",
+    "serie_destino": "1º ANO",
+    "turno": "MANHÃ",
+    "total_alunos": 0,
+    "alunos": [],
+    "escola_sugerida": null,
+    "sugestoes": []
+  }
+]
