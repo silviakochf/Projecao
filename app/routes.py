@@ -1,35 +1,45 @@
-import os, json, base64, requests
+import os
+import json
 from datetime import datetime
 from flask import Blueprint, render_template, request, jsonify, send_file, current_app
 
-from app.logic.parser_vagas_pdf  import parse_vagas_pdf, get_resumo_vagas
-from app.logic.parser_alunos_html import parse_alunos_html, get_turmas_para_progressao
-from app.logic.progressao_engine  import processar_turmas
-from app.logic.excel_progressao   import gerar_excel_progressao
+from app.logic.parser_vagas_pdf import parse_vagas_pdf, get_resumo_vagas
+from app.logic.parser_alunos_html import parse_alunos_html
+from app.logic.progressao_engine import processar
+from app.logic.excel_progressao import gerar_excel_progressao
 from app.logic.carta_encaminhamento import gerar_todas_cartas
-from app.logic.bairros            import get_bairro_by_escola
-from app.services.drive_service   import upload_to_drive
+from app.logic.bairros import get_bairro_escola, listar_estaduais
+from app.services.drive_service import upload_to_drive
+from app.services.excel_service import gerar_excel_vagas
 
 main_bp = Blueprint('main', __name__)
+XLSX = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
 
-# ── Helpers de sessão ───────────────────────────────────────────
-def _session_path(name):
-    folder = current_app.config['UPLOAD_FOLDER']
-    os.makedirs(folder, exist_ok=True)
-    return os.path.join(folder, name)
 
-def _load(name):
-    p = _session_path(name)
+# ── armazenamento mínimo (só para a aba Cartas) ─────────────────
+def _path(nome):
+    pasta = current_app.config['UPLOAD_FOLDER']
+    os.makedirs(pasta, exist_ok=True)
+    return os.path.join(pasta, nome)
+
+def _load(nome):
+    p = _path(nome)
     if os.path.exists(p):
         with open(p, encoding='utf-8') as f:
             return json.load(f)
     return {}
 
-def _save(name, data):
-    with open(_session_path(name), 'w', encoding='utf-8') as f:
-        json.dump(data, f, ensure_ascii=False, indent=2)
+def _save(nome, dados):
+    with open(_path(nome), 'w', encoding='utf-8') as f:
+        json.dump(dados, f, ensure_ascii=False)
 
-# ── Páginas ─────────────────────────────────────────────────────
+
+@main_bp.context_processor
+def inject_now():
+    return {'now': datetime.now()}
+
+
+# ── páginas ─────────────────────────────────────────────────────
 @main_bp.route('/')
 def index():
     return render_template('index.html')
@@ -42,225 +52,137 @@ def progressao():
 def cartas():
     return render_template('cartas.html')
 
-@main_bp.context_processor
-def inject_now():
-    return {'now': datetime.now()}
 
-# ── API: Importar PDF de vagas ──────────────────────────────────
+# ── Passo 1: PDF de vagas (nada é salvo no servidor) ────────────
 @main_bp.route('/api/importar_vagas_pdf', methods=['POST'])
 def importar_vagas_pdf():
-    if 'file' not in request.files:
-        return jsonify({'success': False, 'error': 'Nenhum arquivo'}), 400
-    file = request.files['file']
-    path = _session_path('vagas_upload.pdf')
-    file.save(path)
+    arquivo = request.files.get('file')
+    if not arquivo:
+        return jsonify({'success': False, 'error': 'Nenhum arquivo enviado'}), 400
     try:
-        data = parse_vagas_pdf(path)
-        _save('vagas_municipais.json', data)
-        resumo = get_resumo_vagas(data)
-        total_disp = sum(r['vagas_disponiveis'] for r in resumo)
-        return jsonify({'success': True, 'escolas': len(data),
-                        'total_vagas_disponiveis': total_disp,
-                        'resumo': resumo})
+        report = {}
+        dados = parse_vagas_pdf(arquivo.read(), report)
     except Exception as e:
-        return jsonify({'success': False, 'error': str(e)}), 500
+        return jsonify({'success': False, 'error': f'Não consegui ler o PDF: {e}'}), 400
+    if not dados:
+        return jsonify({'success': False,
+                        'error': 'Nenhuma turma encontrada. É o relatório "Lista de Vagas por Série e Turma"?'}), 400
 
-# ── API: Vagas estaduais (inseridas manualmente) ────────────────
-@main_bp.route('/api/salvar_vagas_estaduais', methods=['POST'])
-def salvar_vagas_estaduais():
-    """
-    Body: {escola: {serie: {turno: vagas}}}
-    """
-    data = request.json or {}
-    _save('vagas_estaduais.json', data)
-    return jsonify({'success': True})
+    resumo = get_resumo_vagas(dados)
+    ceis = [e for e, series in dados.items() if all(s.startswith('GT') for s in series)]
+    return jsonify({
+        'success': True,
+        'vagas': dados,
+        'resumo': resumo,
+        'unidades': len(dados),
+        'ceis': len(ceis),
+        'escolas': len(dados) - len(ceis),
+        'total_existentes': sum(r['vagas_existentes'] for r in resumo),
+        'total_ocupadas': sum(r['vagas_ocupadas'] for r in resumo),
+        'total_disponiveis': sum(r['vagas_disponiveis'] for r in resumo),
+        'inativas': sorted(report.get('inativas', [])),
+        'sem_bairro': [e for e in dados if not get_bairro_escola(e)],
+        'nao_lidas': len(report.get('nao_lidas', [])),
+    })
 
-@main_bp.route('/api/get_vagas_estaduais', methods=['GET'])
-def get_vagas_estaduais():
-    return jsonify(_load('vagas_estaduais.json'))
 
-@main_bp.route('/api/get_vagas_municipais', methods=['GET'])
-def get_vagas_municipais():
-    return jsonify(_load('vagas_municipais.json'))
+# ── Passo 2: lista de escolas estaduais (dropdown) ──────────────
+@main_bp.route('/api/escolas_estaduais')
+def escolas_estaduais():
+    return jsonify(listar_estaduais())
 
-@main_bp.route('/api/get_resumo_vagas', methods=['GET'])
-def get_resumo_vagas_route():
-    mun = _load('vagas_municipais.json')
-    est = _load('vagas_estaduais.json')
-    resumo_mun = get_resumo_vagas(mun)
-    resumo_est = []
-    for escola, series in est.items():
-        for serie, turnos in series.items():
-            for turno, vagas in turnos.items():
-                resumo_est.append({'escola': escola, 'serie': serie,
-                                   'turno': turno, 'vagas_disponiveis': vagas,
-                                   'tipo': 'ESTADUAL'})
-    for r in resumo_mun:
-        r['tipo'] = 'MUNICIPAL'
-    return jsonify({'municipais': resumo_mun, 'estaduais': resumo_est})
 
-# ── API: Importar HTML de alunos ────────────────────────────────
-@main_bp.route('/api/importar_alunos_html', methods=['POST'])
-def importar_alunos_html():
-    if 'file' not in request.files:
-        return jsonify({'success': False, 'error': 'Nenhum arquivo'}), 400
-    file = request.files['file']
-    content = file.read().decode('utf-8', errors='ignore')
-    try:
-        data = parse_alunos_html(content)
-        _save('alunos.json', data)
-        total = sum(
-            len(alunos)
-            for series in data.values()
-            for turnos in series.values()
-            for alunos in turnos.values()
-        )
-        escolas = list(data.keys())
-        return jsonify({'success': True, 'escolas': escolas, 'total_alunos': total})
-    except Exception as e:
-        return jsonify({'success': False, 'error': str(e)}), 500
-
-# ── API: Executar análise de progressão ─────────────────────────
+# ── Passo 3: análise automática ─────────────────────────────────
 @main_bp.route('/api/analisar_progressao', methods=['POST'])
 def analisar_progressao():
-    req = request.json or {}
-    escola_origem    = req.get('escola_origem', '')
-    bairro           = req.get('bairro', '') or get_bairro_by_escola(escola_origem)
-    series_progressao = req.get('series_progressao', ['GT 5','5º ANO','8º ANO'])
+    req = request.get_json(silent=True) or {}
+    vagas = req.get('vagas') or {}
+    if not vagas:
+        return jsonify({'success': False, 'error': 'Importe o PDF de vagas primeiro'}), 400
 
-    vagas_mun_raw = _load('vagas_municipais.json')
-    vagas_est     = _load('vagas_estaduais.json')
+    resultado = processar(vagas, req.get('estaduais') or [], req.get('inativas') or [])
+    if not resultado['turmas']:
+        return jsonify({'success': False,
+                        'error': 'Nenhuma turma de série final encontrada neste PDF'}), 400
 
-    if not vagas_mun_raw:
-        return jsonify({'success': False, 'error': 'Importe o PDF de vagas municipais primeiro'}), 400
+    _save('progressao_resultado.json', resultado['turmas'])   # a aba Cartas lê daqui
+    return jsonify({'success': True, **resultado})
 
-    # Converte para {escola: {serie: {turno: vagas_disponiveis}}}
-    vagas_mun = {}
-    for escola, series in vagas_mun_raw.items():
-        vagas_mun[escola] = {}
-        for serie, turmas in series.items():
-            vagas_mun[escola][serie] = {}
-            for t in turmas:
-                tr = t['turno']
-                vagas_mun[escola][serie][tr] = \
-                    vagas_mun[escola][serie].get(tr, 0) + t['vagas_disponiveis']
 
-    # Cria turmas virtuais com base nas séries selecionadas
-    # (alunos reais serão usados na aba Cartas)
-    turmas_virtuais = []
-    for serie in series_progressao:
-        turmas_virtuais.append({
-            'escola': escola_origem,
-            'serie': serie,
-            'turma': serie,
-            'turno': 'MANHÃ',
-            'alunos': [],
-            'total': 0
-        })
+# ── Exportação (recebe o resultado do navegador) ────────────────
+def _excel_do_pedido():
+    req = request.get_json(silent=True) or {}
+    resultado = req.get('resultado') or {}
+    if not resultado.get('turmas'):
+        return None, None
+    nome = f"progressao_{datetime.now().strftime('%d-%m-%Y_%H%M')}.xlsx"
+    return gerar_excel_progressao(resultado), nome
 
-    resultado = processar_turmas(turmas_virtuais, vagas_mun, vagas_est, bairro)
-    _save('progressao_resultado.json', resultado)
-
-    return jsonify({'success': True, 'turmas': resultado,
-                    'total_turmas': len(resultado),
-                    'total_alunos': 0})
-
-# ── API: Exportar Excel progressão ──────────────────────────────
-@main_bp.route('/api/exportar_excel_progressao', methods=['POST'])
-def exportar_excel_progressao():
-    req = request.json or {}
-    escola_origem = req.get('escola_origem', 'Escola')
-    bairro        = req.get('bairro', '')
-    folder_id     = req.get('folder_id',
-                             current_app.config['DRIVE_FOLDER_PROGRESSAO'])
-
-    resultado    = _load('progressao_resultado.json')
-    vagas_mun    = _load('vagas_municipais.json')
-    vagas_est    = _load('vagas_estaduais.json')
-
-    if not resultado:
-        return jsonify({'success': False, 'error': 'Execute a análise primeiro'}), 400
-
-    buf = gerar_excel_progressao(escola_origem, bairro, resultado, vagas_mun, vagas_est)
-    date_str = datetime.now().strftime('%d-%m-%Y')
-    filename = f"progressao_{escola_origem[:20]}_{date_str}.xlsx".replace(' ','_')
-
-    result = upload_to_drive(buf.getvalue(), filename, folder_id)
-    if result.get('success'):
-        return jsonify({'success': True, 'fileId': result.get('fileId'), 'filename': filename})
-    # Fallback: download local
-    buf.seek(0)
-    return send_file(buf, as_attachment=True, download_name=filename,
-                     mimetype='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
-
-# ── API: Gerar e exportar cartas ────────────────────────────────
-@main_bp.route('/api/gerar_cartas', methods=['POST'])
-def gerar_cartas():
-    req = request.json or {}
-    escola_origem = req.get('escola_origem', '')
-    template_cfg  = req.get('template', {})
-    folder_id     = req.get('folder_id', current_app.config['DRIVE_FOLDER_CARTAS'])
-
-    resultado = _load('progressao_resultado.json')
-    if not resultado:
-        return jsonify({'success': False, 'error': 'Execute a análise primeiro'}), 400
-
-    cartas = gerar_todas_cartas(resultado, template_cfg, escola_origem)
-    script_url = current_app.config['APPS_SCRIPT_URL']
-    uploaded = []
-    errors   = []
-
-    for filename, buf in cartas.items():
-        try:
-            payload = {'fileName': filename, 'folderId': folder_id,
-                       'fileData': base64.b64encode(buf.getvalue()).decode()}
-            resp = requests.post(script_url, json=payload, timeout=60, allow_redirects=True)
-            result = resp.json()
-            if result.get('success'):
-                uploaded.append({'filename': filename, 'fileId': result.get('fileId')})
-            else:
-                errors.append({'filename': filename, 'error': result.get('error')})
-        except Exception as e:
-            errors.append({'filename': filename, 'error': str(e)})
-
-    return jsonify({'success': len(uploaded) > 0, 'uploaded': uploaded,
-                    'errors': errors, 'total': len(cartas)})
-
-# ── API: Download local do Excel ────────────────────────────────
 @main_bp.route('/api/baixar_excel_progressao', methods=['POST'])
 def baixar_excel_progressao():
-    req = request.json or {}
-    escola_origem = req.get('escola_origem', 'Escola')
-    bairro        = req.get('bairro', '')
-    resultado     = _load('progressao_resultado.json')
-    vagas_mun     = _load('vagas_municipais.json')
-    vagas_est     = _load('vagas_estaduais.json')
-
-    if not resultado:
+    buf, nome = _excel_do_pedido()
+    if buf is None:
         return jsonify({'success': False, 'error': 'Execute a análise primeiro'}), 400
+    return send_file(buf, as_attachment=True, download_name=nome, mimetype=XLSX)
 
-    buf = gerar_excel_progressao(escola_origem, bairro, resultado, vagas_mun, vagas_est)
-    date_str = datetime.now().strftime('%d-%m-%Y')
-    filename = f"progressao_{escola_origem[:20]}_{date_str}.xlsx".replace(' ','_')
-    buf.seek(0)
-    return send_file(buf, as_attachment=True, download_name=filename,
-                     mimetype='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
-
+@main_bp.route('/api/exportar_excel_progressao', methods=['POST'])
+def exportar_excel_progressao():
+    buf, nome = _excel_do_pedido()
+    if buf is None:
+        return jsonify({'success': False, 'error': 'Execute a análise primeiro'}), 400
+    pasta = (request.get_json(silent=True) or {}).get(
+        'folder_id', current_app.config['DRIVE_FOLDER_PROGRESSAO'])
+    r = upload_to_drive(buf.getvalue(), nome, pasta)
+    if r.get('success'):
+        return jsonify({'success': True, 'fileId': r.get('fileId'), 'filename': nome})
+    buf.seek(0)                                   # Drive indisponível -> baixa o arquivo
+    return send_file(buf, as_attachment=True, download_name=nome, mimetype=XLSX)
 
 @main_bp.route('/api/exportar_excel_vagas', methods=['POST'])
 def exportar_excel_vagas():
-    """Gera e baixa o Excel com resumo de vagas disponíveis."""
-    from app.services.excel_service import gerar_excel_vagas
-    req = request.json or {}
-    escola = req.get('escola_origem', 'Secretaria')
-    vagas_mun = _load('vagas_municipais.json')
-    vagas_est = _load('vagas_estaduais.json')
-
-    if not vagas_mun and not vagas_est:
+    req = request.get_json(silent=True) or {}
+    vagas = req.get('vagas') or {}
+    if not vagas:
         return jsonify({'success': False, 'error': 'Nenhuma vaga carregada'}), 400
+    est = {}
+    for v in req.get('estaduais') or []:
+        est.setdefault(v['escola'], {}).setdefault(v['serie'], {})['QUALQUER'] = int(v.get('vagas') or 0)
+    buf = gerar_excel_vagas(vagas, est, 'Secretaria de Educação')
+    return send_file(buf, as_attachment=True, mimetype=XLSX,
+                     download_name=f"vagas_{datetime.now().strftime('%d-%m-%Y')}.xlsx")
 
-    buf = gerar_excel_vagas(vagas_mun, vagas_est, escola)
-    date_str = datetime.now().strftime('%d-%m-%Y')
-    filename = f"vagas_disponiveis_{date_str}.xlsx"
-    return send_file(buf, as_attachment=True, download_name=filename,
-                     mimetype='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+
+# ── Aba Cartas ──────────────────────────────────────────────────
+@main_bp.route('/api/ultimo_resultado')
+def ultimo_resultado():
+    turmas = _load('progressao_resultado.json')
+    return jsonify({'success': bool(turmas), 'turmas': turmas or []})
+
+@main_bp.route('/api/importar_alunos_html', methods=['POST'])
+def importar_alunos_html():
+    arquivo = request.files.get('file')
+    if not arquivo:
+        return jsonify({'success': False, 'error': 'Nenhum arquivo'}), 400
+    try:
+        dados = parse_alunos_html(arquivo.read().decode('utf-8', errors='ignore'))
+        _save('alunos.json', dados)
+        total = sum(len(a) for s in dados.values() for t in s.values() for a in t.values())
+        return jsonify({'success': True, 'escolas': list(dados), 'total_alunos': total})
+    except Exception as e:
+        return jsonify({'success': False, 'error': str(e)}), 500
+
+@main_bp.route('/api/gerar_cartas', methods=['POST'])
+def gerar_cartas():
+    req = request.get_json(silent=True) or {}
+    turmas = _load('progressao_resultado.json')
+    if not turmas:
+        return jsonify({'success': False, 'error': 'Execute a análise de progressão primeiro'}), 400
+    pasta = req.get('folder_id', current_app.config['DRIVE_FOLDER_CARTAS'])
+    enviados, erros = [], []
+    for nome, buf in gerar_todas_cartas(turmas, req.get('template', {}),
+                                        req.get('escola_origem', '')).items():
+        r = upload_to_drive(buf.getvalue(), nome, pasta)
+        (enviados if r.get('success') else erros).append(
+            {'filename': nome, 'fileId': r.get('fileId'), 'error': r.get('error')})
+    return jsonify({'success': bool(enviados), 'uploaded': enviados, 'errors': erros,
+                    'total': len(enviados) + len(erros)})
