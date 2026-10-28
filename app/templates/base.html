@@ -82,6 +82,7 @@ function toast(msg, ok=true) {
     _tt = setTimeout(() => el.classList.remove('show'), 3000);
 }
 </script>
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
 {% block scripts %}{% endblock %}
 </body>
 </html>
