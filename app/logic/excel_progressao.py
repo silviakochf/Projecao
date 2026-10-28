@@ -1,230 +1,127 @@
-"""
-Gerador do Excel de progressão de alunos.
-"""
+"""Excel da progressão de alunos (a partir do resultado da análise automática)."""
 import io
 from datetime import datetime
-from app.services.excel_service import (make_fill, make_font, make_border,
-    make_align, set_widths, write_header, write_col_headers,
-    write_data_row, write_total_row, write_section_header, COLORS)
 from openpyxl import Workbook
 from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
 from openpyxl.utils import get_column_letter
 
-# Cores
-PRIMARY  = "0A192F"
-WHITE    = "FFFFFF"
-HDR_GRAY = "334155"
-HDR_SEC  = "172A45"
-GREEN_BG = "D1FAE5"; GREEN_FG = "065F46"
-RED_BG   = "FEE2E2"; RED_FG   = "991B1B"
-YELLOW_BG= "FEF9C3"; YELLOW_FG= "854D0E"
-BLUE_BG  = "DBEAFE"; BLUE_FG  = "1E40AF"
-GRAY1    = "F8FAFC"
-
-def _fill(h): return PatternFill("solid", fgColor=h)
-def _font(bold=False, color="1E293B", size=10, italic=False):
-    return Font(name="Arial", bold=bold, color=color, size=size, italic=italic)
-def _border():
-    s = Side(style="thin", color="CBD5E1")
-    return Border(left=s, right=s, top=s, bottom=s)
-def _align(h="left", v="center", wrap=False):
-    return Alignment(horizontal=h, vertical=v, wrap_text=wrap)
-def _set_widths(ws, widths):
-    for col, w in widths.items():
-        ws.column_dimensions[col].width = w
-def _header(ws, row, col_end, text, bg, fg, size=12, h=28):
-    ws.merge_cells(f"B{row}:{col_end}{row}")
-    c = ws[f"B{row}"]
-    c.value = text; c.font = _font(True, fg, size)
-    c.fill = _fill(bg); c.alignment = _align("center")
-    ws.row_dimensions[row].height = h
-def _col_headers(ws, row, cols, bg=HDR_GRAY, fg=WHITE, h=16):
-    for ci, label in enumerate(cols, start=2):
-        c = ws[f"{get_column_letter(ci)}{row}"]
-        c.value = label; c.font = _font(True, fg, 9)
-        c.fill = _fill(bg); c.alignment = _align("center"); c.border = _border()
-    ws.row_dimensions[row].height = h
+AZUL, AZUL2, CINZA = '0A192F', '172A45', '334155'
+VERDE, AMARELO, LARANJA, VERMELHO, ROXO, AZUL_CL = 'D1FAE5', 'FEF9C3', 'FFEDD5', 'FEE2E2', 'EDE9FE', 'DBEAFE'
+COR_PROX = {'mesmo': VERDE, 'proximo': AMARELO, 'distante': LARANJA}
 
 
-def gerar_excel_progressao(escola_origem: str, bairro: str,
-                            turmas_progressao: list,
-                            vagas_municipais_raw: dict,
-                            vagas_estaduais: dict) -> io.BytesIO:
-    """
-    turmas_progressao: resultado de processar_turmas_para_progressao()
-    """
-    now = datetime.now().strftime("%d/%m/%Y %H:%M")
+def _fill(h): return PatternFill('solid', fgColor=h)
+def _font(b=False, c='1E293B', s=9): return Font(name='Arial', bold=b, color=c, size=s)
+def _borda():
+    l = Side(style='thin', color='CBD5E1')
+    return Border(left=l, right=l, top=l, bottom=l)
+
+
+def _titulo(ws, ate, texto, sub):
+    ws.sheet_view.showGridLines = False
+    ws.merge_cells(f'A1:{ate}1'); ws.merge_cells(f'A2:{ate}2')
+    ws['A1'].value, ws['A1'].font, ws['A1'].fill = texto, _font(True, 'FFFFFF', 13), _fill(AZUL)
+    ws['A2'].value, ws['A2'].font, ws['A2'].fill = sub, _font(False, 'FFFFFF', 9), _fill(AZUL2)
+    for c in ('A1', 'A2'):
+        ws[c].alignment = Alignment(horizontal='center', vertical='center')
+    ws.row_dimensions[1].height, ws.row_dimensions[2].height = 30, 18
+
+
+def _tabela(ws, linha, cabecalho, linhas, larguras, cor_linha=None, centro=()):
+    for i, w in enumerate(larguras, 1):
+        ws.column_dimensions[get_column_letter(i)].width = w
+    for i, t in enumerate(cabecalho, 1):
+        c = ws.cell(row=linha, column=i, value=t)
+        c.font, c.fill, c.border = _font(True, 'FFFFFF'), _fill(CINZA), _borda()
+        c.alignment = Alignment(horizontal='center', vertical='center', wrap_text=True)
+    ws.row_dimensions[linha].height = 28
+    for n, valores in enumerate(linhas, linha + 1):
+        cor = cor_linha(valores) if cor_linha else None
+        for i, v in enumerate(valores, 1):
+            c = ws.cell(row=n, column=i, value=v)
+            c.font, c.border = _font(), _borda()
+            if cor:
+                c.fill = _fill(cor)
+            c.alignment = Alignment(horizontal='center' if (i - 1) in centro else 'left', vertical='center')
+        ws.row_dimensions[n].height = 16
+    ws.freeze_panes = ws.cell(row=linha + 1, column=1)
+    ws.auto_filter.ref = f'A{linha}:{get_column_letter(len(cabecalho))}{linha + max(len(linhas), 1)}'
+
+
+def gerar_excel_progressao(resultado: dict) -> io.BytesIO:
+    turmas, destinos, r = resultado['turmas'], resultado.get('destinos', []), resultado['resumo']
+    agora = datetime.now().strftime('%d/%m/%Y %H:%M')
+    sub = (f"Gerado em {agora}  |  {r['turmas']} turmas / {r['alunos']} alunos  |  "
+           f"alocadas: {r['turmas_alocadas']} ({r['estadual']} estadual, {r['municipal']} municipal)  |  "
+           f"sem vaga: {r['sem_vaga']} turmas / {r['alunos_sem_vaga']} alunos")
     wb = Workbook()
 
-    # ═══════════════════════════════════════
-    # ABA 1 — SUGESTÕES DE PROGRESSÃO
-    # ═══════════════════════════════════════
-    ws = wb.active
-    ws.title = "Progressão"
-    ws.sheet_view.showGridLines = False
-    _set_widths(ws, {"A":3,"B":6,"C":22,"D":12,"E":12,"F":10,
-                     "G":30,"H":12,"I":12,"J":8,"K":3})
+    # 1) Progressão — uma linha por turma
+    ws = wb.active; ws.title = 'Progressão'
+    linhas, cores = [], []
+    for n, t in enumerate(turmas, 1):
+        s = t.get('escola_sugerida')
+        linhas.append([n, t['escola_origem'], t['bairro_origem'] or 'não identificado', t['turma'],
+                       t['serie_atual'], t['serie_destino'], t['turno'], t['total_alunos'],
+                       s['escola'] if s else '— SEM VAGA PARA A TURMA INTEIRA —',
+                       s['tipo'] if s else '', s['bairro'] if s else '',
+                       s['proximidade_rotulo'] if s else '', s['vagas_disponiveis'] if s else '',
+                       ('turno diferente do atual' if s and s['turno_diferente'] else '') if s else 'ver aba "Sem vaga"'])
+    _titulo(ws, 'N', 'PROGRESSÃO DE ALUNOS — SUGESTÃO AUTOMÁTICA', sub)
+    def cor(v):
+        if not v[9]: return VERMELHO
+        return COR_PROX.get({'Mesmo bairro': 'mesmo', 'Bairro próximo': 'proximo'}.get(v[11], 'distante'))
+    _tabela(ws, 4, ['#', 'Escola de origem', 'Bairro origem', 'Turma', 'Série atual', 'Série destino', 'Turno',
+                    'Alunos', 'Escola de destino', 'Tipo', 'Bairro destino', 'Proximidade',
+                    'Vagas do destino (antes)', 'Observação'],
+            linhas, [5, 42, 18, 14, 10, 12, 10, 8, 44, 12, 18, 16, 14, 24], cor, centro=(0, 4, 5, 6, 7, 9, 11, 12))
 
-    _header(ws, 2, "J", f"PROGRESSÃO DE ALUNOS — {escola_origem.upper()}", PRIMARY, WHITE, 13, 30)
-    _header(ws, 3, "J", f"Bairro: {bairro}  |  Gerado em {now}", HDR_SEC, WHITE, 9, 16)
-    ws.row_dimensions[4].height = 8
+    # 2) Por escola de destino
+    wd = wb.create_sheet('Por escola de destino')
+    grupos = {}
+    for t in turmas:
+        s = t.get('escola_sugerida')
+        if not s: continue
+        g = grupos.setdefault((s['tipo'] != 'ESTADUAL', s['escola'], t['serie_destino'], s['turno']),
+                              {'bairro': s['bairro'], 'tipo': s['tipo'], 'turmas': 0, 'alunos': 0, 'orig': []})
+        g['turmas'] += 1; g['alunos'] += t['total_alunos']
+        if t['escola_origem'] not in g['orig']: g['orig'].append(t['escola_origem'])
+    linhas = [[g['tipo'], k[1], g['bairro'], k[2], k[3], g['turmas'], g['alunos'], '; '.join(g['orig'])]
+              for k, g in sorted(grupos.items())]
+    _titulo(wd, 'H', 'ALOCAÇÕES POR ESCOLA DE DESTINO', sub)
+    _tabela(wd, 4, ['Tipo', 'Escola de destino', 'Bairro', 'Série', 'Turno', 'Turmas', 'Alunos', 'Vêm de'],
+            linhas, [12, 44, 18, 10, 11, 8, 8, 80], lambda v: ROXO if v[0] == 'ESTADUAL' else AZUL_CL,
+            centro=(0, 3, 4, 5, 6))
 
-    _col_headers(ws, 5, ["#","Turma","Série Atual","Série Destino","Turno",
-                          "Escola Sugerida","Tipo","Bairro Destino","Vagas Disp.","Mesmo Bairro"])
-    ws.freeze_panes = "B6"
+    # 3) Sem vaga
+    wv = wb.create_sheet('Sem vaga')
+    linhas = []
+    for t in turmas:
+        if t.get('escola_sugerida'): continue
+        alt = '; '.join(f"{c['escola']} ({c['vagas_disponiveis']} vagas)" for c in t['sugestoes']) \
+              or 'nenhuma unidade oferece essa série'
+        linhas.append([t['escola_origem'], t['bairro_origem'] or 'não identificado', t['turma'],
+                       t['serie_atual'], t['serie_destino'], t['turno'], t['total_alunos'], alt])
+    _titulo(wv, 'H', 'TURMAS SEM VAGA PARA A TURMA INTEIRA', sub)
+    _tabela(wv, 4, ['Escola de origem', 'Bairro', 'Turma', 'Série atual', 'Série destino', 'Turno',
+                    'Alunos', 'Maiores vagas encontradas (insuficientes p/ a turma inteira)'],
+            linhas, [42, 18, 14, 10, 12, 10, 8, 100], lambda v: VERMELHO, centro=(3, 4, 5, 6))
 
-    for ri, t in enumerate(turmas_progressao):
-        row = ri + 6
-        sug = t.get('escola_sugerida')
-        mesmo_bairro = sug.get('mesmo_bairro', False) if sug else False
-        bg = GREEN_BG if mesmo_bairro else YELLOW_BG
+    # 4) Projeção de vagas
+    wp = wb.create_sheet('Vagas (projeção)')
+    linhas = []
+    for c in sorted(destinos, key=lambda c: (c['tipo'], c['escola'], c['serie'], c['turno'])):
+        linhas.append([c['escola'], c['tipo'], c['bairro'] or 'não identificado', c['serie'], c['turno'],
+                       c['total'] if c['total'] is not None else '—',
+                       c['ocupadas'] if c['ocupadas'] is not None else '—',
+                       c['livres_hoje'] if c['livres_hoje'] is not None else '—',
+                       c['fluxo'], c['disponiveis'], c['alocados'], c['restantes']])
+    _titulo(wp, 'L', 'PROJEÇÃO DE VAGAS PARA O ANO SEGUINTE', sub)
+    _tabela(wp, 4, ['Escola', 'Tipo', 'Bairro', 'Série', 'Turno', 'Capacidade total (ocup.+livres)',
+                    'Ocupadas hoje', 'Livres hoje', 'Sobem da série anterior (mesma escola)',
+                    'Vagas ano seguinte', 'Alocadas pela IA', 'Restantes'],
+            linhas, [44, 12, 18, 10, 11, 16, 11, 10, 18, 12, 12, 11],
+            lambda v: ROXO if v[1] == 'ESTADUAL' else None, centro=(1, 3, 4, 5, 6, 7, 8, 9, 10, 11))
 
-        vals = [
-            ri + 1,
-            t['turma'],
-            t['serie_atual'],
-            t['serie_destino'],
-            t['turno'],
-            sug['escola'] if sug else '⚠️ SEM VAGA',
-            sug['tipo'] if sug else '—',
-            sug['bairro'] if sug else '—',
-            sug['vagas_disponiveis'] if sug else 0,
-            '✅ Sim' if mesmo_bairro else '🔄 Próximo'
-        ]
-
-        for ci, v in enumerate(vals, start=2):
-            cell = ws[f"{get_column_letter(ci)}{row}"]
-            cell.value = v; cell.border = _border()
-            cell.font = _font(size=9, bold=(ci==7 and not sug))
-            cell.fill = _fill(bg if sug else RED_BG)
-            cell.alignment = _align("center" if ci != 7 else "left")
-        ws.row_dimensions[row].height = 16
-
-    # ═══════════════════════════════════════
-    # ABA 2 — LISTA DE ALUNOS POR TURMA
-    # ═══════════════════════════════════════
-    wa = wb.create_sheet("Alunos por Turma")
-    wa.sheet_view.showGridLines = False
-    _set_widths(wa, {"A":3,"B":8,"C":36,"D":8,"E":12,"F":22,"G":14,"H":14,"I":3})
-
-    _header(wa, 2, "H", "ALUNOS PARA PROGRESSÃO", PRIMARY, WHITE, 13, 30)
-    _header(wa, 3, "H", f"{escola_origem}  |  {now}", HDR_SEC, WHITE, 9, 16)
-    wa.row_dimensions[4].height = 8
-
-    row = 5
-    for t in turmas_progressao:
-        sug = t.get('escola_sugerida')
-
-        # Cabeçalho da turma
-        wa.merge_cells(f"B{row}:H{row}")
-        c = wa[f"B{row}"]
-        escola_dest = sug['escola'] if sug else 'SEM VAGA DISPONÍVEL'
-        c.value = f"📋 {t['turma']} | {t['serie_atual']} → {t['serie_destino']} | {t['turno']} | {t['total_alunos']} alunos → {escola_dest}"
-        c.font = _font(True, WHITE if sug else RED_FG, 9)
-        c.fill = _fill(HDR_GRAY if sug else RED_BG)
-        c.alignment = _align("left")
-        wa.row_dimensions[row].height = 18
-        row += 1
-
-        # Cabeçalho colunas
-        _col_headers(wa, row, ["#","Nome","Sexo","Nascimento","Escola Destino","Série Destino","Turno"])
-        row += 1
-
-        # Alunos
-        for ai, aluno in enumerate(t.get('alunos', [])):
-            bg = GRAY1 if ai % 2 == 0 else WHITE
-            for ci, v in enumerate([ai+1, aluno['nome'], aluno['sexo'],
-                                      aluno['nascimento'], escola_dest,
-                                      t['serie_destino'], t['turno']], start=2):
-                cell = wa[f"{get_column_letter(ci)}{row}"]
-                cell.value = v; cell.border = _border()
-                cell.font = _font(size=9)
-                cell.fill = _fill(bg)
-                cell.alignment = _align("center" if ci != 3 else "left")
-            wa.row_dimensions[row].height = 15
-            row += 1
-        row += 1  # Espaço entre turmas
-
-    # ═══════════════════════════════════════
-    # ABA 3 — VAGAS DISPONÍVEIS
-    # ═══════════════════════════════════════
-    wv = wb.create_sheet("Vagas Disponíveis")
-    wv.sheet_view.showGridLines = False
-    _set_widths(wv, {"A":3,"B":36,"C":18,"D":10,"E":10,"F":10,"G":10,"H":3})
-
-    _header(wv, 2, "G", "VAGAS DISPONÍVEIS POR ESCOLA E SÉRIE", PRIMARY, WHITE, 13, 30)
-    _header(wv, 3, "G", f"Municipal e Estadual  |  {now}", HDR_SEC, WHITE, 9, 16)
-    wv.row_dimensions[4].height = 8
-
-    row = 5
-
-    # Municipais
-    wv.merge_cells(f"B{row}:G{row}")
-    wv[f"B{row}"].value = "🏫 ESCOLAS MUNICIPAIS"
-    wv[f"B{row}"].font = _font(True, WHITE, 10)
-    wv[f"B{row}"].fill = _fill(PRIMARY)
-    wv[f"B{row}"].alignment = _align("center")
-    wv.row_dimensions[row].height = 18
-    row += 1
-
-    _col_headers(wv, row, ["Escola","Série","Turno","Existentes","Ocupadas","Disponíveis"])
-    row += 1
-
-    for escola, series in sorted(vagas_municipais_raw.items()):
-        first = True
-        for serie, turmas in series.items():
-            by_turno = {}
-            for t in turmas:
-                tr = t['turno']
-                by_turno.setdefault(tr, {'exist':0,'ocup':0,'disp':0})
-                by_turno[tr]['exist'] += t['vagas_existentes']
-                by_turno[tr]['ocup']  += t['vagas_ocupadas']
-                by_turno[tr]['disp']  += t['vagas_disponiveis']
-
-            for turno, v in by_turno.items():
-                bg = GREEN_BG if v['disp'] > 0 else RED_BG
-                vals = [escola if first else '', serie, turno,
-                        v['exist'], v['ocup'], v['disp']]
-                for ci, val in enumerate(vals, start=2):
-                    cell = wv[f"{get_column_letter(ci)}{row}"]
-                    cell.value = val; cell.border = _border()
-                    cell.font = _font(size=9, bold=(ci==2 and first))
-                    cell.fill = _fill(bg if ci >= 6 else GRAY1)
-                    cell.alignment = _align("center" if ci > 2 else "left")
-                wv.row_dimensions[row].height = 15
-                row += 1
-                first = False
-
-    # Estaduais
-    row += 1
-    wv.merge_cells(f"B{row}:G{row}")
-    wv[f"B{row}"].value = "🏛️ ESCOLAS ESTADUAIS (inseridas manualmente)"
-    wv[f"B{row}"].font = _font(True, WHITE, 10)
-    wv[f"B{row}"].fill = _fill("5B21B6")
-    wv[f"B{row}"].alignment = _align("center")
-    wv.row_dimensions[row].height = 18
-    row += 1
-
-    _col_headers(wv, row, ["Escola","Série","Turno","—","—","Disponíveis"], bg="5B21B6")
-    row += 1
-
-    for escola, series in sorted(vagas_estaduais.items()):
-        first = True
-        for serie, turnos in series.items():
-            for turno, vagas in turnos.items():
-                bg = GREEN_BG if vagas > 0 else RED_BG
-                vals = [escola if first else '', serie, turno, '—', '—', vagas]
-                for ci, val in enumerate(vals, start=2):
-                    cell = wv[f"{get_column_letter(ci)}{row}"]
-                    cell.value = val; cell.border = _border()
-                    cell.font = _font(size=9, bold=(ci==2 and first))
-                    cell.fill = _fill(bg if ci == 7 else GRAY1)
-                    cell.alignment = _align("center" if ci > 2 else "left")
-                wv.row_dimensions[row].height = 15
-                row += 1
-                first = False
-
-    buf = io.BytesIO()
-    wb.save(buf)
-    buf.seek(0)
+    buf = io.BytesIO(); wb.save(buf); buf.seek(0)
     return buf
