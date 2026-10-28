@@ -5,9 +5,8 @@ document.addEventListener('DOMContentLoaded',()=>{
 
 async function previsaoCartas(){
     try{
-        const d=await postJSON('/api/analisar_progressao',{escola_origem:'',bairro:'',
-            series_progressao:['GT 5','GT 4','GT 3','GT 2','GT 1','5º ANO','8º ANO','9º ANO']});
-        if(!d.success||!d.turmas?.length){toast('Execute a análise na aba Progressão primeiro',false);return;}
+        const d=await(await fetch('/api/ultimo_resultado')).json();
+        if(!d.success||!d.turmas.length){toast('Execute a análise na aba Progressão primeiro',false);return;}
         const porEscola={};
         for(const t of d.turmas){
             const sug=t.escola_sugerida;if(!sug)continue;
@@ -16,10 +15,9 @@ async function previsaoCartas(){
             porEscola[key].alunos+=t.total_alunos;porEscola[key].turmas++;
         }
         const lista=Object.values(porEscola);
-        const card=document.getElementById('previa-card');
+        document.getElementById('previa-card').style.display='';
         const prev=document.getElementById('previa-lista');
-        card.style.display='';
-        if(!lista.length){prev.innerHTML='<p style="color:#991b1b">Nenhuma sugestão disponível.</p>';return;}
+        if(!lista.length){prev.innerHTML='<p style="color:#991b1b">Nenhuma turma foi alocada na análise.</p>';return;}
         prev.innerHTML=`<div class="table-wrap" style="max-height:300px"><table>
             <thead><tr><th>Escola Destino</th><th>Série</th><th>Turno</th><th style="text-align:center">Turmas</th><th style="text-align:center">Alunos</th></tr></thead>
             <tbody>${lista.map(l=>`<tr><td style="font-weight:500">${l.escola}</td><td>${l.serie}</td><td>${l.turno}</td><td style="text-align:center">${l.turmas}</td><td style="text-align:center;font-weight:700">${l.alunos}</td></tr>`).join('')}</tbody>
