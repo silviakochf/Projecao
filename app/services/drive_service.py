@@ -8,13 +8,15 @@ APPS_SCRIPT_URL = os.environ.get(
     'https://script.google.com/macros/s/AKfycbxFn4UnPPKmZrQMkLur7x1ESRmztUd9QcogIrF3J-UtBaJyYm6DEcL57bseq90qi_1w/exec'
 )
 
-def upload_to_drive(data: bytes, filename: str, folder_id: str) -> dict:
+def upload_to_drive(data: bytes, filename: str, folder_id: str, mime: str = None) -> dict:
     try:
         payload = {
             'fileName': filename,
             'folderId': folder_id,
             'fileData': base64.b64encode(data).decode('utf-8')
         }
+        if mime:
+            payload['mimeType'] = mime
         resp = requests.post(APPS_SCRIPT_URL, json=payload, timeout=60, allow_redirects=True)
         text = resp.text.strip()
         if not text:
