@@ -131,12 +131,12 @@ def processar(vagas_mun: dict, vagas_est: list, inativas=()) -> dict:
     cap = montar_capacidades(vagas_mun, vagas_est, inativas)
     usadas = {}
     itens = detectar_turmas(vagas_mun, inativas)
-    itens.sort(key=lambda t: (-t['total_alunos'], t['escola_origem'], t['turma']))
 
-    for t in itens:
+    def candidatos(t):
+        """Escolas da série de destino, da melhor para a pior, com as vagas que AINDA restam."""
         vizinhos = get_bairros_proximos(t['bairro_origem'])
         dist = distancias_bairro(t['bairro_origem'])
-        candidatos = []
+        lista = []
         for c in cap:
             if c['serie'] != t['serie_destino'] or c['escola'] == t['escola_origem']:
                 continue
@@ -145,7 +145,7 @@ def processar(vagas_mun: dict, vagas_est: list, inativas=()) -> dict:
                 continue
             prox, rank = _proximidade(t['bairro_origem'], c['bairro'], vizinhos, dist)
             turno_ok = c['turno'] in (t['turno'], 'QUALQUER')
-            candidatos.append({
+            lista.append({
                 'escola': c['escola'], 'tipo': c['tipo'], 'bairro': c['bairro'] or 'não identificado',
                 'turno': c['turno'], 'vagas_disponiveis': restante, 'proximidade': prox,
                 'proximidade_rotulo': ROTULO_PROX[prox], 'turno_diferente': not turno_ok,
@@ -153,20 +153,32 @@ def processar(vagas_mun: dict, vagas_est: list, inativas=()) -> dict:
                 '_chave': (c['escola'], c['serie'], c['turno']),
                 '_ordem': (TIPOS_TIER[(c['tipo'], prox)], rank, not turno_ok, -restante),
             })
-        candidatos.sort(key=lambda x: x['_ordem'])
-        cabem = [c for c in candidatos if c['vagas_disponiveis'] >= t['total_alunos']]
+        lista.sort(key=lambda x: x['_ordem'])
+        return lista
 
+    # Ordem de atendimento: quem tem a MELHOR opção disponível (ex.: estadual no próprio bairro)
+    # é atendido primeiro; em empate, a turma maior primeiro (cabe menos opções).
+    def melhor_opcao(t):
+        cabem = [c['_ordem'][0] for c in candidatos(t) if c['vagas_disponiveis'] >= t['total_alunos']]
+        return min(cabem) if cabem else 99
+    for t in itens:
+        t['_prioridade'] = melhor_opcao(t)
+    itens.sort(key=lambda t: (t['_prioridade'], -t['total_alunos'], t['escola_origem'], t['turma']))
+
+    limpar = lambda c: {k: v for k, v in c.items() if not k.startswith('_')}
+    for t in itens:
+        lista = candidatos(t)
+        cabem = [c for c in lista if c['vagas_disponiveis'] >= t['total_alunos']]
         escolhida = cabem[0] if cabem else None
         if escolhida:
             usadas[escolhida['_chave']] = usadas.get(escolhida['_chave'], 0) + t['total_alunos']
             outras = cabem[1:4]
         else:
-            outras = sorted(candidatos, key=lambda x: -x['vagas_disponiveis'])[:3]
-
-        limpar = lambda c: {k: v for k, v in c.items() if not k.startswith('_')}
+            outras = sorted(lista, key=lambda x: -x['vagas_disponiveis'])[:3]
         t['escola_sugerida'] = limpar(escolhida) if escolhida else None
         t['sugestoes'] = [limpar(c) for c in outras]
         t['status'] = 'ok' if escolhida else 'sem_vaga'
+        del t['_prioridade']
 
     itens.sort(key=lambda t: (t['escola_origem'], t['serie_atual'], t['turma']))
 
