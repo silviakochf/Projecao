@@ -1,37 +1,18 @@
-import os
-import json
 from datetime import datetime
 from flask import Blueprint, render_template, request, jsonify, send_file, current_app
 
 from app.logic.parser_vagas_pdf import parse_vagas_pdf, get_resumo_vagas
-from app.logic.parser_alunos_html import parse_alunos_html
+from app.logic.parser_alunos_html import parse_estudantes_html
 from app.logic.progressao_engine import processar
 from app.logic.excel_progressao import gerar_excel_progressao
-from app.logic.carta_encaminhamento import gerar_todas_cartas
+from app.logic import carta_encaminhamento as cartas_lib
 from app.logic.bairros import get_bairro_escola, listar_estaduais
 from app.services.drive_service import upload_to_drive
 from app.services.excel_service import gerar_excel_vagas
 
 main_bp = Blueprint('main', __name__)
 XLSX = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
-
-
-# ── armazenamento mínimo (só para a aba Cartas) ─────────────────
-def _path(nome):
-    pasta = current_app.config['UPLOAD_FOLDER']
-    os.makedirs(pasta, exist_ok=True)
-    return os.path.join(pasta, nome)
-
-def _load(nome):
-    p = _path(nome)
-    if os.path.exists(p):
-        with open(p, encoding='utf-8') as f:
-            return json.load(f)
-    return {}
-
-def _save(nome, dados):
-    with open(_path(nome), 'w', encoding='utf-8') as f:
-        json.dump(dados, f, ensure_ascii=False)
+DOCX = 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
 
 
 @main_bp.context_processor
@@ -53,7 +34,7 @@ def cartas():
     return render_template('cartas.html')
 
 
-# ── Passo 1: PDF de vagas (nada é salvo no servidor) ────────────
+# ══ PROGRESSÃO (nada é salvo no servidor) ═══════════════════════
 @main_bp.route('/api/importar_vagas_pdf', methods=['POST'])
 def importar_vagas_pdf():
     arquivo = request.files.get('file')
@@ -71,12 +52,8 @@ def importar_vagas_pdf():
     resumo = get_resumo_vagas(dados)
     ceis = [e for e, series in dados.items() if all(s.startswith('GT') for s in series)]
     return jsonify({
-        'success': True,
-        'vagas': dados,
-        'resumo': resumo,
-        'unidades': len(dados),
-        'ceis': len(ceis),
-        'escolas': len(dados) - len(ceis),
+        'success': True, 'vagas': dados, 'resumo': resumo,
+        'unidades': len(dados), 'ceis': len(ceis), 'escolas': len(dados) - len(ceis),
         'total_existentes': sum(r['vagas_existentes'] for r in resumo),
         'total_ocupadas': sum(r['vagas_ocupadas'] for r in resumo),
         'total_disponiveis': sum(r['vagas_disponiveis'] for r in resumo),
@@ -85,38 +62,28 @@ def importar_vagas_pdf():
         'nao_lidas': len(report.get('nao_lidas', [])),
     })
 
-
-# ── Passo 2: lista de escolas estaduais (dropdown) ──────────────
 @main_bp.route('/api/escolas_estaduais')
 def escolas_estaduais():
     return jsonify(listar_estaduais())
 
-
-# ── Passo 3: análise automática ─────────────────────────────────
 @main_bp.route('/api/analisar_progressao', methods=['POST'])
 def analisar_progressao():
     req = request.get_json(silent=True) or {}
     vagas = req.get('vagas') or {}
     if not vagas:
         return jsonify({'success': False, 'error': 'Importe o PDF de vagas primeiro'}), 400
-
     resultado = processar(vagas, req.get('estaduais') or [], req.get('inativas') or [])
     if not resultado['turmas']:
         return jsonify({'success': False,
                         'error': 'Nenhuma turma de série final encontrada neste PDF'}), 400
-
-    _save('progressao_resultado.json', resultado['turmas'])   # a aba Cartas lê daqui
     return jsonify({'success': True, **resultado})
 
-
-# ── Exportação (recebe o resultado do navegador) ────────────────
 def _excel_do_pedido():
     req = request.get_json(silent=True) or {}
     resultado = req.get('resultado') or {}
     if not resultado.get('turmas'):
         return None, None
-    nome = f"progressao_{datetime.now().strftime('%d-%m-%Y_%H%M')}.xlsx"
-    return gerar_excel_progressao(resultado), nome
+    return gerar_excel_progressao(resultado), f"progressao_{datetime.now().strftime('%d-%m-%Y_%H%M')}.xlsx"
 
 @main_bp.route('/api/baixar_excel_progressao', methods=['POST'])
 def baixar_excel_progressao():
@@ -130,9 +97,8 @@ def exportar_excel_progressao():
     buf, nome = _excel_do_pedido()
     if buf is None:
         return jsonify({'success': False, 'error': 'Execute a análise primeiro'}), 400
-    pasta = (request.get_json(silent=True) or {}).get(
-        'folder_id', current_app.config['DRIVE_FOLDER_PROGRESSAO'])
-    r = upload_to_drive(buf.getvalue(), nome, pasta)
+    pasta = (request.get_json(silent=True) or {}).get('folder_id', current_app.config['DRIVE_FOLDER_PROGRESSAO'])
+    r = upload_to_drive(buf.getvalue(), nome, pasta, XLSX)
     if r.get('success'):
         return jsonify({'success': True, 'fileId': r.get('fileId'), 'filename': nome})
     buf.seek(0)                                   # Drive indisponível -> baixa o arquivo
@@ -152,37 +118,67 @@ def exportar_excel_vagas():
                      download_name=f"vagas_{datetime.now().strftime('%d-%m-%Y')}.xlsx")
 
 
-# ── Aba Cartas ──────────────────────────────────────────────────
-@main_bp.route('/api/ultimo_resultado')
-def ultimo_resultado():
-    turmas = _load('progressao_resultado.json')
-    return jsonify({'success': bool(turmas), 'turmas': turmas or []})
+# ══ CARTAS: uma carta por criança (nada é salvo no servidor) ════
+@main_bp.route('/api/cartas/config')
+def cartas_config():
+    return jsonify({'texto_padrao': cartas_lib.TEXTO_PADRAO, 'campos': cartas_lib.CAMPOS})
 
-@main_bp.route('/api/importar_alunos_html', methods=['POST'])
-def importar_alunos_html():
-    arquivo = request.files.get('file')
-    if not arquivo:
-        return jsonify({'success': False, 'error': 'Nenhum arquivo'}), 400
+@main_bp.route('/api/cartas/preparar', methods=['POST'])
+def cartas_preparar():
+    html, excel = request.files.get('html'), request.files.get('excel')
+    if not html or not excel:
+        return jsonify({'success': False, 'error': 'Envie o HTML dos estudantes e o Excel da progressão'}), 400
     try:
-        dados = parse_alunos_html(arquivo.read().decode('utf-8', errors='ignore'))
-        _save('alunos.json', dados)
-        total = sum(len(a) for s in dados.values() for t in s.values() for a in t.values())
-        return jsonify({'success': True, 'escolas': list(dados), 'total_alunos': total})
+        estudantes = cartas_lib_parse(html)
     except Exception as e:
-        return jsonify({'success': False, 'error': str(e)}), 500
+        return jsonify({'success': False, 'error': f'Não consegui ler o HTML dos estudantes: {e}'}), 400
+    if not estudantes:
+        return jsonify({'success': False,
+                        'error': 'Nenhum estudante encontrado no HTML. É o "Relatório de Estudantes Matriculados"?'}), 400
+    try:
+        linhas = cartas_lib.ler_excel_progressao(excel.read())
+    except Exception as e:
+        return jsonify({'success': False, 'error': str(e)}), 400
+    if not linhas:
+        return jsonify({'success': False, 'error': 'O Excel não tem nenhuma turma na aba Progressão'}), 400
+    return jsonify({'success': True, **cartas_lib.montar_cartas(estudantes, linhas)})
 
-@main_bp.route('/api/gerar_cartas', methods=['POST'])
-def gerar_cartas():
+def cartas_lib_parse(arquivo):
+    return parse_estudantes_html(arquivo.read().decode('utf-8', errors='ignore'))
+
+@main_bp.route('/api/cartas/previa', methods=['POST'])
+def cartas_previa():
     req = request.get_json(silent=True) or {}
-    turmas = _load('progressao_resultado.json')
-    if not turmas:
-        return jsonify({'success': False, 'error': 'Execute a análise de progressão primeiro'}), 400
+    carta, cfg = req.get('carta'), req.get('cfg') or {}
+    if not carta:
+        return jsonify({'success': False}), 400
+    return jsonify({'success': True, 'carta': cartas_lib.carta_renderizada(carta, cfg),
+                    'desconhecidos': cartas_lib.campos_desconhecidos(cfg.get('texto', ''))})
+
+def _arquivos_do_pedido():
+    req = request.get_json(silent=True) or {}
+    lista = req.get('cartas') or []
+    if not lista:
+        return None, req
+    return cartas_lib.gerar_arquivos(lista, req.get('cfg') or {}), req
+
+@main_bp.route('/api/cartas/gerar', methods=['POST'])
+def cartas_gerar():
+    arquivos, _ = _arquivos_do_pedido()
+    if not arquivos:
+        return jsonify({'success': False, 'error': 'Monte as cartas primeiro'}), 400
+    return send_file(cartas_lib.gerar_zip(arquivos), as_attachment=True, mimetype='application/zip',
+                     download_name=f"cartas_encaminhamento_{datetime.now().strftime('%d-%m-%Y')}.zip")
+
+@main_bp.route('/api/cartas/drive', methods=['POST'])
+def cartas_drive():
+    arquivos, req = _arquivos_do_pedido()
+    if not arquivos:
+        return jsonify({'success': False, 'error': 'Monte as cartas primeiro'}), 400
     pasta = req.get('folder_id', current_app.config['DRIVE_FOLDER_CARTAS'])
     enviados, erros = [], []
-    for nome, buf in gerar_todas_cartas(turmas, req.get('template', {}),
-                                        req.get('escola_origem', '')).items():
-        r = upload_to_drive(buf.getvalue(), nome, pasta)
+    for nome, dados in arquivos.items():
+        r = upload_to_drive(dados, nome, pasta, DOCX)
         (enviados if r.get('success') else erros).append(
             {'filename': nome, 'fileId': r.get('fileId'), 'error': r.get('error')})
-    return jsonify({'success': bool(enviados), 'uploaded': enviados, 'errors': erros,
-                    'total': len(enviados) + len(erros)})
+    return jsonify({'success': bool(enviados), 'uploaded': enviados, 'errors': erros})
