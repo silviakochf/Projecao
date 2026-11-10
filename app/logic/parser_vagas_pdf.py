@@ -14,10 +14,15 @@ DATETIME_RE  = re.compile(r'^\d{2}/\d{2}/\d{4}\s*-\s*\d{2}:\d{2}:\d{2}$')
 
 TURMA_RE = re.compile(
     r'(?:^|\s)'
-    r'(?P<turma>(?:\d+\s*[ºo°]\s*ANO(?:\s*-\s*\d+)?|GT\s*\d+(?:\s*[A-Z])?))'
+    r'(?P<turma>(?:\d+\s*[ºo°]\s*ANO(?:\s*-?\s*\d+)?|GT\s*\d+(?:\s*[A-Z])?))'
     r'\s+(?P<exist>\d+)\s+'
     r'(?P<turno>MANHÃ|MANHA|TARDE|INTEGRAL|NOITE|MATUTINO|VESPERTINO)\b'
     r'(?P<resto>.*)$',
+    re.IGNORECASE
+)
+# Conferência independente: qualquer linha que "parece" turma (série + palavra de turno)
+PARECE_TURMA_RE = re.compile(
+    r'(?:^|\s)(?:\d+\s*[ºo°]\s*ANO|GT\s*\d+)\b.*\b(?:MANHÃ|MANHA|TARDE|INTEGRAL|NOITE|MATUTINO|VESPERTINO)\b',
     re.IGNORECASE
 )
 TURNOS = {'MANHA': 'MANHÃ', 'MATUTINO': 'MANHÃ', 'VESPERTINO': 'TARDE'}
@@ -90,8 +95,7 @@ def parse_vagas_pdf(src, report: dict = None) -> dict:
             i += 1
             m = TURMA_RE.search(l)
             if not m:
-                if re.search(r'(\d\s*[ºo°]\s*ANO\s*-\s*\d|GT\s*\d\s*[A-Z]?\s+\d+\s+\w+)', l, re.I) \
-                        and not l.upper().startswith('ANO/SÉRIE'):
+                if PARECE_TURMA_RE.search(l) and not l.upper().startswith('ANO/SÉRIE'):
                     report['nao_lidas'].append(f'{escola}: {l[:90]}')
                 continue
 
