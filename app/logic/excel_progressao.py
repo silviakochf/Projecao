@@ -61,20 +61,21 @@ def gerar_excel_progressao(resultado: dict) -> io.BytesIO:
     linhas, cores = [], []
     for n, t in enumerate(turmas, 1):
         s = t.get('escola_sugerida')
+        td = ('a definir' if s['turno'] == 'QUALQUER' else s['turno']) if s else ''
         linhas.append([n, t['escola_origem'], t['bairro_origem'] or 'não identificado', t['turma'],
                        t['serie_atual'], t['serie_destino'], t['turno'], t['total_alunos'],
                        s['escola'] if s else '— SEM VAGA PARA A TURMA INTEIRA —',
-                       s['tipo'] if s else '', s['bairro'] if s else '',
+                       s['tipo'] if s else '', s['bairro'] if s else '', td,
                        s['proximidade_rotulo'] if s else '', s['vagas_disponiveis'] if s else '',
                        ('turno diferente do atual' if s and s['turno_diferente'] else '') if s else 'ver aba "Sem vaga"'])
-    _titulo(ws, 'N', 'PROGRESSÃO DE ALUNOS — SUGESTÃO AUTOMÁTICA', sub)
+    _titulo(ws, 'O', 'PROGRESSÃO DE ALUNOS — SUGESTÃO AUTOMÁTICA', sub)
     def cor(v):
         if not v[9]: return VERMELHO
-        return COR_PROX.get({'Mesmo bairro': 'mesmo', 'Bairro próximo': 'proximo'}.get(v[11], 'distante'))
+        return COR_PROX.get({'Mesmo bairro': 'mesmo', 'Bairro próximo': 'proximo'}.get(v[12], 'distante'))
     _tabela(ws, 4, ['#', 'Escola de origem', 'Bairro origem', 'Turma', 'Série atual', 'Série destino', 'Turno',
-                    'Alunos', 'Escola de destino', 'Tipo', 'Bairro destino', 'Proximidade',
+                    'Alunos', 'Escola de destino', 'Tipo', 'Bairro destino', 'Turno no destino', 'Proximidade',
                     'Vagas do destino (antes)', 'Observação'],
-            linhas, [5, 42, 18, 14, 10, 12, 10, 8, 44, 12, 18, 16, 14, 24], cor, centro=(0, 4, 5, 6, 7, 9, 11, 12))
+            linhas, [5, 42, 18, 14, 10, 12, 10, 8, 44, 12, 18, 14, 16, 14, 24], cor, centro=(0, 4, 5, 6, 7, 9, 11, 12, 13))
 
     # 2) Por escola de destino
     wd = wb.create_sheet('Por escola de destino')
