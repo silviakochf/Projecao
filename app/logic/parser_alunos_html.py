@@ -1,52 +1,59 @@
-"""Parser HTML alunos EducarWEB."""
+"""
+Leitor do "RELATÓRIO DE ESTUDANTES MATRICULADOS" (EducarWEB, HTML).
+
+A turma de cada aluno vem do cabeçalho "Turma: 5º ANO - 1 (UNIDADE ...", que às vezes
+vem truncado (sem o ")"), e o cabeçalho se repete a cada página. Por isso a turma é
+lida pela posição: vale o último cabeçalho antes de cada registro de aluno.
+Cada registro = 9 campos: código, nome, sexo, nascimento, unidade, série, turno,
+situação, data da situação.
+"""
 import re
 from lxml import html as lhtml
 
-def parse_alunos_html(html_content):
-    tree = lhtml.fromstring(html_content)
-    spans = [s.text_content().replace("\xa0"," ").strip()
-             for s in tree.xpath("//span") if s.text_content().strip()]
-    result = {}
-    turma_atual = ""
-    i = 0
-    while i < len(spans):
-        t = spans[i]
-        if t.startswith("Turma:"):
-            m = re.match(r"Turma:\s*(.+?)\s*\((.+?)\)", t)
-            if m:
-                turma_atual = m.group(1).strip()
-            i += 1; continue
-        if re.match(r"^\d{5,7}$", t):
-            try:
-                codigo=t; nome=spans[i+1]; sexo=spans[i+2]; nasc=spans[i+3]
-                unidade=spans[i+4]; serie=spans[i+5]; turno=spans[i+6]; sit=spans[i+7]
-                if sit in ("ATIVO","MATRICULADO"):
-                    escola = unidade.split("-")[0].strip()
-                    serie  = re.sub(r"[oO°](?=\s)","º",serie.strip())
-                    turno  = turno.upper()
-                    # Usa série como nome da turma se turma_atual estiver vazio
-                    turma_nome = turma_atual if turma_atual else serie
-                    result.setdefault(escola,{}).setdefault(serie,{}).setdefault(turno,[]).append(
-                        {"codigo":codigo,"nome":nome,"sexo":sexo,"nascimento":nasc,
-                         "turma":turma_nome,"situacao":sit})
-                i += 8; continue
-            except IndexError:
-                pass
-        i += 1
-    return result
+SUFIXOS_UNIDADE = r'\s*-\s*(?:FUNDAMENTAL|INFANTIL|ENSINO\s+\w+|EDUCAÇÃO\s+\w+|\d{6,9})\b.*$'
 
-def get_turmas_para_progressao(data, series_progressao):
-    turmas = []
-    for escola, series in data.items():
-        for serie, turnos in series.items():
-            serie_norm = serie.upper()
-            if not any(p.upper() in serie_norm or serie_norm in p.upper() for p in series_progressao):
-                continue
-            for turno, alunos in turnos.items():
-                por_turma = {}
-                for a in alunos:
-                    por_turma.setdefault(a.get("turma", serie), []).append(a)
-                for turma_nome, lista in por_turma.items():
-                    turmas.append({"escola":escola,"serie":serie,"turma":turma_nome,
-                                   "turno":turno,"alunos":lista,"total":len(lista)})
-    return turmas
+
+def limpar_unidade(texto: str) -> str:
+    """'CAIC - PROFº ... - FUNDAMENTAL - 42129370' -> 'CAIC - PROFº ...'."""
+    nome = re.sub(r'\s+', ' ', texto.strip())
+    anterior = None
+    while anterior != nome:
+        anterior = nome
+        nome = re.sub(SUFIXOS_UNIDADE, '', nome, flags=re.IGNORECASE).strip()
+    return nome
+
+
+def chave_turma(rotulo: str) -> str:
+    """'1º ANO - 1' e '1º ANO 1' viram a mesma chave: '1º ANO 1'."""
+    t = re.sub(r'\s+', ' ', rotulo.upper().replace('°', 'º').replace('–', '-')).strip()
+    t = re.sub(r'\s*-\s*', ' ', t)
+    return re.sub(r'(\d)\s*O\s+ANO', r'\1º ANO', t)
+
+
+def parse_estudantes_html(conteudo: str) -> list:
+    """Lista de estudantes: {codigo, nome, sexo, nascimento, unidade, turma, serie, turno, situacao}."""
+    arvore = lhtml.fromstring(conteudo)
+    spans = [s.text_content().replace('\xa0', ' ').strip()
+             for s in arvore.xpath('//span') if s.text_content().strip()]
+
+    turma_por_posicao = {}
+    for i, t in enumerate(spans):
+        if t.startswith('Turma:'):
+            turma_por_posicao[i] = re.match(r'Turma:\s*(.*?)\s*(?:\(|$)', t).group(1).strip()
+    posicoes = sorted(turma_por_posicao)
+
+    estudantes = []
+    for k, t in enumerate(spans):
+        if not re.match(r'^\d{5,7}$', t):
+            continue
+        reg = spans[k:k + 9]
+        if len(reg) < 9 or not re.match(r'^[MF]$', reg[2]) or not re.match(r'^\d{2}/\d{2}/\d{4}$', reg[3]):
+            continue                                   # não é registro de aluno
+        anteriores = [p for p in posicoes if p < k]
+        turma = turma_por_posicao[anteriores[-1]] if anteriores else ''
+        estudantes.append({
+            'codigo': reg[0], 'nome': reg[1], 'sexo': reg[2], 'nascimento': reg[3],
+            'unidade': limpar_unidade(reg[4]), 'turma': turma, 'serie': reg[5].strip(),
+            'turno': reg[6].strip().upper(), 'situacao': reg[7].strip().upper(),
+        })
+    return estudantes
