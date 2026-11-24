@@ -37,10 +37,8 @@ print('\n2) Arquivos de código (todos precisam ser da mesma versão)')
 esperado = {
     'app.logic.parser_vagas_pdf':     ['parse_vagas_pdf', 'get_resumo_vagas'],
     'app.logic.parser_alunos_html':   ['parse_estudantes_html'],
-    'app.logic.progressao_engine':    ['processar'],
+    'app.logic.progressao_engine':    ['processar', 'EM1'],
     'app.logic.excel_progressao':     ['gerar_excel_progressao'],
-    'app.logic.projecao_engine':      ['calcular_projecao', 'inventario_salas', 'capacidade_sala'],
-    'app.logic.excel_projecao':       ['gerar_excel_projecao'],
     'app.logic.carta_encaminhamento': ['TEXTO_PADRAO', 'ler_excel_progressao', 'montar_cartas', 'gerar_arquivos',
                                        'gerar_zip', 'carta_renderizada', 'campos_desconhecidos'],
     'app.logic.bairros':              ['get_bairro_escola', 'listar_estaduais', 'distancias_bairro'],
@@ -71,11 +69,9 @@ print('\n3) Páginas, scripts e estilos')
 marcadores = {   # arquivo: (precisa conter, NÃO pode conter)
     'app/templates/base.html':       ('css/main.css', 'let _tt'),
     'app/templates/progressao.html': ('removerPDF', None),
-    'app/templates/projecao.html':   ('calcularProjecao', None),
     'app/templates/cartas.html':     ('id="texto"', None),
     'app/static/js/main.js':         ('postForm', None),
-    'app/static/js/progressao.js':   ('executarAnalise', None),
-    'app/static/js/projecao.js':     ('calcularProjecao', None),
+    'app/static/js/progressao.js':   ('ENSINO MÉDIO', None),
     'app/static/js/cartas.js':       ('montarCartas', None),
     'app/static/css/main.css':       ('step-header', None),
 }
@@ -96,7 +92,7 @@ print('\n4) O aplicativo inicia?')
 try:
     from run import app
     rotas = {r.rule for r in app.url_map.iter_rules()}
-    falta = [r for r in ('/progressao', '/projecao', '/cartas', '/api/cartas/preparar', '/api/calcular_projecao') if r not in rotas]
+    falta = [r for r in ('/progressao', '/cartas', '/api/cartas/preparar') if r not in rotas]
     if falta:
         print(f'   {ERRO} rotas ausentes: {falta}'); problemas.append('routes.py está desatualizado: copie de novo do zip.')
     else:
