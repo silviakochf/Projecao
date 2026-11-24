@@ -1,5 +1,5 @@
 /* progressao.js — tudo fica na memória da página (nada é salvo no servidor). */
-const SERIES = ['GT 0','GT 1','GT 2','GT 3','GT 4','GT 5','1º ANO','2º ANO','3º ANO','4º ANO','5º ANO','6º ANO','7º ANO','8º ANO','9º ANO'];
+const SERIES = ['GT 0','GT 1','GT 2','GT 3','GT 4','GT 5','1º ANO','2º ANO','3º ANO','4º ANO','5º ANO','6º ANO','7º ANO','8º ANO','9º ANO','1º ANO DO ENSINO MÉDIO'];
 let vagasMun = null, inativas = [], resumoVagas = [], estaduais = [], resultado = null, filtro = 'todos';
 
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -175,9 +175,10 @@ function linhaTurma(t) {
             ${s.turno_diferente ? '<span class="badge badge-gray">turno diferente</span>' : ''}`;
     } else {
         const melhor = t.sugestoes[0];
-        destino = `<i class="fas fa-exclamation-triangle"></i> <strong>Nenhuma escola tem vagas para a turma inteira (${t.total_alunos})</strong>` +
+        const em = t.serie_destino.includes('ENSINO MÉDIO');
+        destino = `<i class="fas fa-exclamation-triangle"></i> <strong>${em ? 'Nenhuma escola estadual tem vaga de 1º ano do ensino médio para a turma inteira' : 'Nenhuma escola tem vagas para a turma inteira'} (${t.total_alunos})</strong>` +
             (melhor ? `<span style="font-size:.75rem;color:#64748b"> · maior vaga: ${esc(melhor.escola)} (${melhor.vagas_disponiveis})</span>`
-                    : '<span style="font-size:.75rem;color:#64748b"> · nenhuma unidade oferece essa série</span>');
+                    : `<span style="font-size:.75rem;color:#64748b"> · ${em ? 'informe as vagas estaduais de "1º ANO DO ENSINO MÉDIO" no passo 2' : 'nenhuma unidade oferece essa série'}</span>`);
     }
     const outras = s && t.sugestoes.length
         ? `<div style="font-size:.74rem;color:#94a3b8;margin-top:.25rem">Alternativas: ${t.sugestoes.map(o => esc(o.escola) + ' (' + o.vagas_disponiveis + 'v)').join(' · ')}</div>` : '';
