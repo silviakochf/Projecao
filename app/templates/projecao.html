@@ -1,0 +1,112 @@
+{% extends "base.html" %}
+{% block title %}Projeção de salas{% endblock %}
+{% block content %}
+<h2 style="font-size:1.3rem;font-weight:700;margin-bottom:.4rem">📐 Projeção de Salas</h2>
+<p style="font-size:.85rem;color:#64748b;margin-bottom:1.5rem">Mostra quantos alunos cabem em cada sala e sugere que série cada sala deve atender no ano seguinte para acompanhar a demanda da progressão. Só números do PDF — nenhum dado de aluno, e nada fica salvo no servidor.</p>
+
+<!-- PASSO 1 -->
+<div class="step-header">
+    <div class="step-num" id="num1">1</div>
+    <div><div class="step-title">Importar relatório de vagas</div>
+         <div class="step-subtitle">PDF "Lista de Vagas por Série e Turma" do EducarWEB (traz a metragem de cada sala)</div></div>
+</div>
+<div class="step-block" id="block1">
+    <div class="card">
+        <div id="pdf-upload">
+            <div class="dropzone" onclick="document.getElementById('pdf-input').click()">
+                <i class="fas fa-cloud-upload-alt" style="font-size:1.5rem;color:#94a3b8"></i>
+                <p style="margin:.35rem 0 0;font-size:.875rem;font-weight:500">Clique ou arraste o PDF de vagas</p>
+                <input type="file" id="pdf-input" accept=".pdf" onchange="importarPDF(this)"/>
+            </div>
+        </div>
+        <div id="pdf-status" style="font-size:.85rem;margin-top:.75rem"></div>
+        <div id="pdf-resumo" style="display:none;margin-top:1rem">
+            <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.5rem;margin-bottom:.75rem">
+                <span id="pdf-titulo" style="font-weight:600;color:#065f46"></span>
+                <button class="btn btn-red btn-sm" onclick="removerPDF()"><i class="fas fa-trash"></i> Remover PDF</button>
+            </div>
+            <div id="pdf-avisos"></div>
+        </div>
+    </div>
+</div>
+
+<!-- PASSO 2 -->
+<div class="step-header" style="margin-top:1.5rem">
+    <div class="step-num pending" id="num2">2</div>
+    <div><div class="step-title">Quantos cabem em cada sala</div>
+         <div class="step-subtitle">Metragem − 2,5 ÷ 1,3, limitada ao teto da série. Amarelo = o relatório tem um número diferente do calculado</div></div>
+</div>
+<div class="step-block pending" id="block2">
+    <div class="card">
+        <div style="background:#eff6ff;border:1px solid #93c5fd;border-radius:8px;padding:.7rem 1rem;margin-bottom:1rem;font-size:.8rem;color:#1e40af;line-height:1.6">
+            <strong>Tetos por turma:</strong> GT 0 = 15 · GT 1 a GT 3 = 20 · GT 4 e GT 5 = 25 · 1º ao 5º ano = 30 · 6º ao 9º ano = 35.
+            <strong>Excedentes:</strong> até 5 por sala, reservados (ordem judicial etc.) — não entram em nenhum cálculo.
+        </div>
+        <div class="stats-grid" id="sala-stats"></div>
+        <div style="display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:.75rem">
+            <select class="form-select" id="f-escola" style="max-width:340px" onchange="renderSalas()"><option value="">Todas as unidades</option></select>
+            <select class="form-select" id="f-serie" style="max-width:160px" onchange="renderSalas()"><option value="">Todas as séries</option></select>
+            <label style="display:flex;align-items:center;gap:.4rem;font-size:.82rem"><input type="checkbox" id="f-dif" onchange="renderSalas()"> só salas com número diferente do calculado</label>
+        </div>
+        <div class="table-wrap" style="max-height:420px"><table>
+            <thead><tr><th>Unidade</th><th>Sala</th><th>Turno</th><th>Série hoje</th><th style="text-align:right">m²</th>
+                <th style="text-align:right">Vagas no relatório</th><th style="text-align:right">Cabem (área)</th>
+                <th style="text-align:right">GT 0</th><th style="text-align:right">GT 1-3</th><th style="text-align:right">GT 4-5</th>
+                <th style="text-align:right">1º-5º</th><th style="text-align:right">6º-9º</th></tr></thead>
+            <tbody id="salas-body"></tbody></table></div>
+        <div id="salas-info" style="font-size:.78rem;color:#94a3b8;margin-top:.4rem"></div>
+    </div>
+</div>
+
+<!-- PASSO 3 -->
+<div class="step-header" style="margin-top:1.5rem">
+    <div class="step-num pending" id="num3">3</div>
+    <div><div class="step-title">Vagas das escolas estaduais</div>
+         <div class="step-subtitle">Opcional — quanto mais vagas do estado, menos salas precisam mudar de série</div></div>
+</div>
+<div class="step-block pending" id="block3">
+    <div class="card">
+        <div style="display:grid;grid-template-columns:2.4fr 1fr 110px auto;gap:.5rem;align-items:end">
+            <div class="form-group" style="margin:0"><label class="form-label">Escola estadual</label>
+                <select class="form-select" id="est-escola"><option value="">Selecione…</option></select></div>
+            <div class="form-group" style="margin:0"><label class="form-label">Série</label>
+                <select class="form-select" id="est-serie"></select></div>
+            <div class="form-group" style="margin:0"><label class="form-label">Vagas</label>
+                <input class="form-input" id="est-qtd" type="number" min="1" placeholder="Qtd" onkeydown="if(event.key==='Enter')adicionarEstadual()"/></div>
+            <button class="btn btn-primary" onclick="adicionarEstadual()" title="Adicionar"><i class="fas fa-plus"></i></button>
+        </div>
+        <div id="est-lista" style="margin-top:1rem"></div>
+    </div>
+</div>
+
+<!-- PASSO 4 -->
+<div class="step-header" style="margin-top:1.5rem">
+    <div class="step-num pending" id="num4">4</div>
+    <div><div class="step-title">Projetar as salas do ano seguinte</div>
+         <div class="step-subtitle">Acha as turmas sem vaga na progressão e procura salas inteiras ociosas que possam virar a série de que elas precisam</div></div>
+</div>
+<div class="step-block pending" id="block4">
+    <div class="card">
+        <div style="display:flex;flex-direction:column;gap:.4rem;margin-bottom:1rem;font-size:.85rem">
+            <label style="display:flex;align-items:center;gap:.5rem"><input type="checkbox" id="p-abrir" checked> Permitir que uma escola passe a oferecer uma série nova (ex.: escola que vai até o 8º ano abrir o 9º, para a turma continuar nela)</label>
+            <label style="display:flex;align-items:center;gap:.5rem"><input type="checkbox" id="p-etapas"> Permitir trocar entre Educação Infantil (GT) e Fundamental — só em unidades que já oferecem as duas</label>
+        </div>
+        <button class="btn btn-green" id="btn-calc" onclick="calcularProjecao()"><i class="fas fa-ruler-combined"></i> Calcular projeção</button>
+        <div id="calc-status" style="margin-top:.75rem;font-size:.85rem"></div>
+    </div>
+
+    <div class="card" id="resultado-card" style="display:none">
+        <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.5rem;margin-bottom:1rem">
+            <div class="card-title" style="margin-bottom:0"><i class="fas fa-check-circle" style="color:#10b981"></i> Resultado da projeção</div>
+            <button class="btn btn-outline" onclick="baixarExcel()"><i class="fas fa-download"></i> Baixar Excel</button>
+        </div>
+        <div id="desatualizado" style="display:none;background:#fef9c3;border:1px solid #fde047;border-radius:8px;padding:.6rem 1rem;margin-bottom:1rem;font-size:.83rem;color:#854d0e">
+            <i class="fas fa-exclamation-triangle"></i> Algo mudou depois do cálculo. Clique em <strong>Calcular projeção</strong> de novo antes de exportar.
+        </div>
+        <div class="stats-grid" id="res-stats"></div>
+        <div id="res-avisos"></div>
+        <div id="res-corpo"></div>
+    </div>
+</div>
+{% endblock %}
+{% block scripts %}<script src="{{ url_for('static', filename='js/projecao.js') }}"></script>{% endblock %}

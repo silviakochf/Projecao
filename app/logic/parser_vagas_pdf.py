@@ -54,6 +54,17 @@ def _inteiros(texto: str) -> list:
     return [int(x) for x in re.findall(r'(?<![\d.])\d+(?![\d.])', texto)]
 
 
+def _sala_e_area(resto: str):
+    """Do trecho depois do turno (ex.: ' SALA 11 - TÉRREO 48.00 30 0 0 2') tira o nome da sala
+    e a metragem em m². Sem decimal (turma zerada) a metragem é 0.0."""
+    decimais = list(re.finditer(r'(?<![\d.])\d+\.\d+(?![\d.])', resto))
+    if not decimais:
+        return '', 0.0
+    d = decimais[-1]
+    sala = re.sub(r'\s+', ' ', resto[:d.start()]).strip(' -')
+    return sala, float(d.group())
+
+
 def _linhas_do_pdf(src):
     from pypdf import PdfReader
     if isinstance(src, (bytes, bytearray)):
@@ -66,8 +77,8 @@ def _linhas_do_pdf(src):
 def parse_vagas_pdf(src, report: dict = None) -> dict:
     """
     src: caminho do arquivo, bytes ou file-like.
-    Retorna {escola: {serie: [ {turma, turno, vagas_existentes,
-                                vagas_ocupadas, vagas_disponiveis} ]}}
+    Retorna {escola: {serie: [ {turma, turno, vagas_existentes, vagas_ocupadas,
+                                vagas_disponiveis, sala, area_m2, vagas_excedentes} ]}}
     report (opcional): dict preenchido com 'nao_lidas' e 'divergentes'.
     """
     if report is None:
@@ -115,6 +126,7 @@ def parse_vagas_pdf(src, report: dict = None) -> dict:
             if ocup - exced + disp != exist:
                 report['divergentes'].append(f'{escola}: {l[:90]}')
 
+            sala, area = _sala_e_area(m.group('resto'))
             serie = normalizar_serie(m.group('turma'))
             turno = m.group('turno').upper()
             turno = TURNOS.get(turno, turno)
@@ -124,6 +136,8 @@ def parse_vagas_pdf(src, report: dict = None) -> dict:
                 'vagas_existentes':  exist,
                 'vagas_ocupadas':    ocup,
                 'vagas_disponiveis': disp,
+                # usados pela Projeção de salas (a Progressão ignora)
+                'sala': sala, 'area_m2': area, 'vagas_excedentes': exced,
             })
 
     # remove escolas sem nenhuma turma lida

@@ -5,6 +5,8 @@ from app.logic.parser_vagas_pdf import parse_vagas_pdf, get_resumo_vagas
 from app.logic.parser_alunos_html import parse_estudantes_html
 from app.logic.progressao_engine import processar
 from app.logic.excel_progressao import gerar_excel_progressao
+from app.logic.projecao_engine import calcular_projecao, inventario_salas
+from app.logic.excel_projecao import gerar_excel_projecao
 from app.logic import carta_encaminhamento as cartas_lib
 from app.logic.bairros import get_bairro_escola, listar_estaduais
 from app.services.drive_service import upload_to_drive
@@ -24,6 +26,10 @@ def inject_now():
 @main_bp.route('/')
 def index():
     return render_template('index.html')
+
+@main_bp.route('/projecao')
+def projecao():
+    return render_template('projecao.html')
 
 @main_bp.route('/progressao')
 def progressao():
@@ -72,7 +78,8 @@ def analisar_progressao():
     vagas = req.get('vagas') or {}
     if not vagas:
         return jsonify({'success': False, 'error': 'Importe o PDF de vagas primeiro'}), 400
-    resultado = processar(vagas, req.get('estaduais') or [], req.get('inativas') or [])
+    resultado = processar(vagas, req.get('estaduais') or [], req.get('inativas') or [],
+                          _conversoes_validas(req.get('conversoes')))
     if not resultado['turmas']:
         return jsonify({'success': False,
                         'error': 'Nenhuma turma de série final encontrada neste PDF'}), 400
@@ -116,6 +123,52 @@ def exportar_excel_vagas():
     buf = gerar_excel_vagas(vagas, est, 'Secretaria de Educação')
     return send_file(buf, as_attachment=True, mimetype=XLSX,
                      download_name=f"vagas_{datetime.now().strftime('%d-%m-%Y')}.xlsx")
+
+
+
+# ══ PROJEÇÃO DE SALAS (nada é salvo no servidor) ════════════════
+CAMPOS_CONVERSAO = ('escola', 'serie', 'turma', 'turno', 'serie_nova', 'vagas_novas')
+
+def _conversoes_validas(lista):
+    """Aceita só conversões bem formadas (vêm da página; evita erro 500 por dado quebrado)."""
+    ok = []
+    for c in (lista or []):
+        if isinstance(c, dict) and all(k in c for k in CAMPOS_CONVERSAO):
+            try:
+                ok.append({**c, 'vagas_novas': int(c['vagas_novas'])})
+            except (TypeError, ValueError):
+                pass
+    return ok or None
+
+@main_bp.route('/api/capacidade_salas', methods=['POST'])
+def capacidade_salas():
+    req = request.get_json(silent=True) or {}
+    vagas = req.get('vagas') or {}
+    if not vagas:
+        return jsonify({'success': False, 'error': 'Importe o PDF de vagas primeiro'}), 400
+    return jsonify({'success': True, 'salas': inventario_salas(vagas, req.get('inativas') or [])})
+
+@main_bp.route('/api/calcular_projecao', methods=['POST'])
+def calcular_projecao_api():
+    req = request.get_json(silent=True) or {}
+    vagas = req.get('vagas') or {}
+    if not vagas:
+        return jsonify({'success': False, 'error': 'Importe o PDF de vagas primeiro'}), 400
+    p = req.get('params') or {}
+    params = {'abrir_series': bool(p.get('abrir_series', True)), 'entre_etapas': bool(p.get('entre_etapas', False))}
+    try:
+        resultado = calcular_projecao(vagas, req.get('estaduais') or [], req.get('inativas') or [], params)
+    except Exception as e:
+        return jsonify({'success': False, 'error': f'Não consegui calcular a projeção: {e}'}), 500
+    return jsonify({'success': True, **resultado})
+
+@main_bp.route('/api/baixar_excel_projecao', methods=['POST'])
+def baixar_excel_projecao():
+    resultado = (request.get_json(silent=True) or {}).get('resultado') or {}
+    if not resultado.get('resumo'):
+        return jsonify({'success': False, 'error': 'Calcule a projeção primeiro'}), 400
+    return send_file(gerar_excel_projecao(resultado), as_attachment=True, mimetype=XLSX,
+                     download_name=f"projecao_salas_{datetime.now().strftime('%d-%m-%Y_%H%M')}.xlsx")
 
 
 # ══ CARTAS: uma carta por criança (nada é salvo no servidor) ════
