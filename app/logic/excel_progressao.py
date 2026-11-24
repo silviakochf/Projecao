@@ -75,7 +75,7 @@ def gerar_excel_progressao(resultado: dict) -> io.BytesIO:
     _tabela(ws, 4, ['#', 'Escola de origem', 'Bairro origem', 'Turma', 'Série atual', 'Série destino', 'Turno',
                     'Alunos', 'Escola de destino', 'Tipo', 'Bairro destino', 'Turno no destino', 'Proximidade',
                     'Vagas do destino (antes)', 'Observação'],
-            linhas, [5, 42, 18, 14, 10, 12, 10, 8, 44, 12, 18, 14, 16, 14, 24], cor, centro=(0, 4, 5, 6, 7, 9, 11, 12, 13))
+            linhas, [5, 42, 18, 14, 10, 26, 10, 8, 44, 12, 18, 14, 16, 14, 24], cor, centro=(0, 4, 5, 6, 7, 9, 11, 12, 13))
 
     # 2) Por escola de destino
     wd = wb.create_sheet('Por escola de destino')
@@ -91,7 +91,7 @@ def gerar_excel_progressao(resultado: dict) -> io.BytesIO:
               for k, g in sorted(grupos.items())]
     _titulo(wd, 'H', 'ALOCAÇÕES POR ESCOLA DE DESTINO', sub)
     _tabela(wd, 4, ['Tipo', 'Escola de destino', 'Bairro', 'Série', 'Turno', 'Turmas', 'Alunos', 'Vêm de'],
-            linhas, [12, 44, 18, 10, 11, 8, 8, 80], lambda v: ROXO if v[0] == 'ESTADUAL' else AZUL_CL,
+            linhas, [12, 44, 18, 26, 11, 8, 8, 80], lambda v: ROXO if v[0] == 'ESTADUAL' else AZUL_CL,
             centro=(0, 3, 4, 5, 6))
 
     # 3) Sem vaga
@@ -106,7 +106,7 @@ def gerar_excel_progressao(resultado: dict) -> io.BytesIO:
     _titulo(wv, 'H', 'TURMAS SEM VAGA PARA A TURMA INTEIRA', sub)
     _tabela(wv, 4, ['Escola de origem', 'Bairro', 'Turma', 'Série atual', 'Série destino', 'Turno',
                     'Alunos', 'Maiores vagas encontradas (insuficientes p/ a turma inteira)'],
-            linhas, [42, 18, 14, 10, 12, 10, 8, 100], lambda v: VERMELHO, centro=(3, 4, 5, 6))
+            linhas, [42, 18, 14, 10, 26, 10, 8, 100], lambda v: VERMELHO, centro=(3, 4, 5, 6))
 
     # 4) Projeção de vagas
     wp = wb.create_sheet('Vagas (projeção)')
@@ -121,7 +121,7 @@ def gerar_excel_progressao(resultado: dict) -> io.BytesIO:
     _tabela(wp, 4, ['Escola', 'Tipo', 'Bairro', 'Série', 'Turno', 'Capacidade total (ocup.+livres)',
                     'Ocupadas hoje', 'Livres hoje', 'Sobem da série anterior (mesma escola)',
                     'Vagas ano seguinte', 'Alocadas pela IA', 'Restantes'],
-            linhas, [44, 12, 18, 10, 11, 16, 11, 10, 18, 12, 12, 11],
+            linhas, [44, 12, 18, 26, 11, 16, 11, 10, 18, 12, 12, 11],
             lambda v: ROXO if v[1] == 'ESTADUAL' else None, centro=(1, 3, 4, 5, 6, 7, 8, 9, 10, 11))
 
     buf = io.BytesIO(); wb.save(buf); buf.seek(0)
