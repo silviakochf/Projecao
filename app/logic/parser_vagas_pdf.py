@@ -93,8 +93,6 @@ def parse_vagas_pdf(src, report: dict = None) -> dict:
         for i, l in enumerate(linhas):
             if DATETIME_RE.match(l) and i + 1 < len(linhas):
                 escola = limpar_nome_escola(linhas[i + 1])
-                if re.search(r'\bINATIV[OA]\b', linhas[i + 1], re.IGNORECASE):
-                    report['inativas'].add(escola)
                 break
         if not escola:
             continue
