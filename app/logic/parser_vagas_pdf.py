@@ -59,6 +59,17 @@ def _inteiros(texto: str) -> list:
     return [int(x) for x in re.findall(r'(?<![\d.])\d+(?![\d.])', texto)]
 
 
+def _sala_e_area(resto: str):
+    """Do trecho depois do turno (ex.: ' SALA 11 - TÉRREO 48.00 30 0 0 2') tira o nome da sala
+    e a metragem em m². Sem decimal (turma zerada) a metragem é 0.0."""
+    decimais = list(re.finditer(r'(?<![\d.])\d+\.\d+(?![\d.])', resto))
+    if not decimais:
+        return '', 0.0
+    d = decimais[-1]
+    sala = re.sub(r'\s+', ' ', resto[:d.start()]).strip(' -')
+    return sala, float(d.group())
+
+
 def _linhas_do_pdf(src):
     from pypdf import PdfReader
     if isinstance(src, (bytes, bytearray)):
@@ -87,8 +98,6 @@ def parse_vagas_pdf(src, report: dict = None) -> dict:
         for i, l in enumerate(linhas):
             if DATETIME_RE.match(l) and i + 1 < len(linhas):
                 escola = limpar_nome_escola(linhas[i + 1])
-                if re.search(r'\bINATIV[OA]\b', linhas[i + 1], re.IGNORECASE):
-                    report['inativas'].add(escola)
                 break
         if not escola:
             continue
@@ -120,6 +129,7 @@ def parse_vagas_pdf(src, report: dict = None) -> dict:
             if ocup - exced + disp != exist:
                 report['divergentes'].append(f'{escola}: {l[:90]}')
 
+            sala, area = _sala_e_area(m.group('resto'))
             serie = normalizar_serie(m.group('turma'))
             turno = m.group('turno').upper()
             turno = TURNOS.get(turno, turno)
@@ -129,6 +139,8 @@ def parse_vagas_pdf(src, report: dict = None) -> dict:
                 'vagas_existentes':  exist,
                 'vagas_ocupadas':    ocup,
                 'vagas_disponiveis': disp,
+                # usados pela Projeção de salas (a Progressão ignora)
+                'sala': sala, 'area_m2': area, 'vagas_excedentes': exced,
             })
 
     # remove escolas sem nenhuma turma lida
