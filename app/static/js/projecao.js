@@ -79,7 +79,6 @@ function renderSalas() {
     const fe = $('f-escola').value, fs = $('f-serie').value, fd = $('f-dif').checked;
     const lista = salas.filter(s => (!fe || s.escola === fe) && (!fs || s.serie === fs) && (!fd || (s.area_m2 > 0 && s.diferenca !== 0)));
     const MAX = 400, mostra = lista.slice(0, MAX);
-    const f = n => s => s.area_m2 > 0 ? s.cap_faixa[n] : '—';
     $('salas-body').innerHTML = mostra.map(s => {
         const dif = s.area_m2 > 0 && s.diferenca !== 0;
         const num = v => `<td style="text-align:right">${v}</td>`;
@@ -87,8 +86,7 @@ function renderSalas() {
             <td>${esc(s.escola)}</td><td>${esc(s.sala || '—')}</td><td>${esc(s.turno)}</td><td>${esc(s.serie)}</td>
             ${num(s.area_m2 > 0 ? s.area_m2.toFixed(2) : '—')}
             ${num(`<strong>${s.vagas_relatorio}</strong>${dif ? ` <span title="calculado: ${s.cap_teorica}" style="color:#b45309">(${s.diferenca > 0 ? '+' : ''}${s.diferenca})</span>` : ''}`)}
-            ${num(s.area_m2 > 0 ? s.cap_area : '—')}
-            ${['GT 0','GT 1 a GT 3','GT 4 e GT 5','1º ao 5º ano','6º ao 9º ano'].map(n => num(f(n)(s))).join('')}</tr>`;
+            ${num(s.area_m2 > 0 ? s.cap_area : '—')}</tr>`;
     }).join('');
     $('salas-info').textContent = `${mostra.length} de ${lista.length} linhas` + (lista.length > MAX ? ` — use os filtros para ver as demais (o Excel traz todas)` : '') +
         '. O número entre parênteses é a diferença entre o relatório e o calculado.';
