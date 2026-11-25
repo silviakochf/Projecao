@@ -27,7 +27,7 @@ import math
 
 from .bairros import get_bairro_escola, get_bairros_proximos, distancias_bairro
 from .parser_vagas_pdf import normalizar_serie
-from .progressao_engine import processar, chave_turma, SEQUENCIA
+from .progressao_engine import processar, SEQUENCIA
 
 TETO_SERIE = {'GT 0': 15, 'GT 1': 20, 'GT 2': 20, 'GT 3': 20, 'GT 4': 25, 'GT 5': 25,
               **{f'{i}º ANO': 30 for i in range(1, 6)}, **{f'{i}º ANO': 35 for i in range(6, 10)}}
