@@ -1,5 +1,6 @@
 /* projecao.js — tudo fica na memória da página (nada é salvo no servidor). */
 const SERIES = ['GT 0','GT 1','GT 2','GT 3','GT 4','GT 5','1º ANO','2º ANO','3º ANO','4º ANO','5º ANO','6º ANO','7º ANO','8º ANO','9º ANO'];
+const SERIE_EM = '1º ANO DO ENSINO MÉDIO';   // só existe em escola estadual
 let vagasMun = null, inativas = [], salas = [], estaduais = [], resultado = null;
 
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -9,7 +10,7 @@ const aviso = (t, cor = '#fef9c3', borda = '#fde047', txt = '#854d0e') =>
     `<div style="background:${cor};border:1px solid ${borda};border-radius:8px;padding:.6rem 1rem;margin:.5rem 0;font-size:.82rem;color:${txt}">${t}</div>`;
 
 document.addEventListener('DOMContentLoaded', async () => {
-    $('est-serie').innerHTML = SERIES.map(s => `<option value="${s}" ${s==='6º ANO'?'selected':''}>${s}</option>`).join('');
+    $('est-serie').innerHTML = [...SERIES, SERIE_EM].map(s => `<option value="${s}" ${s==='6º ANO'?'selected':''}>${s}</option>`).join('');
     try {
         const lista = await (await fetch('/api/escolas_estaduais')).json();
         $('est-escola').innerHTML = '<option value="">Selecione…</option>' +
