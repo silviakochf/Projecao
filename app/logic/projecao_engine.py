@@ -27,7 +27,7 @@ import math
 
 from .bairros import get_bairro_escola, get_bairros_proximos, distancias_bairro
 from .parser_vagas_pdf import normalizar_serie
-from .progressao_engine import processar, SEQUENCIA
+from .progressao_engine import processar, chave_turma, SEQUENCIA, SO_ESTADUAIS
 
 TETO_SERIE = {'GT 0': 15, 'GT 1': 20, 'GT 2': 20, 'GT 3': 20, 'GT 4': 25, 'GT 5': 25,
               **{f'{i}º ANO': 30 for i in range(1, 6)}, **{f'{i}º ANO': 35 for i in range(6, 10)}}
@@ -183,7 +183,9 @@ def calcular_projecao(vagas_mun: dict, vagas_est=None, inativas=(), params=None)
     conv, convertidas = {}, set()
     res = base
     for _ in range(MAX_RODADAS):
-        pendentes = sorted(_sem_vaga(res), key=lambda t: (-t['total_alunos'], t['escola_origem'], t['turma']))
+        # séries que só existem em escola estadual (9º ano → ensino médio) não se resolvem com sala municipal
+        pendentes = sorted((t for t in _sem_vaga(res) if t['serie_destino'] not in SO_ESTADUAIS),
+                           key=lambda t: (-t['total_alunos'], t['escola_origem'], t['turma']))
         if not pendentes:
             break
         folga = {(d['escola'], d['serie'], d['turno']): d['restantes'] for d in res['destinos'] if d['tipo'] == 'MUNICIPAL'}
@@ -274,6 +276,10 @@ def _montar_saida(vagas_mun, inativas, params, base, final, conv, bairros):
         avisos.append(f'{sem_area} turma(s) com vagas mas sem metragem no PDF: essas salas não entram na projeção.')
     if any(not b for b in bairros.values()):
         avisos.append('Há unidade(s) sem bairro cadastrado: a proximidade delas é tratada como "distante".')
+    so_estado = sum(t['total_alunos'] for t in final['turmas'] if t['status'] == 'sem_vaga' and t['serie_destino'] in SO_ESTADUAIS)
+    if so_estado:
+        avisos.append(f'{so_estado} alunos do 9º ano seguem sem vaga no 1º ano do ensino médio: essa série só existe em escola '
+                      f'estadual, então salas municipais não resolvem. Cadastre as vagas do estado (passo 3) para ver o saldo.')
     if perderam:
         avisos.append(f'{len(perderam)} turma(s) que tinham vaga sem a projeção ficaram sem vaga com ela: a mesma vaga passou a '
                       f'atender mais alunos de outras turmas (veja a lista "Perderam a vaga"). Revise antes de decidir.')
