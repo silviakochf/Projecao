@@ -64,10 +64,30 @@
 </div>
 <div class="step-block pending" id="block3">
     <div class="card">
-        <div style="display:flex;flex-direction:column;gap:.55rem;margin-bottom:1rem;font-size:.85rem">
-            <label style="display:flex;align-items:flex-start;gap:.5rem"><input type="checkbox" id="p-proteger" style="margin-top:.25rem"> <span><strong>Não tirar salas da série de entrada</strong> de cada unidade (ex.: o 1º ano numa escola de 1º ao 5º). Essa série não recebe alunos de dentro da unidade; as vagas dela são as que a Progressão usa para alunos vindos de outras unidades.</span></label>
-            <label style="display:flex;align-items:flex-start;gap:.5rem"><input type="checkbox" id="p-abrir" style="margin-top:.25rem"> <span>Permitir que a unidade passe a oferecer uma série que hoje não tem, para a turma final continuar nela (ex.: escola até o 8º ano abrir o 9º). Só abre se couber a turma inteira.</span></label>
-            <label style="display:flex;align-items:flex-start;gap:.5rem"><input type="checkbox" id="p-etapas" style="margin-top:.25rem"> <span>Permitir trocar entre Educação Infantil (GT) e Fundamental — só em unidades que já oferecem as duas.</span></label>
+        <div style="display:flex;flex-direction:column;gap:.9rem;margin-bottom:1.2rem;font-size:.85rem">
+            <label style="display:flex;align-items:flex-start;gap:.6rem">
+                <input type="checkbox" id="p-proteger" style="margin-top:.2rem">
+                <span><strong>Não mexer nas salas do 1º ano da unidade</strong>
+                    <span style="display:block;font-size:.8rem;color:#64748b;line-height:1.55;margin-top:.2rem">
+                        A série de entrada é a primeira que a unidade oferece (o 1º ano numa escola de 1º ao 5º ano). Ela só recebe alunos que vêm de outras unidades, como os do GT 5.<br>
+                        <strong>Desmarcado:</strong> a projeção pode usar essas salas para dar lugar a alunos de outras séries da própria escola, mas o 1º ano fica com menos vagas para quem vem de fora.<br>
+                        <strong>Marcado:</strong> essas vagas ficam como estão, e a projeção resolve menos casos dentro de cada unidade.
+                    </span></span>
+            </label>
+            <label style="display:flex;align-items:flex-start;gap:.6rem">
+                <input type="checkbox" id="p-abrir" style="margin-top:.2rem">
+                <span><strong>Permitir que a unidade passe a oferecer uma série nova</strong>
+                    <span style="display:block;font-size:.8rem;color:#64748b;line-height:1.55;margin-top:.2rem">
+                        Exemplo: uma escola que vai até o 8º ano abre o 9º ano para a turma do 8º continuar nela, em vez de mudar de escola. Só abre se couber a turma inteira.
+                    </span></span>
+            </label>
+            <label style="display:flex;align-items:flex-start;gap:.6rem">
+                <input type="checkbox" id="p-etapas" style="margin-top:.2rem">
+                <span><strong>Permitir trocar sala entre Educação Infantil (GT) e Fundamental</strong>
+                    <span style="display:block;font-size:.8rem;color:#64748b;line-height:1.55;margin-top:.2rem">
+                        Vale só para unidades que já oferecem as duas etapas.
+                    </span></span>
+            </label>
         </div>
         <button class="btn btn-green" id="btn-calc" onclick="calcularProjecao()"><i class="fas fa-ruler-combined"></i> Calcular projeção</button>
         <div id="calc-status" style="margin-top:.75rem;font-size:.85rem"></div>
