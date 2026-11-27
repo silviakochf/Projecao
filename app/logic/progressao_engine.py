@@ -64,9 +64,6 @@ def montar_capacidades(vagas_mun: dict, vagas_est: list, inativas=(), conversoes
       ocupadas / livres_hoje = situação de HOJE no PDF (informativo)
       fluxo       = alunos da série anterior que sobem para cá, na própria escola
       disponiveis = vagas do ANO SEGUINTE  = total − fluxo   (é o que a IA usa)
-      abre_nova   = True quando a escola NÃO oferece essa série hoje e passa a oferecer por conversão
-                    de sala; nesse caso os alunos da série anterior da própria escola não "sobem
-                    sozinhos": eles entram na alocação como qualquer outra turma (fluxo = 0).
     conversoes: lista de {escola, serie, turma, turno, serie_nova, vagas_novas} (vem da Projeção).
     Sem conversões o resultado é idêntico ao da versão anterior.
     """
@@ -93,14 +90,13 @@ def montar_capacidades(vagas_mun: dict, vagas_est: list, inativas=(), conversoes
                 p[t['turno']] = p.get(t['turno'], 0) + vagas
         for serie, turnos in proj.items():
             anterior = _serie_anterior(serie)
-            nova = serie not in agg
             for turno, total in turnos.items():
                 hoje = agg.get(serie, {}).get(turno, {'o': 0, 'd': 0})
-                fluxo = 0 if (nova or not anterior) else agg.get(anterior, {}).get(turno, {}).get('o', 0)
+                fluxo = 0 if not anterior else agg.get(anterior, {}).get(turno, {}).get('o', 0)
                 cap.append({'escola': escola, 'tipo': 'MUNICIPAL', 'bairro': bairro,
                             'serie': serie, 'turno': turno,
                             'total': total, 'ocupadas': hoje['o'], 'livres_hoje': hoje['d'],
-                            'fluxo': fluxo, 'disponiveis': max(0, total - fluxo), 'abre_nova': nova})
+                            'fluxo': fluxo, 'disponiveis': max(0, total - fluxo)})
 
     somados = {}
     for v in (vagas_est or []):
@@ -113,11 +109,11 @@ def montar_capacidades(vagas_mun: dict, vagas_est: list, inativas=(), conversoes
         cap.append({'escola': escola, 'tipo': 'ESTADUAL', 'bairro': get_bairro_escola(escola),
                     'serie': serie, 'turno': 'QUALQUER',
                     'total': None, 'ocupadas': None, 'livres_hoje': None,
-                    'fluxo': 0, 'disponiveis': n, 'abre_nova': False})
+                    'fluxo': 0, 'disponiveis': n})
     return cap
 
 
-def detectar_turmas(vagas_mun: dict, inativas=()) -> list:
+def detectar_turmas(vagas_mun: dict, inativas=(), abertas=()) -> list:
     """Turmas da série final de cada unidade -> precisam de vaga na série seguinte."""
     inativas = set(inativas or [])
     itens = []
@@ -129,7 +125,7 @@ def detectar_turmas(vagas_mun: dict, inativas=()) -> list:
             por_serie.setdefault(normalizar_serie(serie), []).extend(turmas)
         for serie, turmas in por_serie.items():
             destino = proxima_serie(serie)
-            if not destino or destino in por_serie:
+            if not destino or destino in por_serie or (escola, destino) in abertas:
                 continue                      # não é a série final da unidade
             for t in turmas:
                 if t['vagas_ocupadas'] > 0:
@@ -153,7 +149,8 @@ def _proximidade(bairro_origem, bairro_destino, vizinhos, dist):
 def processar(vagas_mun: dict, vagas_est: list, inativas=(), conversoes=None) -> dict:
     cap = montar_capacidades(vagas_mun, vagas_est, inativas, conversoes)
     usadas = {}
-    itens = detectar_turmas(vagas_mun, inativas)
+    abertas = {(c['escola'], normalizar_serie(c['serie_nova'])) for c in (conversoes or []) if c.get('abre_serie')}
+    itens = detectar_turmas(vagas_mun, inativas, abertas)
 
     def candidatos(t):
         """Escolas da série de destino, da melhor para a pior, com as vagas que AINDA restam."""
@@ -163,8 +160,8 @@ def processar(vagas_mun: dict, vagas_est: list, inativas=(), conversoes=None) ->
         for c in cap:
             if c['serie'] != t['serie_destino']:
                 continue
-            if c['escola'] == t['escola_origem'] and not c.get('abre_nova'):
-                continue            # a própria escola só serve se ela passou a oferecer a série (Projeção)
+            if c['escola'] == t['escola_origem']:
+                continue
             if t['serie_destino'] in SO_ESTADUAIS and c['tipo'] != 'ESTADUAL':
                 continue
             restante = c['disponiveis'] - usadas.get((c['escola'], c['serie'], c['turno']), 0)
@@ -176,7 +173,7 @@ def processar(vagas_mun: dict, vagas_est: list, inativas=(), conversoes=None) ->
                 'escola': c['escola'], 'tipo': c['tipo'], 'bairro': c['bairro'] or 'não identificado',
                 'turno': c['turno'], 'vagas_disponiveis': restante, 'proximidade': prox,
                 'proximidade_rotulo': ROTULO_PROX[prox], 'turno_diferente': not turno_ok,
-                'mesmo_bairro': prox == 'mesmo', 'fica_na_escola': c['escola'] == t['escola_origem'],
+                'mesmo_bairro': prox == 'mesmo',
                 '_chave': (c['escola'], c['serie'], c['turno']),
                 '_ordem': (TIPOS_TIER[(c['tipo'], prox)], rank, not turno_ok, -restante),
             })

@@ -1,7 +1,6 @@
 /* projecao.js — tudo fica na memória da página (nada é salvo no servidor). */
 const SERIES = ['GT 0','GT 1','GT 2','GT 3','GT 4','GT 5','1º ANO','2º ANO','3º ANO','4º ANO','5º ANO','6º ANO','7º ANO','8º ANO','9º ANO'];
-const SERIE_EM = '1º ANO DO ENSINO MÉDIO';   // só existe em escola estadual
-let vagasMun = null, inativas = [], salas = [], estaduais = [], resultado = null;
+let vagasMun = null, inativas = [], salas = [], resultado = null;
 
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const $ = id => document.getElementById(id);
@@ -9,25 +8,15 @@ const stat = (n, l, cor) => `<div class="stat"><div class="stat-num" style="colo
 const aviso = (t, cor = '#fef9c3', borda = '#fde047', txt = '#854d0e') =>
     `<div style="background:${cor};border:1px solid ${borda};border-radius:8px;padding:.6rem 1rem;margin:.5rem 0;font-size:.82rem;color:${txt}">${t}</div>`;
 
-document.addEventListener('DOMContentLoaded', async () => {
-    $('est-serie').innerHTML = [...SERIES, SERIE_EM].map(s => `<option value="${s}" ${s==='6º ANO'?'selected':''}>${s}</option>`).join('');
-    try {
-        const lista = await (await fetch('/api/escolas_estaduais')).json();
-        $('est-escola').innerHTML = '<option value="">Selecione…</option>' +
-            lista.map(e => `<option value="${esc(e.escola)}">${esc(e.escola)} — ${esc(e.bairro)}</option>`).join('');
-    } catch (e) { toast('Não consegui carregar a lista de escolas estaduais', false); }
-    renderEstaduais(); atualizarPassos();
-});
+document.addEventListener('DOMContentLoaded', () => atualizarPassos());
 
 function atualizarPassos() {
     const ok = !!vagasMun;
     $('num1').classList.toggle('done', ok);
-    for (const n of [2, 3, 4]) { $('num' + n).classList.toggle('pending', !ok); $('block' + n).classList.toggle('pending', !ok); }
+    for (const n of [2, 3]) { $('num' + n).classList.toggle('pending', !ok); $('block' + n).classList.toggle('pending', !ok); }
     $('num2').classList.toggle('done', ok && salas.length > 0);
-    $('num3').classList.toggle('done', estaduais.length > 0);
-    $('num4').classList.toggle('done', !!resultado);
+    $('num3').classList.toggle('done', !!resultado);
 }
-function marcarDesatualizado() { if (resultado) $('desatualizado').style.display = ''; }
 
 /* ── Passo 1: PDF ── */
 async function importarPDF(input) {
@@ -93,41 +82,15 @@ function renderSalas() {
         '. O número entre parênteses é a diferença entre o relatório e o calculado.';
 }
 
-/* ── Passo 3: vagas estaduais ── */
-function adicionarEstadual() {
-    const escola = $('est-escola').value, serie = $('est-serie').value, qtd = parseInt($('est-qtd').value);
-    if (!escola) return toast('Escolha a escola estadual', false);
-    if (!qtd || qtd < 1) return toast('Informe a quantidade de vagas', false);
-    const ex = estaduais.find(e => e.escola === escola && e.serie === serie);
-    if (ex) ex.vagas += qtd; else estaduais.push({ escola, serie, vagas: qtd });
-    $('est-qtd').value = ''; renderEstaduais(); marcarDesatualizado(); atualizarPassos();
-}
-function editarEstadual(i, v) { const n = parseInt(v); if (!n || n < 1) { renderEstaduais(); return; } estaduais[i].vagas = n; marcarDesatualizado(); }
-function removerEstadual(i) { estaduais.splice(i, 1); renderEstaduais(); marcarDesatualizado(); atualizarPassos(); }
-function limparEstaduais() { estaduais = []; renderEstaduais(); marcarDesatualizado(); atualizarPassos(); }
-function renderEstaduais() {
-    const el = $('est-lista');
-    if (!estaduais.length) { el.innerHTML = '<div style="font-size:.82rem;color:#94a3b8">Nenhuma vaga estadual adicionada — a projeção usará só as vagas municipais do PDF.</div>'; return; }
-    const total = estaduais.reduce((s, e) => s + e.vagas, 0);
-    el.innerHTML = `<div class="table-wrap" style="max-height:240px"><table>
-        <thead><tr><th>Escola estadual</th><th>Série</th><th style="width:120px">Vagas</th><th style="width:50px"></th></tr></thead>
-        <tbody>${estaduais.map((e, i) => `<tr><td>${esc(e.escola)}</td><td>${esc(e.serie)}</td>
-            <td><input class="form-input" type="number" min="1" value="${e.vagas}" style="padding:.3rem .5rem" onchange="editarEstadual(${i}, this.value)"/></td>
-            <td><button class="btn btn-red btn-sm" onclick="removerEstadual(${i})"><i class="fas fa-trash"></i></button></td></tr>`).join('')}</tbody></table></div>
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-top:.6rem;font-size:.82rem;color:#64748b">
-            <span>${estaduais.length} linha(s) · ${total} vagas estaduais</span>
-            <button class="btn btn-outline btn-sm" onclick="limparEstaduais()"><i class="fas fa-eraser"></i> Limpar tudo</button></div>`;
-}
-
-/* ── Passo 4: projeção ── */
+/* ── Passo 3: projeção ── */
 async function calcularProjecao() {
     if (!vagasMun) return toast('Importe o PDF de vagas primeiro', false);
     const btn = $('btn-calc'); btnLoading(btn, 'Calculando…'); $('calc-status').innerHTML = '';
     try {
-        const d = await postJSON('/api/calcular_projecao', { vagas: vagasMun, inativas, estaduais,
-            params: { abrir_series: $('p-abrir').checked, entre_etapas: $('p-etapas').checked } });
+        const d = await postJSON('/api/calcular_projecao', { vagas: vagasMun, inativas,
+            params: { abrir_series: $('p-abrir').checked, entre_etapas: $('p-etapas').checked, proteger_entrada: $('p-proteger').checked } });
         if (!d.success) { $('calc-status').innerHTML = `<span style="color:#991b1b">❌ ${esc(d.error)}</span>`; return; }
-        resultado = d; $('desatualizado').style.display = 'none'; $('resultado-card').style.display = '';
+        resultado = d; $('resultado-card').style.display = '';
         renderResultado(); atualizarPassos(); toast('Projeção calculada!');
     } catch (e) { $('calc-status').innerHTML = `<span style="color:#991b1b">❌ ${esc(e.message)}</span>`; }
     finally { btnRestore(btn); }
@@ -140,47 +103,56 @@ function tabela(cabecalho, linhas, vazio, max = 360) {
 }
 const secao = (titulo, corpo, aberta = false) =>
     `<details ${aberta ? 'open' : ''} style="margin-top:1rem"><summary style="cursor:pointer;font-weight:600;font-size:.9rem;color:#0a192f;margin-bottom:.5rem">${titulo}</summary>${corpo}</details>`;
+const cor = (n, ruim = '#b91c1c', bom = '#065f46') => `<strong style="color:${n ? ruim : bom}">${n}</strong>`;
 
 function renderResultado() {
-    const R = resultado.resumo, a = R.antes, d = R.depois;
+    const R = resultado.resumo;
     $('res-stats').innerHTML =
-        stat(`${a.alunos_sem_vaga} → ${d.alunos_sem_vaga}`, 'Alunos sem vaga (antes → depois)', d.alunos_sem_vaga < a.alunos_sem_vaga ? '#065f46' : '#b45309') +
-        stat(`${a.sem_vaga} → ${d.sem_vaga}`, 'Turmas sem vaga (antes → depois)', '#0a192f') +
-        stat(R.salas_convertidas, `Salas a mudar de série (${R.escolas_afetadas} escolas)`, '#1e40af') +
-        stat(R.alunos_resolvidos, 'Alunos que ganham vaga', '#065f46') +
-        stat(R.abrem_serie_nova, 'Escolas que abrem série nova', '#5b21b6');
+        stat(`${R.nao_cabem_antes} → ${R.nao_cabem_depois}`, 'Alunos que não cabem na própria unidade (antes → depois)', R.nao_cabem_depois < R.nao_cabem_antes ? '#065f46' : '#b45309') +
+        stat(R.salas_convertidas, `Salas que mudam de série (${R.unidades_alteradas} de ${R.unidades} unidades)`, '#1e40af') +
+        stat(R.abrem_serie_nova, `Unidades que abrem série nova (${R.alunos_que_continuam} alunos continuam nelas)`, '#5b21b6') +
+        stat(R.vagas_entrada_retiradas, 'Vagas tiradas de séries de entrada (menos vagas p/ alunos de fora)', R.vagas_entrada_retiradas ? '#b45309' : '#065f46') +
+        stat(`${R.sobra_antes} → ${R.sobra_depois}`, 'Vagas livres para alunos de outras unidades (antes → depois)', '#0a192f');
     $('res-avisos').innerHTML = (resultado.avisos || []).map(t => aviso('⚠️ ' + esc(t))).join('');
 
-    const serie = tabela(['Série de destino', 'Alunos que precisam trocar de unidade', 'Sem vaga antes', 'Sem vaga depois', 'Ganham vaga', 'Vagas livres que sobram na série'],
-        resultado.por_serie.map(s => [esc(s.serie), s.alunos, s.sem_vaga_antes, `<strong style="color:${s.sem_vaga_depois ? '#b91c1c' : '#065f46'}">${s.sem_vaga_depois}</strong>`,
-            s.sem_vaga_antes - s.sem_vaga_depois, R.folga_por_serie[s.serie] || 0]), 'Nenhuma turma precisa trocar de unidade.', 260);
+    const serie = tabela(['Série (ano seguinte)', 'Alunos que sobem da série anterior', 'Não cabem antes', 'Não cabem depois', 'Passam a caber', 'Vagas livres p/ alunos de fora (antes → depois)'],
+        resultado.por_serie.map(s => [esc(s.serie), s.sobem, s.falta_antes, cor(s.falta_depois), s.falta_antes - s.falta_depois, `${s.sobra_antes} → ${s.sobra_depois}`]),
+        'Nenhuma série encontrada.', 320);
 
-    const conv = tabela(['Unidade', 'Bairro', 'Sala', 'Turno', 'Série hoje → ano seguinte', 'Vagas hoje → depois', 'Série nova na escola?', 'Para atender'],
+    const conv = tabela(['Unidade', 'Bairro', 'Sala', 'Turno', 'Série hoje → ano seguinte', 'Vagas hoje → depois', 'Série nova?', 'Por que mudar', 'De onde a sala sai'],
         resultado.salas_convertidas.map(c => [esc(c.escola), esc(c.bairro || '—'), esc(c.sala || '—'), esc(c.turno),
             `${esc(c.serie_antes)} → <strong>${esc(c.serie_nova)}</strong>`, `${c.vagas_antes} → <strong>${c.vagas_novas}</strong>`,
-            c.abre_serie_nova ? '<span class="badge badge-purple">sim</span>' : 'não', `<span style="font-size:.78rem;color:#64748b">${esc(c.motivo)}</span>`]),
-        'Nenhuma sala precisa mudar de série com as regras atuais.', 420);
+            c.abre_serie_nova ? '<span class="badge badge-purple">sim</span>' : 'não',
+            `<span style="font-size:.78rem;color:#475569">${esc(c.motivo)}</span>`,
+            `<span style="font-size:.78rem;color:${c.reduz_entrada ? '#b45309' : '#64748b'}">${esc(c.origem)}</span>`]),
+        'Nenhuma sala precisa mudar de série com as regras atuais.', 440);
 
-    const amp = tabela(['Unidade', 'Série', 'Turno', 'Salas convertidas', 'Vagas que saem de outras séries', 'Vagas que entram', 'Alunos alocados', 'Série nova?'],
-        resultado.destinos_ampliados.map(p => [esc(p.escola), esc(p.serie), esc(p.turno), p.salas, p.vagas_retiradas, p.vagas_novas, p.alunos_alocados, p.abre_serie_nova ? 'sim' : 'não']), '—', 300);
+    const rotulo = b => b.aberta ? '<span class="badge badge-purple">série aberta</span>' : (b.mudou ? '<span class="badge badge-green">alterada</span>' : '');
+    const bal = resultado.balanco;
+    const nao = tabela(['Unidade', 'Bairro', 'Série', 'Alunos que sobem', 'Vagas depois', 'Não cabem'],
+        bal.filter(b => b.falta_depois > 0).map(b => [esc(b.escola), esc(b.bairro || '—'), esc(b.serie), b.sobem, b.vagas_depois, cor(b.falta_depois)]),
+        'Todos os alunos que sobem de série cabem na própria unidade. 🎉', 360);
 
-    const ok = tabela(['Turma', 'Série', 'Alunos', 'Passa a ter vaga em', 'Turno'],
-        resultado.turmas_resolvidas.map(t => [`${esc(t.escola_origem)} · ${esc(t.turma)}`, `${esc(t.serie_atual)} → ${esc(t.serie_destino)}`, t.total_alunos,
-            esc(t.escola_destino) + (t.fica_na_escola ? ' <span class="badge badge-green">continua na própria escola</span>' : ''), esc(t.turno_destino)]),
-        'Nenhuma turma ganhou vaga.', 320);
+    const unidades = [...new Set(bal.map(b => b.escola))];
+    const filtro = `<div style="display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:.5rem">
+        <select class="form-select" id="b-escola" style="max-width:340px" onchange="renderBalanco()"><option value="">Todas as unidades</option>${unidades.map(u => `<option>${esc(u)}</option>`).join('')}</select>
+        <label style="display:flex;align-items:center;gap:.4rem;font-size:.82rem"><input type="checkbox" id="b-so" checked onchange="renderBalanco()"> só linhas com falta ou alteração</label></div>
+        <div id="balanco-tabela"></div>`;
 
-    const sem = tabela(['Turma', 'Bairro', 'Série', 'Turno', 'Alunos'],
-        resultado.turmas_sem_vaga.map(t => [`${esc(t.escola_origem)} · ${esc(t.turma)}`, esc(t.bairro_origem || '—'), `${esc(t.serie_atual)} → ${esc(t.serie_destino)}`, esc(t.turno), t.total_alunos]),
-        'Todas as turmas têm vaga. 🎉', 320);
-
-    let html = secao('Por série de destino', serie, true) + secao(`Salas sugeridas para mudar de série (${resultado.salas_convertidas.length})`, conv, true) +
-        secao(`Unidades que ganham vagas (${resultado.destinos_ampliados.length})`, amp) +
-        secao(`Turmas que passam a ter vaga (${resultado.turmas_resolvidas.length})`, ok) +
-        secao(`Turmas que continuam sem vaga (${resultado.turmas_sem_vaga.length})`, sem);
-    if ((resultado.turmas_perderam_vaga || []).length)
-        html += secao(`⚠️ Turmas que perderam a vaga (${resultado.turmas_perderam_vaga.length})`, tabela(['Turma', 'Série destino', 'Alunos', 'Tinha vaga em'],
-            resultado.turmas_perderam_vaga.map(t => [`${esc(t.escola_origem)} · ${esc(t.turma)}`, esc(t.serie_destino), t.total_alunos, esc(t.tinha_vaga_em)]), '—', 200), true);
+    let html = secao('Por série (ano seguinte)', serie, true) + secao(`Salas sugeridas para mudar de série (${resultado.salas_convertidas.length})`, conv, true) +
+        secao('Alunos que sobem × vagas, por unidade e série', filtro) +
+        secao(`Ainda não cabem na própria unidade (${bal.filter(b => b.falta_depois > 0).length} séries)`, nao);
     $('res-corpo').innerHTML = html;
+    window._rotulo = rotulo; renderBalanco();
+}
+
+function renderBalanco() {
+    const fe = $('b-escola').value, so = $('b-so').checked;
+    const linhas = resultado.balanco.filter(b => (!fe || b.escola === fe) && (!so || b.falta_antes || b.falta_depois || b.mudou || b.aberta));
+    $('balanco-tabela').innerHTML = tabela(['Unidade', 'Série', 'Alunos que sobem', 'Vagas antes → depois', 'Não cabem antes → depois', 'Livres p/ fora antes → depois', ''],
+        linhas.map(b => [esc(b.escola), esc(b.serie) + (b.entrada ? ' <span style="color:#94a3b8;font-size:.72rem">(entrada)</span>' : ''), b.sobem,
+            `${b.vagas_antes} → <strong>${b.vagas_depois}</strong>`, `${b.falta_antes} → ${cor(b.falta_depois)}`, `${b.sobra_antes} → ${b.sobra_depois}`, window._rotulo(b)]),
+        'Nenhuma linha com esse filtro.', 420);
 }
 
 async function baixarExcel() {

@@ -1,33 +1,36 @@
 """
-Motor de PROJEÇÃO DE SALAS — quantos alunos cabem em cada sala e que série cada sala deveria atender
-no ano seguinte para acompanhar a demanda.  Trabalha só com contagens do PDF (nenhum dado de aluno).
+Motor de PROJEÇÃO DE SALAS — remanejamento de turmas DENTRO de cada unidade.
+
+Esta etapa nunca move aluno de uma unidade para outra (isso é a Progressão). Ela só decide, unidade
+por unidade, que série cada sala/turno deve atender no ano seguinte para que os alunos da própria
+unidade caibam da melhor maneira possível. Trabalha só com contagens do PDF (nenhum dado de aluno).
 
 Regras de capacidade
 --------------------
-* Teto por série (máximo de alunos por turma):
-      GT 0 = 15 · GT 1 a GT 3 = 20 · GT 4 e GT 5 = 25 · 1º ao 5º ano = 30 · 6º ao 9º ano = 35
-* Capacidade física da sala:  (m² − 2,5) ÷ 1,3, arredondado para o inteiro mais próximo
-  (é o que o próprio relatório faz: 48 m² → 35 alunos).
+* Teto por série: GT 0 = 15 · GT 1 a GT 3 = 20 · GT 4 e GT 5 = 25 · 1º ao 5º ano = 30 · 6º ao 9º ano = 35.
+* Capacidade física da sala: (m² − 2,5) ÷ 1,3, arredondado ao inteiro mais próximo (48 m² → 35).
 * Vagas de uma sala numa série = o MENOR entre o teto da série e a capacidade física.
-* Até 5 alunos EXCEDENTES por sala ficam de reserva (ordem judicial etc.): nunca entram no cálculo.
+* Até 5 alunos EXCEDENTES por sala ficam de reserva (ordem judicial etc.) e nunca entram nas contas.
 
-Como a projeção decide
-----------------------
-1. Roda a progressão com as salas como estão e separa as turmas que ficaram SEM VAGA.
-2. Para cada uma, procura salas OCIOSAS (a vaga inteira da sala sobra no ano seguinte, depois de
-   descontar quem sobe dentro da própria escola e quem a progressão já alocou) que possam virar a série
-   de que a turma precisa.  Prefere: ficar na própria escola → mesmo bairro → bairro próximo →
-   distante; depois, menos salas e menos vaga desperdiçada.
-3. Repete até não haver mais ganho e remove conversões que não fizeram diferença.
-4. Roda a progressão de novo, já com as salas convertidas, para mostrar o resultado real.
-
-Só converte sala inteira ociosa; nunca tira vaga de quem já tem lugar.
+Como a projeção decide (para cada unidade)
+------------------------------------------
+1. Demanda do ano seguinte numa série T = alunos da série anterior (T−1) que sobem para ela na própria
+   unidade (a primeira série da unidade não recebe ninguém de dentro).
+2. Vagas de T = soma das vagas das salas que hoje atendem T (número do relatório).
+3. Se faltam vagas em T, procura salas que sobram em outra série S: a sala só pode sair de S se, sem ela,
+   S ainda comporta todos os alunos que sobem para S.  Prefere salas de séries que não são a série de
+   entrada da unidade (a vaga de entrada é a que a Progressão usa para alunos vindos de fora), depois
+   menos salas, menos vaga desperdiçada e série mais próxima.  A sala convertida passa a valer a
+   capacidade pela metragem na série nova.
+4. Opcional: se a escola não oferece a série seguinte à sua última série, converte salas ociosas para
+   que a turma que sairia continue na escola (só se couber a turma inteira).
+Nunca zera uma série que a unidade oferece hoje. Opção: proteger a série de entrada (não tirar salas dela).
 """
 import math
 
-from .bairros import get_bairro_escola, get_bairros_proximos, distancias_bairro
+from .bairros import get_bairro_escola
 from .parser_vagas_pdf import normalizar_serie
-from .progressao_engine import processar, chave_turma, SEQUENCIA, SO_ESTADUAIS
+from .progressao_engine import SEQUENCIA, SO_ESTADUAIS, chave_turma
 
 TETO_SERIE = {'GT 0': 15, 'GT 1': 20, 'GT 2': 20, 'GT 3': 20, 'GT 4': 25, 'GT 5': 25,
               **{f'{i}º ANO': 30 for i in range(1, 6)}, **{f'{i}º ANO': 35 for i in range(6, 10)}}
@@ -35,7 +38,6 @@ FAIXAS = [('GT 0', ['GT 0']), ('GT 1 a GT 3', ['GT 1', 'GT 2', 'GT 3']), ('GT 4 
           ('1º ao 5º ano', ['1º ANO']), ('6º ao 9º ano', ['6º ANO'])]
 EXCEDENTES_POR_SALA = 5
 M2_RESERVA, M2_POR_ALUNO = 2.5, 1.3
-MAX_RODADAS = 8
 
 
 # ── capacidade ------------------------------------------------------
@@ -56,8 +58,18 @@ def capacidade_sala(serie: str, area_m2) -> int:
     return min(teto, capacidade_pela_area(area_m2)) if teto else 0
 
 
+def _anterior(serie):
+    i = SEQUENCIA.index(serie) if serie in SEQUENCIA else 0
+    return SEQUENCIA[i - 1] if i > 0 else None
+
+
+def _proxima(serie):
+    i = SEQUENCIA.index(serie) if serie in SEQUENCIA else len(SEQUENCIA)
+    return SEQUENCIA[i + 1] if i + 1 < len(SEQUENCIA) else None
+
+
 def inventario_salas(vagas_mun: dict, inativas=()) -> list:
-    """Uma linha por turma (sala + turno): metragem, vagas do relatório e quanto cabe em cada faixa."""
+    """Uma linha por turma (sala + turno): metragem, vagas do relatório e quanto cabe pela área."""
     inativas = set(inativas or [])
     linhas = []
     for escola, series in vagas_mun.items():
@@ -84,218 +96,210 @@ def inventario_salas(vagas_mun: dict, inativas=()) -> list:
     return linhas
 
 
-# ── projeção --------------------------------------------------------
-def _slots(vagas_mun, inativas):
-    """{escola: [slot]} — cada turma (sala + turno) é uma peça que pode mudar de série."""
-    inativas, out = set(inativas or []), {}
-    for escola, series in vagas_mun.items():
-        if escola in inativas:
-            continue
-        for serie, turmas in series.items():
-            for t in turmas:
-                out.setdefault(escola, []).append({
-                    'escola': escola, 'serie': normalizar_serie(serie), 'turma': t['turma'], 'turno': t['turno'],
-                    'sala': t.get('sala') or '', 'area': float(t.get('area_m2') or 0),
-                    'vagas': t['vagas_existentes'], 'ocupadas': t['vagas_ocupadas'],
-                    'chave': chave_turma(escola, serie, t['turma'], t['turno'])})
+# ── projeção, unidade por unidade ----------------------------------
+def _slots(series: dict) -> list:
+    out = []
+    for serie, turmas in series.items():
+        for t in turmas:
+            out.append({'serie': normalizar_serie(serie), 'turma': t['turma'], 'turno': t['turno'],
+                        'sala': t.get('sala') or '', 'area': float(t.get('area_m2') or 0),
+                        'vagas': t['vagas_existentes'], 'ocupadas': t['vagas_ocupadas']})
     return out
 
 
-def _tier_bairro(bairro_origem, bairro, vizinhos, dist):
-    if bairro_origem and bairro == bairro_origem:
-        return 0, 0
-    if bairro in vizinhos:
-        return 1, vizinhos.index(bairro)
-    return 2, dist.get(bairro) or 9999
+class _Unidade:
+    """Estado de uma unidade durante o cálculo: que série cada sala atende no ano seguinte."""
 
+    def __init__(self, escola, series, params):
+        self.escola, self.params = escola, params
+        self.slots = _slots(series)
+        for i, s in enumerate(self.slots):
+            s['id'], s['serie_nova'], s['vagas_novas'] = i, s['serie'], s['vagas']
+            s['mudou'], s['abre'], s['motivo'] = False, False, ''
+        self.hoje = {s['serie'] for s in self.slots}
+        self.ocup = {}
+        for s in self.slots:
+            self.ocup[s['serie']] = self.ocup.get(s['serie'], 0) + s['ocupadas']
+        self.tem_infantil = any(familia(x) == 'INFANTIL' for x in self.hoje)
+        self.tem_fund = any(familia(x) == 'FUNDAMENTAL' for x in self.hoje)
+        self.vagas_antes = {t: self.cap(t) for t in self.hoje}
 
-def _melhor_plano(t, escola, slots, series_atuais, familias, folga, convertidas, params, bairros, vizinhos, dist):
-    """Menor conjunto de salas de `escola` que vira a série da turma `t`; None se não der."""
-    T, N = t['serie_destino'], t['total_alunos']
-    if T not in series_atuais[escola] and not params['abrir_series']:
-        return None
-    melhores = None
-    turnos = sorted({s['turno'] for s in slots})        # ordem fixa: o resultado não pode variar de uma execução para outra
-    for turno in turnos:
-        ja_tem = folga.get((escola, T, turno), 0)
-        precisa = max(0, N - ja_tem)
-        local, cand = dict(folga), []
-        for s in slots:
-            if s['chave'] in convertidas or s['serie'] == T or s['turno'] != turno:
-                continue
-            mesma_etapa = familia(s['serie']) == familia(T)
-            if not mesma_etapa and not (params['entre_etapas'] and len(familias[escola]) > 1):
-                continue
-            novo = capacidade_sala(T, s['area'])
-            if novo <= 0 or s['vagas'] <= 0:
-                continue
-            cand.append((novo, s))
-        escolhidas, total = [], 0
-        if precisa == 0:
-            continue                       # já cabia: a progressão teria alocado
-        salto = lambda c: abs(SEQUENCIA.index(c[1]['serie']) - SEQUENCIA.index(T))      # prefere série mais próxima
-        unica = sorted([c for c in cand if c[0] >= precisa], key=lambda c: (c[0], salto(c)))
-        ordem = unica + sorted([c for c in cand if c not in unica], key=lambda c: (-c[0], salto(c)))
-        for novo, s in ordem:
-            pool = (escola, s['serie'], turno)
-            if local.get(pool, 0) < s['vagas']:
-                continue                   # a sala não está ociosa por inteiro
-            local[pool] -= s['vagas']
-            escolhidas.append((novo, s)); total += novo
-            if total >= precisa:
+    # alunos da própria unidade que sobem para T
+    def sobem(self, T):
+        a = _anterior(T)
+        return self.ocup.get(a, 0) if a in self.hoje else 0
+
+    def cap(self, T):
+        return sum(s['vagas_novas'] for s in self.slots if s['serie_nova'] == T)
+
+    def salas_em(self, T):
+        return sum(1 for s in self.slots if s['serie_nova'] == T)
+
+    def entrada(self, S):
+        """Série de entrada: não recebe aluno de dentro da unidade (a vaga dela serve a quem vem de fora)."""
+        return _anterior(S) not in self.hoje
+
+    def sobra(self, S):
+        return self.cap(S) - self.sobem(S)
+
+    def pode_virar(self, s, T):
+        S = s['serie_nova']
+        if S == T or s['mudou'] or s['vagas'] <= 0 or S not in TETO_SERIE or T not in TETO_SERIE:
+            return 0
+        if familia(S) != familia(T) and not (self.params['entre_etapas'] and self.tem_infantil and self.tem_fund):
+            return 0
+        if S in self.hoje and self.salas_em(S) <= 1:
+            return 0                                   # nunca zera uma série que a unidade já oferece
+        if self.sobra(S) < s['vagas_novas']:
+            return 0                                   # a sala faz falta para quem sobe para S
+        if self.params['proteger_entrada'] and self.entrada(S):
+            return 0                                   # opção: não mexer na série de entrada da unidade
+        return capacidade_sala(T, s['area'])
+
+    def converter(self, T, falta, abre, motivo):
+        """Converte salas para T até cobrir `falta` (False se não der). Prefere série que não é de entrada."""
+        feitas = []
+        while falta > 0:
+            cands = [(self.pode_virar(s, T), s) for s in self.slots]
+            cands = [(novo, s) for novo, s in cands if novo > 0]
+            if not cands:
                 break
-        if total < precisa:
-            continue
-        tier = _tier_bairro(t['bairro_origem'], bairros[escola], vizinhos, dist)
-        chave = (tier, escola != t['escola_origem'], T not in series_atuais[escola], len(escolhidas), total - precisa)
-        if melhores is None or chave < melhores[0]:
-            melhores = (chave, turno, escolhidas, ja_tem)
-    return melhores
-
-
-def _aplicar(plano, t, escola, T, folga, conv, convertidas):
-    _, turno, escolhidas, ja_tem = plano
-    ganho = 0
-    for novo, s in escolhidas:
-        conv[s['chave']] = {'escola': escola, 'serie': s['serie'], 'turma': s['turma'], 'turno': s['turno'],
-                            'serie_nova': T, 'vagas_novas': novo, 'vagas_antes': s['vagas'], 'sala': s['sala'],
-                            'area_m2': s['area'],
-                            'motivo': f"{t['escola_origem']} · {t['turma']} ({t['total_alunos']} alunos) precisa de {T}"}
-        convertidas.add(s['chave'])
-        folga[(escola, s['serie'], turno)] -= s['vagas']
-        ganho += novo
-    folga[(escola, T, turno)] = folga.get((escola, T, turno), 0) + ganho - t['total_alunos']
-
-
-def _sem_vaga(res):
-    return [t for t in res['turmas'] if t['status'] == 'sem_vaga']
-
-
-def calcular_projecao(vagas_mun: dict, vagas_est=None, inativas=(), params=None) -> dict:
-    params = {'abrir_series': True, 'entre_etapas': False, **(params or {})}
-    vagas_est = vagas_est or []
-    slots = _slots(vagas_mun, inativas)
-    series_atuais = {e: {s['serie'] for s in ss} for e, ss in slots.items()}
-    familias = {e: {familia(s) for s in sr} for e, sr in series_atuais.items()}
-    bairros = {e: get_bairro_escola(e) for e in slots}
-
-    base = processar(vagas_mun, vagas_est, inativas)
-    conv, convertidas = {}, set()
-    res = base
-    for _ in range(MAX_RODADAS):
-        # séries que só existem em escola estadual (9º ano → ensino médio) não se resolvem com sala municipal
-        pendentes = sorted((t for t in _sem_vaga(res) if t['serie_destino'] not in SO_ESTADUAIS),
-                           key=lambda t: (-t['total_alunos'], t['escola_origem'], t['turma']))
-        if not pendentes:
-            break
-        folga = {(d['escola'], d['serie'], d['turno']): d['restantes'] for d in res['destinos'] if d['tipo'] == 'MUNICIPAL'}
-        houve = False
-        for t in pendentes:
-            vizinhos, dist = get_bairros_proximos(t['bairro_origem']), distancias_bairro(t['bairro_origem'])
+            salto = lambda c: abs(SEQUENCIA.index(c[1]['serie_nova']) - SEQUENCIA.index(T))
             melhor = None
-            for escola, ss in slots.items():
-                p = _melhor_plano(t, escola, ss, series_atuais, familias, folga, convertidas, params, bairros, vizinhos, dist)
-                if p and (melhor is None or p[0] < melhor[1][0]):
-                    melhor = (escola, p)
-            if melhor:
-                _aplicar(melhor[1], t, melhor[0], t['serie_destino'], folga, conv, convertidas)
-                houve = True
-        if not houve:
-            break
-        res = processar(vagas_mun, vagas_est, inativas, list(conv.values()))
+            for entrada in (False, True):
+                grupo = [c for c in cands if self.entrada(c[1]['serie_nova']) == entrada]
+                if not grupo:
+                    continue
+                cabe = sorted([c for c in grupo if c[0] >= falta], key=lambda c: (c[0], salto(c), c[1]['id']))
+                melhor = cabe[0] if cabe else sorted(grupo, key=lambda c: (-c[0], salto(c), c[1]['id']))[0]
+                break
+            novo, s = melhor
+            s.update(origem_entrada=self.entrada(s['serie_nova']), origem_serie=s['serie_nova'],
+                     origem_sobra=self.sobra(s['serie_nova']), origem_sobem=self.sobem(s['serie_nova']))
+            s['serie_nova'], s['vagas_novas'], s['mudou'], s['abre'], s['motivo'] = T, novo, True, abre, motivo
+            feitas.append(s)
+            falta -= novo
+        return feitas, falta
 
-    # remove conversões que não mudaram o resultado
-    pior = res['resumo']['alunos_sem_vaga']
-    for chave in list(conv)[::-1]:
-        teste = {k: v for k, v in conv.items() if k != chave}
-        r = processar(vagas_mun, vagas_est, inativas, list(teste.values()))
-        if r['resumo']['alunos_sem_vaga'] <= pior:
-            conv, res, pior = teste, r, r['resumo']['alunos_sem_vaga']
-    final = processar(vagas_mun, vagas_est, inativas, list(conv.values()))
-    saida = _montar_saida(vagas_mun, inativas, params, base, final, conv, bairros)
-    saida['salas'] = inventario_salas(vagas_mun, inativas)
-    return saida
+    def desfazer(self, feitas):
+        for s in feitas:
+            s['serie_nova'], s['vagas_novas'], s['mudou'], s['abre'], s['motivo'] = s['serie'], s['vagas'], False, False, ''
 
 
-def _montar_saida(vagas_mun, inativas, params, base, final, conv, bairros):
-    chave_t = lambda t: (t['escola_origem'], t['turma'], t['serie_atual'], t['turno'])
-    antes = {chave_t(t): t for t in base['turmas']}
-    resolvidas = [{'escola_origem': t['escola_origem'], 'bairro_origem': t['bairro_origem'], 'turma': t['turma'],
-                   'serie_atual': t['serie_atual'], 'serie_destino': t['serie_destino'], 'total_alunos': t['total_alunos'],
-                   'escola_destino': t['escola_sugerida']['escola'], 'turno_destino': t['escola_sugerida']['turno'],
-                   'fica_na_escola': t['escola_sugerida'].get('fica_na_escola', False)}
-                  for t in final['turmas']
-                  if t['status'] == 'ok' and antes[chave_t(t)]['status'] == 'sem_vaga']
-    perderam = [{'escola_origem': t['escola_origem'], 'turma': t['turma'], 'serie_destino': t['serie_destino'],
-                 'total_alunos': t['total_alunos'], 'tinha_vaga_em': antes[chave_t(t)]['escola_sugerida']['escola']}
-                for t in final['turmas'] if t['status'] != 'ok' and antes[chave_t(t)]['status'] == 'ok']
-    ainda = [{k: t[k] for k in ('escola_origem', 'bairro_origem', 'turma', 'serie_atual', 'serie_destino', 'total_alunos', 'turno')}
-             for t in final['turmas'] if t['status'] == 'sem_vaga']
+def _projetar_unidade(escola, series, params):
+    u = _Unidade(escola, series, params)
+    falta0 = {T: max(0, u.sobem(T) - u.cap(T)) for T in u.hoje if T in TETO_SERIE}
+    # 1) séries que a unidade já oferece e não comportam quem sobe para elas
+    for T in sorted(falta0, key=lambda t: -falta0[t]):
+        f = max(0, u.sobem(T) - u.cap(T))
+        if f:
+            u.converter(T, f, False, f"{u.sobem(T)} alunos sobem de {_anterior(T)} e só havia {u.vagas_antes[T]} vagas em {T}")
+    # 2) opcional: abrir a série seguinte para a turma final continuar na escola
+    nao_abertas, abertas, reten = [], [], {}
+    if params['abrir_series']:
+        finais = {}
+        for S in u.hoje:
+            T = _proxima(S)
+            if T in TETO_SERIE and T not in u.hoje and u.ocup.get(S, 0) > 0:
+                finais[T] = u.ocup[S]
+        for T in sorted(finais, key=lambda t: -finais[t]):
+            u.hoje.add(T); u.ocup.setdefault(T, 0); u.vagas_antes.setdefault(T, 0)
+            S = _anterior(T)
+            feitas, resta = u.converter(T, finais[T], True,
+                                        f"a turma final de {S} ({finais[T]} alunos) deixa de sair da unidade")
+            if resta > 0:
+                u.desfazer(feitas); u.hoje.discard(T)
+                nao_abertas.append({'serie': T, 'alunos': finais[T], 'faltam': resta})
+            else:
+                abertas.append(T); reten[T] = finais[T]
+    return u, falta0, abertas, nao_abertas, reten
 
-    atendidos = {}                         # alunos que a progressão final colocou em cada série/turno de cada escola
-    for t in final['turmas']:
-        e = t['escola_sugerida']
-        if t['status'] == 'ok' and e['tipo'] == 'MUNICIPAL':
-            k = (e['escola'], t['serie_destino'], e['turno'])
-            atendidos[k] = atendidos.get(k, 0) + t['total_alunos']
-    series_hoje = {e: {normalizar_serie(s) for s in ss} for e, ss in vagas_mun.items()}
 
-    salas = [{**c, 'bairro': bairros.get(c['escola']) or get_bairro_escola(c['escola']),
-              'abre_serie_nova': c['serie_nova'] not in series_hoje[c['escola']],
-              'serie_antes': c['serie']} for c in conv.values()]
-    salas.sort(key=lambda c: (c['escola'], c['serie_nova'], c['turno'], c['sala']))
-    pools = {}
-    for c in salas:
-        k = (c['escola'], c['serie_nova'], c['turno'])
-        p = pools.setdefault(k, {'escola': c['escola'], 'bairro': c['bairro'], 'serie': c['serie_nova'],
-                                 'turno': c['turno'], 'salas': 0, 'vagas_novas': 0, 'vagas_retiradas': 0,
-                                 'abre_serie_nova': c['abre_serie_nova'], 'alunos_alocados': atendidos.get(k, 0)})
-        p['salas'] += 1; p['vagas_novas'] += c['vagas_novas']; p['vagas_retiradas'] += c['vagas_antes']
-    destinos = sorted(pools.values(), key=lambda p: (p['escola'], p['serie']))
+def calcular_projecao(vagas_mun: dict, inativas=(), params=None) -> dict:
+    params = {'abrir_series': False, 'entre_etapas': False, 'proteger_entrada': False, **(params or {})}
+    inativas = set(inativas or [])
+    balanco, salas, conv, unidades, avisos = [], [], [], [], []
+    por_serie, entrada_delta = {}, {}
+    saem_antes = saem_depois = sem_area = 0
 
-    por_serie = {}
-    for fase, r in (('antes', base), ('depois', final)):
-        for t in r['turmas']:
-            d = por_serie.setdefault(t['serie_destino'], {'serie': t['serie_destino'], 'alunos': 0,
-                                                          'sem_vaga_antes': 0, 'sem_vaga_depois': 0})
-            if fase == 'antes':
-                d['alunos'] += t['total_alunos']
-            if t['status'] == 'sem_vaga':
-                d['sem_vaga_' + fase] += t['total_alunos']
-    por_serie = sorted(por_serie.values(), key=lambda d: SEQUENCIA.index(d['serie']) if d['serie'] in SEQUENCIA else 99)
+    for escola, series in vagas_mun.items():
+        if escola in inativas:
+            continue
+        u, falta0, abertas, nao_abertas, reten = _projetar_unidade(escola, series, params)
+        bairro = get_bairro_escola(escola)
+        sem_area += sum(1 for s in u.slots if not s['area'] and s['vagas'] > 0)
+        tocadas = {s['serie_nova'] for s in u.slots if s['mudou']} | {s['serie'] for s in u.slots if s['mudou']}
 
-    folga = {}
-    for d in final['destinos']:
-        if d['tipo'] == 'MUNICIPAL' and d['restantes'] > 0:
-            folga[d['serie']] = folga.get(d['serie'], 0) + d['restantes']
+        nao_cabem = 0
+        for T in sorted(u.hoje, key=lambda t: SEQUENCIA.index(t) if t in SEQUENCIA else 99):
+            if T not in TETO_SERIE:
+                continue
+            aberta = T in abertas
+            sobem = reten[T] if aberta else u.sobem(T)
+            v_antes, v_depois = u.vagas_antes.get(T, 0), u.cap(T)
+            f_antes = 0 if aberta else max(0, sobem - v_antes)
+            f_depois = max(0, sobem - v_depois)
+            s_antes, s_depois = max(0, v_antes - sobem), max(0, v_depois - sobem)
+            nao_cabem += f_depois
+            balanco.append({'escola': escola, 'bairro': bairro, 'serie': T, 'sobem': sobem, 'vagas_antes': v_antes,
+                            'vagas_depois': v_depois, 'falta_antes': f_antes, 'falta_depois': f_depois,
+                            'sobra_antes': s_antes, 'sobra_depois': s_depois, 'aberta': aberta,
+                            'mudou': T in tocadas, 'entrada': u.entrada(T) and not aberta})
+            d = por_serie.setdefault(T, {'serie': T, 'sobem': 0, 'falta_antes': 0, 'falta_depois': 0,
+                                         'sobra_antes': 0, 'sobra_depois': 0})
+            for k, v in (('sobem', sobem), ('falta_antes', f_antes), ('falta_depois', f_depois),
+                         ('sobra_antes', s_antes), ('sobra_depois', s_depois)):
+                d[k] += v
 
-    avisos = []
-    sem_area = sum(1 for ss in vagas_mun.values() for s in ss.values() for t in s
-                   if not t.get('area_m2') and t['vagas_existentes'] > 0)
+        # alunos da série final de cada unidade: saem dela (a Progressão cuida deles), a não ser que a série seja aberta
+        for S in {s['serie'] for s in u.slots}:
+            T, n = _proxima(S), u.ocup.get(S, 0)
+            if n and T and (T in SO_ESTADUAIS or (T in TETO_SERIE and T not in {s['serie'] for s in u.slots})):
+                saem_antes += n
+                if T not in abertas:
+                    saem_depois += n
+
+        for s in u.slots:
+            if not s['mudou']:
+                continue
+            reduz = bool(s.get('origem_entrada'))
+            origem = (f"{s['origem_serie']} é a série de entrada da unidade: a vaga dela serviria a alunos de fora"
+                      if reduz else
+                      f"{s['origem_serie']} tinha {s['origem_sobra'] + s['origem_sobem']} vagas e só {s['origem_sobem']} alunos sobem para ela")
+            salas.append({'escola': escola, 'bairro': bairro, 'sala': s['sala'], 'turno': s['turno'], 'turma': s['turma'],
+                          'serie_antes': s['serie'], 'serie_nova': s['serie_nova'], 'vagas_antes': s['vagas'],
+                          'vagas_novas': s['vagas_novas'], 'area_m2': s['area'], 'abre_serie_nova': s['abre'],
+                          'motivo': s['motivo'], 'origem': origem, 'reduz_entrada': reduz})
+            conv.append({'escola': escola, 'serie': s['serie'], 'turma': s['turma'], 'turno': s['turno'],
+                         'serie_nova': s['serie_nova'], 'vagas_novas': s['vagas_novas'], 'vagas_antes': s['vagas'],
+                         'sala': s['sala'], 'area_m2': s['area'], 'abre_serie': s['abre']})
+            if reduz:
+                entrada_delta[s['serie']] = entrada_delta.get(s['serie'], 0) + s['vagas']
+        unidades.append({'escola': escola, 'bairro': bairro, 'salas_convertidas': sum(1 for s in u.slots if s['mudou']),
+                         'nao_cabem': nao_cabem, 'abertas': abertas, 'nao_abertas': nao_abertas})
+
+    por_serie = sorted(por_serie.values(), key=lambda d: SEQUENCIA.index(d['serie']))
+    resumo = {
+        'unidades': len(unidades), 'unidades_alteradas': sum(1 for x in unidades if x['salas_convertidas']),
+        'salas_convertidas': len(salas), 'abrem_serie_nova': sum(len(x['abertas']) for x in unidades),
+        'nao_cabem_antes': sum(b['falta_antes'] for b in balanco),
+        'nao_cabem_depois': sum(b['falta_depois'] for b in balanco),
+        'alunos_que_continuam': sum(b['sobem'] for b in balanco if b['aberta']),
+        'alunos_saem_antes': saem_antes, 'alunos_saem_depois': saem_depois,
+        'vagas_entrada_retiradas': sum(entrada_delta.values()), 'entrada_retirada_por_serie': entrada_delta,
+        'sobra_antes': sum(b['sobra_antes'] for b in balanco), 'sobra_depois': sum(b['sobra_depois'] for b in balanco),
+    }
     if sem_area:
-        avisos.append(f'{sem_area} turma(s) com vagas mas sem metragem no PDF: essas salas não entram na projeção.')
-    if any(not b for b in bairros.values()):
-        avisos.append('Há unidade(s) sem bairro cadastrado: a proximidade delas é tratada como "distante".')
-    so_estado = sum(t['total_alunos'] for t in final['turmas'] if t['status'] == 'sem_vaga' and t['serie_destino'] in SO_ESTADUAIS)
-    if so_estado:
-        avisos.append(f'{so_estado} alunos do 9º ano seguem sem vaga no 1º ano do ensino médio: essa série só existe em escola '
-                      f'estadual, então salas municipais não resolvem. Cadastre as vagas do estado (passo 3) para ver o saldo.')
-    if perderam:
-        avisos.append(f'{len(perderam)} turma(s) que tinham vaga sem a projeção ficaram sem vaga com ela: a mesma vaga passou a '
-                      f'atender mais alunos de outras turmas (veja a lista "Perderam a vaga"). Revise antes de decidir.')
+        avisos.append(f'{sem_area} turma(s) com vagas mas sem metragem no PDF: essas salas não podem ser convertidas.')
+    if resumo['vagas_entrada_retiradas']:
+        avisos.append(f"{resumo['vagas_entrada_retiradas']} vagas saem de séries de entrada de unidades. Essas vagas serviriam a "
+                      f"alunos vindos de outras unidades na Progressão; confira o efeito lá antes de decidir.")
+    for x in unidades:
+        for n in x['nao_abertas']:
+            avisos.append(f"{x['escola']}: não há salas ociosas para abrir o {n['serie']} (faltam {n['faltam']} vagas); a turma continua saindo.")
     if params['entre_etapas']:
         avisos.append('Conversão entre Educação Infantil e Fundamental ligada (só em unidades que já oferecem as duas).')
 
-    resumo = {
-        'perderam_vaga': len(perderam),
-        'antes': base['resumo'], 'depois': final['resumo'],
-        'salas_convertidas': len(salas), 'escolas_afetadas': len({c['escola'] for c in salas}),
-        'vagas_criadas': sum(c['vagas_novas'] for c in salas), 'vagas_retiradas': sum(c['vagas_antes'] for c in salas),
-        'turmas_resolvidas': len(resolvidas), 'alunos_resolvidos': sum(t['total_alunos'] for t in resolvidas),
-        'abrem_serie_nova': sum(1 for p in destinos if p['abre_serie_nova']),
-        'folga_por_serie': folga,
-    }
-    return {'params': params, 'resumo': resumo, 'por_serie': por_serie, 'salas_convertidas': salas,
-            'destinos_ampliados': destinos, 'turmas_resolvidas': resolvidas, 'turmas_sem_vaga': ainda,
-            'turmas_perderam_vaga': perderam,
-            'avisos': avisos, 'conversoes': list(conv.values())}
+    salas.sort(key=lambda c: (c['escola'], c['serie_nova'], c['turno'], c['sala']))
+    return {'params': params, 'resumo': resumo, 'por_serie': por_serie, 'balanco': balanco, 'salas_convertidas': salas,
+            'unidades': unidades, 'avisos': avisos, 'conversoes': conv, 'salas': inventario_salas(vagas_mun, inativas)}

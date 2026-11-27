@@ -155,9 +155,10 @@ def calcular_projecao_api():
     if not vagas:
         return jsonify({'success': False, 'error': 'Importe o PDF de vagas primeiro'}), 400
     p = req.get('params') or {}
-    params = {'abrir_series': bool(p.get('abrir_series', True)), 'entre_etapas': bool(p.get('entre_etapas', False))}
+    params = {'abrir_series': bool(p.get('abrir_series', False)), 'entre_etapas': bool(p.get('entre_etapas', False)),
+              'proteger_entrada': bool(p.get('proteger_entrada', False))}
     try:
-        resultado = calcular_projecao(vagas, req.get('estaduais') or [], req.get('inativas') or [], params)
+        resultado = calcular_projecao(vagas, req.get('inativas') or [], params)
     except Exception as e:
         return jsonify({'success': False, 'error': f'Não consegui calcular a projeção: {e}'}), 500
     return jsonify({'success': True, **resultado})
